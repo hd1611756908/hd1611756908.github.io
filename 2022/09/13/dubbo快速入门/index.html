@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ukoko.gitee.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="123456作者: 夜泊1990企鹅: 1611756908鹅群: 948233848邮箱: hd1611756908@163.com博客: https:&#x2F;&#x2F;ukoko.gitee.io&#x2F;B 站: https:&#x2F;&#x2F;space.bilibili.com&#x2F;514155929&#x2F;  第一章 分布式简介第1节 架构演进              单一架构         垂直架构         分布式(S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dubbo快速入门">
+<meta property="og:url" content="https://ukoko.gitee.io/2022/09/13/dubbo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="枫桥夜泊">
+<meta property="og:description" content="123456作者: 夜泊1990企鹅: 1611756908鹅群: 948233848邮箱: hd1611756908@163.com博客: https:&#x2F;&#x2F;ukoko.gitee.io&#x2F;B 站: https:&#x2F;&#x2F;space.bilibili.com&#x2F;514155929&#x2F;  第一章 分布式简介第1节 架构演进              单一架构         垂直架构         分布式(S">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB9e2771b25a233c3077d95c6fe54cc725?method=download&shareKey=8bdd757d2381661df4862d6b72e0dd04">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB28996d72d7e3257185a4c7ffc8a5301f?method=download&shareKey=d2033d213d5c0272a7d3a7f7c7f98667">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBb40b2b48faf3ba8fc2259136a1136ab7?method=download&shareKey=ce6c560fe7c67d8329c7b29e12ea98d6">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB32476d0711a21e36c1864e13c0d86602?method=download&shareKey=75c33bfaaadca396a57ef4c0c8268b15">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB5886c4a5bffb711751a1be51c7ebbf3a?method=download&shareKey=49de6b7f40c49b45eca2f20901002142">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBccc29d03047033f587d2296f77817039?method=download&shareKey=aa7b15567303f36091595696303556ff">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB2c69cee72ecabd1f66559c710a160daf?method=download&shareKey=d32abac4d86f19d8ae294ace797e8c48">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB15ada07d82a65bccdddbc71b10a27f9e?method=download&shareKey=0a9fb89c36cd1a04718d3acd2b4bd887">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB2c848c3ab838f5a7003d0334b1a5d09b?method=download&shareKey=2b31f3e3191852d9f8c491d3e63bffd3">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBf06679e4bea91ec405f3c2ef257af3f0?method=download&shareKey=3388cb3f50c6c15ede930ed331b847b8">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBd66fc6f77c0df895c9f351e916f93376?method=download&shareKey=1dee4926e81f9188b1666100d2595344">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBe207591bcdfc72a0c02283a0f404c644?method=download&shareKey=b88e35397aa971b3cd2c745e0ae9ad8e">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB83d5bf513ef88024e8e4a47e54f65f0f?method=download&shareKey=720398d80a30d1e094d48f8e5bd5f403">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBdef4244da04cda0bd0d7e9efcf423a72?method=download&shareKey=e67bc15915a062856f1c01999dc04a39">
+<meta property="article:published_time" content="2022-09-13T05:18:14.745Z">
+<meta property="article:modified_time" content="2022-03-16T13:26:13.000Z">
+<meta property="article:author" content="夜泊1990">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="dubbo">
+<meta property="article:tag" content="nacos">
+<meta property="article:tag" content="zookeeper">
+<meta property="article:tag" content="分布式">
+<meta property="article:tag" content="RPC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/WEB9e2771b25a233c3077d95c6fe54cc725?method=download&shareKey=8bdd757d2381661df4862d6b72e0dd04">
+
+<link rel="canonical" href="https://ukoko.gitee.io/2022/09/13/dubbo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Dubbo快速入门 | 枫桥夜泊</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="枫桥夜泊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">枫桥夜泊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每走一步,都是进步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://gitee.com/ukoko" class="github-corner" title="Follow me on GitEE" aria-label="Follow me on GitEE" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ukoko.gitee.io/2022/09/13/dubbo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="夜泊1990">
+      <meta itemprop="description" content="俱往矣,要多呲花,有多呲花">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫桥夜泊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Dubbo快速入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-13 13:18:14" itemprop="dateCreated datePublished" datetime="2022-09-13T13:18:14+08:00">2022-09-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-16 21:26:13" itemprop="dateModified" datetime="2022-03-16T21:26:13+08:00">2022-03-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/dubbo/" itemprop="url" rel="index"><span itemprop="name">dubbo</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>16k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>15 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">作者: 夜泊1990</span><br><span class="line">企鹅: 1611756908</span><br><span class="line">鹅群: 948233848</span><br><span class="line">邮箱: hd1611756908@163.com</span><br><span class="line">博客: https://ukoko.gitee.io/</span><br><span class="line">B 站: https://space.bilibili.com/514155929/</span><br></pre></td></tr></table></figure>
+
+<h2 id="第一章-分布式简介"><a href="#第一章-分布式简介" class="headerlink" title="第一章 分布式简介"></a>第一章 分布式简介</h2><h3 id="第1节-架构演进"><a href="#第1节-架构演进" class="headerlink" title="第1节 架构演进"></a>第1节 架构演进</h3><table>
+    <tr>
+        <td style="font-size:9px;text-align:center;">单一架构</td>
+        <td style="font-size:9px;text-align:center;">垂直架构</td>
+        <td style="font-size:9px;text-align:center;">分布式(SOA服务治理)架构</td>
+    </tr>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEB9e2771b25a233c3077d95c6fe54cc725?method=download&shareKey=8bdd757d2381661df4862d6b72e0dd04">
+        </td>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEB28996d72d7e3257185a4c7ffc8a5301f?method=download&shareKey=d2033d213d5c0272a7d3a7f7c7f98667">
+        </td>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEBb40b2b48faf3ba8fc2259136a1136ab7?method=download&shareKey=ce6c560fe7c67d8329c7b29e12ea98d6">
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size:9px;">网站用户少,流量小,抗压力差(eg: ssm)</td>
+        <td style="font-size:9px;">网站用户量进一步增长,流量增多,服务器不能平滑扩容(eg: 多个ssm)</td>
+        <td style="font-size:9px;">网站用户和流量随时间稳步升高,需要随时进行服务器扩容(eg: rpc/http)</td>
+    </tr>
+</table>
+
+
+<span id="more"></span>
+
+<h3 id="第2节-分布式框架解决的问题"><a href="#第2节-分布式框架解决的问题" class="headerlink" title="第2节 分布式框架解决的问题"></a>第2节 分布式框架解决的问题</h3><table>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEB32476d0711a21e36c1864e13c0d86602?method=download&shareKey=75c33bfaaadca396a57ef4c0c8268b15">
+        </td>
+    </tr>
+</table>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">随着互联网架构的越来越复杂,由原来的单一架构 ...到... 流动计算架构 涉及到的服务节点越来越多,这时候就会出现各种各样的问题:</span><br><span class="line">1. 服务的URL地址的管理问题(每一个服务都可能有多个URL地址暴露出去,供别的服务调用)</span><br><span class="line">2. 服务之间的依赖关系问题(服务之间会相互调用)</span><br><span class="line">3. 线上部署的服务越来越多,服务的容量问题不好分配(哪个服务需要增减机器,哪台服务空闲时间过长,哪台服务总是在满载运行等等)</span><br><span class="line"></span><br><span class="line">针对以上问题的解决方案当前市场上的技术有很多 Dubbo(阿里巴巴)、Motan(新浪微博)等</span><br></pre></td></tr></table></figure>
+
+<h3 id="第3节-Dubbo框架"><a href="#第3节-Dubbo框架" class="headerlink" title="第3节 Dubbo框架"></a>第3节 Dubbo框架</h3><h4 id="3-1-Dubbo框架介绍"><a href="#3-1-Dubbo框架介绍" class="headerlink" title="3.1 Dubbo框架介绍"></a>3.1 Dubbo框架介绍</h4><ul>
+<li>Dubbo由来</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Dubbo |ˈdʌbəʊ| 是一款高性能、轻量级的开源 Java RPC框架 </span><br><span class="line"></span><br><span class="line">1. 2008年在阿里内部诞生</span><br><span class="line">2. 2011年开源</span><br><span class="line">3. 2012年发布 2.5.3 版本后停止更新  --&gt; 2014年当当发布dubbox,是基于阿里开源的dubbo 2.5.3版本增加rest协议的dubbo版本</span><br><span class="line">4. 2017年阿里重启dubbo项目</span><br><span class="line">5. 2018年进入apache孵化</span><br><span class="line">6. 2019年成为apache顶级项目,同时发布多语言(Erlang,golang,java)dubbo版本</span><br><span class="line">7. 2020年发布dubbo 3.0 部署云原生 当前最高版本dubbo3.0.5 (2022年1月22日)</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>使用Dubbo的公司</li>
+</ul>
+<img src="https://note.youdao.com/yws/api/personal/file/WEB5886c4a5bffb711751a1be51c7ebbf3a?method=download&shareKey=49de6b7f40c49b45eca2f20901002142">
+
+<h4 id="3-2-Dubbo架构介绍"><a href="#3-2-Dubbo架构介绍" class="headerlink" title="3.2 Dubbo架构介绍"></a>3.2 Dubbo架构介绍</h4><table>
+    <tr>
+        <td style="width:50%;">
+            <img src="https://note.youdao.com/yws/api/personal/file/WEBccc29d03047033f587d2296f77817039?method=download&shareKey=aa7b15567303f36091595696303556ff">
+        </td>
+        <td style="width:50%;font-size:10px;">
+            <strong>1.</strong> Provider : 消息提供者
+            <br>
+            <strong>2.</strong> Consumer : 服务消费者
+            <br>
+            <strong>3.</strong> Registry : 注册中心
+            <br>
+            <strong>4.</strong> Monitor  : 统计服务的调用次数和调用时间的监控中心
+            <br>
+            <strong>5.</strong> Container: 服务运行容器(ioc,log4j,web相关容器(tomcat)等)
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="font-size:10px;">
+            1. 服务容器负责启动,加载,运行服务提供者.<br>
+            2. 服务提供者在启动时,向注册中心注册自己提供的服务.<br>
+            3. 服务消费者在启动时,向注册中心订阅自己所需的服务.<br>
+            4. 注册中心返回服务提供者地址列表给消费者,如果有变更,注册中心将基于长连接推送变更数据给消费者.<br>
+            5. 服务消费者,从提供者地址列表中,基于软负载均衡算法,选一台提供者进行调用,如果调用失败,再选另一台调用.<br>
+            6. 服务消费者和提供者,在内存中累计调用次数和调用时间,定时每分钟发送一次统计数据到监控中心.
+        </td>
+    </tr>
+</table>
+
+
+<h2 id="第二章-Dubbo快速入门-Dubbo2-x"><a href="#第二章-Dubbo快速入门-Dubbo2-x" class="headerlink" title="第二章 Dubbo快速入门(Dubbo2.x)"></a>第二章 Dubbo快速入门(Dubbo2.x)</h2><h3 id="第1节-RPC介绍"><a href="#第1节-RPC介绍" class="headerlink" title="第1节 RPC介绍"></a>第1节 RPC介绍</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RPC是远程过程调用(Remote Procedure Call)的缩写形式,他不是具体的通信协议,可以把它看成是一种通信模型或者通信设计思想.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<table>
+    <tr>
+        <td style="width:50%;">
+            <img src="https://note.youdao.com/yws/api/personal/file/WEB2c69cee72ecabd1f66559c710a160daf?method=download&shareKey=d32abac4d86f19d8ae294ace797e8c48">
+        </td>
+        <td style="font-size:12px;">
+            RPC: 远程过程调用.<br>
+            他可以让我们调用远程方法和调用本地方法一样简单.将远程方法调用转换成本地方法调用的形式.<br>
+            Dubbo框架就是一个很好RPC的具体实现.内部的调用逻辑由框架来完成,程序员只需要关注使用方式即可.<br>
+        </td>
+    </tr>
+</table>
+
+<h3 id="第2节-Dubbo和Spring整合-基于XML"><a href="#第2节-Dubbo和Spring整合-基于XML" class="headerlink" title="第2节 Dubbo和Spring整合(基于XML)"></a>第2节 Dubbo和Spring整合(基于XML)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">根据第一章第3节 3.2 Dubbo架构图可以看出完成入门案例需要,①服务提供者(必须)、②服务消费者(必须)、③注册中心(必须)、④运行服务提供者的容器(必须)、⑤监控(非必须)</span><br><span class="line"></span><br><span class="line">依赖:</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.apache.dubbo&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;dubbo&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;2.7.15&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置服务</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">RPC远程过程调用,将远程调用转换成本地调用,例如远程有一个add方法,在本地也调用add方法,保证消费者和提供者有相同的方法,所以将服务接口单独抽取出一个项目,让提供者和消费者依赖.</span><br><span class="line"></span><br><span class="line">1. 创建普通的Java工程(一般起名字 xxx-api)</span><br><span class="line">2. 定义服务接口</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @Auther: hushuang</span><br><span class="line"> * @Date: 2022/1/30 18:28</span><br><span class="line"> * @Description: 定义服务接口</span><br><span class="line"> */</span><br><span class="line">public interface DemoService &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 功能方法</span><br><span class="line">     * @param msg</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    String sayHello(String msg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>服务提供者</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">1. 在pom.xml中添加公共api依赖</span><br><span class="line"></span><br><span class="line">2. Java代码</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @Auther: hushuang</span><br><span class="line"> * @Date: 2022/1/30 18:33</span><br><span class="line"> * @Description: 服务接口的实现</span><br><span class="line"> */</span><br><span class="line">public class DemoServiceImpl implements DemoService &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public String sayHello(String msg) &#123;</span><br><span class="line">		System.out.println(&quot;我是服务提供者,我被调用了...&quot;);</span><br><span class="line">        return &quot;Hello &quot;+ msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">3. xml配置(provider.xml),将DemoServiceImpl实例服务化</span><br><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:dubbo=&quot;http://dubbo.apache.org/schema/dubbo&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 设置应用名称 --&gt;</span><br><span class="line">    &lt;dubbo:application name=&quot;helloworld-provider&quot;&gt;&lt;/dubbo:application&gt;</span><br><span class="line">    &lt;!-- 设置注册中心(multicast),采用内置注册中心进行测试 --&gt;</span><br><span class="line">    &lt;dubbo:registry address=&quot;multicast://224.5.6.7:1234&quot; /&gt;</span><br><span class="line">    &lt;!-- 用dubbo协议在20880端口暴露服务 --&gt;</span><br><span class="line">    &lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20880&quot; /&gt;</span><br><span class="line">    &lt;!-- 将需要暴露出去的服务进行实例化 --&gt;</span><br><span class="line">    &lt;bean class=&quot;io.ukoko.service.impl.DemoServiceImpl&quot; id=&quot;demoService&quot;&gt;&lt;/bean&gt;</span><br><span class="line">    &lt;!-- 将实例化的服务使用dubbo进行服务化 --&gt;</span><br><span class="line">    &lt;dubbo:service interface=&quot;io.ukoko.service.DemoService&quot; ref=&quot;demoService&quot;&gt;&lt;/dubbo:service&gt;</span><br><span class="line">&lt;/beans&gt;</span><br><span class="line"></span><br><span class="line">4. 编写Java代码初始化IOC容器,使用IOC容器启动dubbo服务</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @Auther: hushuang</span><br><span class="line"> * @Date: 2022/1/30 18:40</span><br><span class="line"> * @Description: 服务提供者启动方法</span><br><span class="line"> */</span><br><span class="line">public class ProviderStart &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        ApplicationContext ioc = new ClassPathXmlApplicationContext(&quot;provider.xml&quot;);</span><br><span class="line">        System.out.println(&quot;服务提供者启动成功......&quot;);</span><br><span class="line">        System.in.read();//线程停到此位置,按任意键退出</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>服务消费者(调用服务提供者)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">1. 在pom.xml中添加公共api依赖</span><br><span class="line"></span><br><span class="line">2. xml配置(consumer.xml)生成远程服务代理</span><br><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:dubbo=&quot;http://dubbo.apache.org/schema/dubbo&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 设置应用名称 --&gt;</span><br><span class="line">    &lt;dubbo:application name=&quot;helloworld-consumer&quot;&gt;&lt;/dubbo:application&gt;</span><br><span class="line">    &lt;!-- 设置注册中心(multicast),采用内置注册中心进行测试 --&gt;</span><br><span class="line">    &lt;dubbo:registry address=&quot;multicast://224.5.6.7:1234&quot; /&gt;</span><br><span class="line">    &lt;!-- 生成远程服务代理,在本地生成远程服务的代理,可以向调用本地方法的方式调用远程法法--&gt;</span><br><span class="line">    &lt;dubbo:reference interface=&quot;io.ukoko.service.DemoService&quot; id=&quot;demoService&quot;&gt;&lt;/dubbo:reference&gt;</span><br><span class="line">&lt;/beans&gt;</span><br><span class="line"></span><br><span class="line">3. 启动客户端,并且调用远程方法</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @Auther: hushuang</span><br><span class="line"> * @Date: 2022/1/30 19:01</span><br><span class="line"> * @Description: 消费者启动类</span><br><span class="line"> */</span><br><span class="line">public class ConsumerStart &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        ApplicationContext ioc = new ClassPathXmlApplicationContext(&quot;consumer.xml&quot;);</span><br><span class="line">        //通IOC容器中获取远程代理对象</span><br><span class="line">        DemoService demoService = (DemoService) ioc.getBean(&quot;demoService&quot;);</span><br><span class="line">        String msg = demoService.sayHello(&quot;Dubbo&quot;);</span><br><span class="line">        System.out.println(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">注意: 在一台电脑上同时启动服务提供者和服务消费者,会报qos server 地址被占用</span><br><span class="line"></span><br><span class="line">产生的原因:</span><br><span class="line">	1. Dubbo从2.0.5版本开始支持通过telnet命令来进行服务治理,但是在2.5.8版本之前都是和服务共用20880端口号,2.5.8版本之后使用独立端口号默认为22222</span><br><span class="line">	2. 在同一台服务器上面启服务提供者和服务消费者,会发生端口号冲突问题.</span><br><span class="line">	3. 文档地址:</span><br><span class="line">		3.1 telnet: https://dubbo.apache.org/zh/docs/v2.7/user/references/telnet/</span><br><span class="line">		3.2 qos-server: https://dubbo.apache.org/zh/docs/v2.7/user/references/qos/</span><br><span class="line">		</span><br><span class="line">QoS参数介绍:</span><br><span class="line">参数                 说明              默认值</span><br><span class="line">qosEnable           是否启动QoS        true</span><br><span class="line">qosPort             启动QoS绑定的端口   22222</span><br><span class="line">qosAcceptForeignIp  是否允许远程访问    false</span><br><span class="line"></span><br><span class="line">注意: 从2.6.4/2.7.0开始，qosAcceptForeignIp默认配置改为false，如果qosAcceptForeignIp设置为true，有可能带来安全风险</span><br><span class="line"></span><br><span class="line">QoS参数可以通过如下方式进行配置:</span><br><span class="line">1. 系统属性(步骤见下图)</span><br><span class="line">   </span><br><span class="line">   在启动main方法之前在IDEA中对main方法的vm启动参数进行配置,配置如下:</span><br><span class="line">   -Ddubbo.application.qos.enable=true</span><br><span class="line">   -Ddubbo.application.qos.port=33333</span><br><span class="line">   -Ddubbo.application.qos.accept.foreign.ip=false</span><br><span class="line">   </span><br><span class="line">2. dubbo.properties</span><br><span class="line">   </span><br><span class="line">   在项目的src/main/resources目录下添加dubbo.properties文件，内容如下:</span><br><span class="line">   </span><br><span class="line">	dubbo.application.qos.enable=true</span><br><span class="line">	dubbo.application.qos.port=33333</span><br><span class="line">	dubbo.application.qos.accept.foreign.ip=false</span><br><span class="line"></span><br><span class="line">3. XML方式(建议)</span><br><span class="line"></span><br><span class="line">	&lt;dubbo:application name=&quot;demo-provider&quot;&gt;</span><br><span class="line">		&lt;dubbo:parameter key=&quot;qos.enable&quot; value=&quot;true&quot;/&gt;</span><br><span class="line">		&lt;dubbo:parameter key=&quot;qos.accept.foreign.ip&quot; value=&quot;false&quot;/&gt;</span><br><span class="line">		&lt;dubbo:parameter key=&quot;qos.port&quot; value=&quot;33333&quot;/&gt;</span><br><span class="line">	&lt;/dubbo:application&gt;</span><br><span class="line">	</span><br><span class="line">4. Spring-boot自动装配方式</span><br><span class="line">   如果是spring-boot的应用，可以在application.properties或者application.yml上配置</span><br><span class="line">   </span><br><span class="line">   dubbo.application.qosEnable=true</span><br><span class="line">   dubbo.application.qosPort=33333</span><br><span class="line">   dubbo.application.qosAcceptForeignIp=false</span><br><span class="line"></span><br><span class="line">其中,上述方式的优先顺序为系统属性 &gt; dubbo.properties &gt; XML/Spring-boot自动装配方式</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<table>
+    <tr>
+        <td colspan="2" style="font-size:12px;text-align:center;">系统属性配置方式</td>
+    </tr>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEB15ada07d82a65bccdddbc71b10a27f9e?method=download&shareKey=0a9fb89c36cd1a04718d3acd2b4bd887">
+        </td>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEB2c848c3ab838f5a7003d0334b1a5d09b?method=download&shareKey=2b31f3e3191852d9f8c491d3e63bffd3">
+        </td>
+    </tr>
+</table>
+
+
+<h3 id="第3节-注册中心-zookeeper"><a href="#第3节-注册中心-zookeeper" class="headerlink" title="第3节 注册中心(zookeeper)"></a>第3节 注册中心(zookeeper)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Dubbo框架官网建议使用zookeeper注册中心,multicast注册中心只能用于测试环境,不能用于生产环境</span><br><span class="line"></span><br><span class="line">zookeeper的安装和使用请查看【zookeeper简单入门课程】</span><br><span class="line"></span><br><span class="line">注意事项: </span><br><span class="line">	1. 如果使用dubbo2.7.x版本 那么zookeeper的依赖直接使用【zookeeper简单入门课程】提供的即可</span><br><span class="line">	2. 如果使用dubbo3.x版本 那么zookeeper的依赖不能使用【zookeeper简单入门课程】提供的依赖</span><br><span class="line"></span><br><span class="line">如果使用 dubbo3.x 使用如下依赖:</span><br><span class="line"></span><br><span class="line">&lt;!-- zookeeper客户端依赖 start --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.apache.curator&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;curator-x-discovery&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;4.2.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!-- zookeeper客户端依赖 end --&gt;</span><br><span class="line"></span><br><span class="line">zookeeper依赖来源于dubbo源码,本地zookeeper服务使用3.4.9版本</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="第4节-Dubbo管理控制台"><a href="#第4节-Dubbo管理控制台" class="headerlink" title="第4节 Dubbo管理控制台"></a>第4节 Dubbo管理控制台</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Dubbo运维管理指南中简介了Dubbo Admin管理控制台,官网地址: https://dubbo.apache.org/zh/docs/v2.7/admin/ops/</span><br><span class="line"></span><br><span class="line">Dubbo 管理控制台的功能介绍:</span><br><span class="line">	1. 服务查询</span><br><span class="line">	2. 服务治理</span><br><span class="line">	3. 服务测试</span><br><span class="line"></span><br><span class="line">Dubbo 管理控制台的部署方式:</span><br><span class="line">	1. maven方式部署</span><br><span class="line">	2. 前后端分离部署</span><br><span class="line"></span><br><span class="line">Dubbo管理控制台源码地址: </span><br><span class="line">	1. GitHub地址: git clone https://github.com/apache/dubbo-admin.git (官网)</span><br><span class="line">	2. GitEE地址: git clone https://gitee.com/whathz/dubbo-admin.git (个人临时)</span><br><span class="line"></span><br><span class="line">Dubbo管理控制台maven部署方式介绍:</span><br><span class="line">	1. 下载源码</span><br><span class="line">	2. 在 dubbo-admin-server/src/main/resources/application.properties中修改注册中心地址</span><br><span class="line">	3. 构建(编译和打包) mvn clean package -Dmaven.test.skip=true</span><br><span class="line">	4. 运行 </span><br><span class="line">		4.1 cd dubbo-admin-distribution/target</span><br><span class="line">		4.2 java -jar dubbo-admin-0.1.jar</span><br><span class="line">	5. 访问: http://localhost:8080</span><br><span class="line">	6. 默认用户名/密码  root/root</span><br><span class="line"></span><br><span class="line">注意: 启动控制台之前需要先启动zookeeper服务器</span><br></pre></td></tr></table></figure>
+
+<table>
+    <tr>
+        <td colspan="2" style="font-size:12px;text-align:center;">控制台成功标志</td>
+    </tr>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEBf06679e4bea91ec405f3c2ef257af3f0?method=download&shareKey=3388cb3f50c6c15ede930ed331b847b8">
+        </td>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEBd66fc6f77c0df895c9f351e916f93376?method=download&shareKey=1dee4926e81f9188b1666100d2595344">
+        </td>
+    </tr>
+</table>
+
+<h3 id="第5节-Dubbo应用集群部署"><a href="#第5节-Dubbo应用集群部署" class="headerlink" title="第5节 Dubbo应用集群部署"></a>第5节 Dubbo应用集群部署</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如果是开发阶段,可以直接使用main方法运行即可,但是如果正式环境,需要打包部署</span><br><span class="line"></span><br><span class="line">本章测试使用Spring的IOC容器进行运行.容器介绍地址:</span><br><span class="line">https://dubbo.apache.org/zh/docs/v2.7/user/examples/service-container/#spring-container</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>项目打包</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">将项目打成一个可执行的jar包进行进行.</span><br><span class="line"></span><br><span class="line">第一步: pom.xml 设置</span><br><span class="line"></span><br><span class="line">插件官网地址介绍: https://maven.apache.org/plugins/maven-shade-plugin/</span><br><span class="line"></span><br><span class="line">&lt;plugin&gt;</span><br><span class="line">	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;3.2.4&lt;/version&gt;</span><br><span class="line">	&lt;executions&gt;</span><br><span class="line">		&lt;execution&gt;</span><br><span class="line">			&lt;!--</span><br><span class="line">				运行maven周期命令</span><br><span class="line">				将shade插件的shade周期转成maven的package周期</span><br><span class="line">			--&gt;</span><br><span class="line">			&lt;phase&gt;package&lt;/phase&gt;</span><br><span class="line">			&lt;goals&gt;</span><br><span class="line">				&lt;goal&gt;shade&lt;/goal&gt;</span><br><span class="line">			&lt;/goals&gt;</span><br><span class="line">			&lt;configuration&gt;</span><br><span class="line">				&lt;transformers&gt;</span><br><span class="line">					&lt;transformer implementation=&quot;org.apache.maven.plugins.shade.resource.ManifestResourceTransformer&quot;&gt;</span><br><span class="line">						&lt;!-- 设置可执行jar包的入门类,使用Dubbo官网自带的启动类 --&gt;</span><br><span class="line">						&lt;mainClass&gt;org.apache.dubbo.container.Main&lt;/mainClass&gt;</span><br><span class="line">					&lt;/transformer&gt;</span><br><span class="line">				&lt;/transformers&gt;</span><br><span class="line">				&lt;!--</span><br><span class="line">					shadedArtifactAttached: true/false</span><br><span class="line">						1. true : 表示打包会生成两个</span><br><span class="line">						2. false: 也会生成两个包</span><br><span class="line">						3. 设置为true: 会生成以下面的标签shadedClassifierName设置的名字结尾的文件</span><br><span class="line">				--&gt;</span><br><span class="line">				&lt;shadedArtifactAttached&gt;true&lt;/shadedArtifactAttached&gt;</span><br><span class="line">				&lt;shadedClassifierName&gt;executable&lt;/shadedClassifierName&gt;</span><br><span class="line">			&lt;/configuration&gt;</span><br><span class="line">		&lt;/execution&gt;</span><br><span class="line">	&lt;/executions&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br><span class="line"></span><br><span class="line">第二步: 修改resources下的spring配置文件位置</span><br><span class="line"></span><br><span class="line">使用Spring的IOC容器启动项目,那么Spring默认加载resources目录下的META-INF\spring 目录下的文件 so...</span><br><span class="line"></span><br><span class="line">1. resources目录下创建META-INF目录和spring目录</span><br><span class="line">2. 将spring配置文件移动到此目录中</span><br><span class="line"></span><br><span class="line">第三步: 修改resources\META-INF\spring下的spring配置文件内容</span><br><span class="line"></span><br><span class="line">在生产环境很少在同一个机器节点上部署多个dubbo服务,也就是一台服务器上不会部署多个dubbo服务;但是在是开发测试阶段,会在同一台机器上部署多个dubbo服务节点,</span><br><span class="line">dubbo服务设置的端口号是20880,在同一个服务器上启动多个dubbo服务会出现端口号冲突.这是怎么解决:</span><br><span class="line"></span><br><span class="line">解决方案:</span><br><span class="line">	在spring配置文件中修改此标签 &lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20880&quot;&gt;&lt;/dubbo:protocol&gt;</span><br><span class="line">	将20880端口设置成-1,当设置成-1之后dubbo服务会根据当前硬件资源占用情况自行设置端口号,默认从20880开始递增.</span><br><span class="line">	</span><br><span class="line">	例如: &lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;-1&quot;&gt;&lt;/dubbo:protocol&gt;</span><br><span class="line">	</span><br><span class="line">第四步: 打包 mvn clean package -Dmaven.test.skip=true</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>项目运行</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">使用java -jar xxx.jar执行dubbo服务,运行成功在Dubbo-Admin管理控制台查看</span><br><span class="line"></span><br><span class="line">使用java -jar xxx.jar 启动同一个jar文件多次,构成集群服务</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<table>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEBe207591bcdfc72a0c02283a0f404c644?method=download&shareKey=b88e35397aa971b3cd2c745e0ae9ad8e">
+        </td>
+    </tr>
+</table>
+
+<ul>
+<li>脚本运行(Linux)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">启动jar的脚本</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line"># 进入当前脚本所在目录</span><br><span class="line">cd `dirname $0`</span><br><span class="line"># 获取当前目录</span><br><span class="line">BIN_DIR=`pwd`</span><br><span class="line"># 退出上一层</span><br><span class="line">cd ..</span><br><span class="line"># 进入servers目录</span><br><span class="line">cd servers</span><br><span class="line"># 获取部署目录</span><br><span class="line">DEPLOY_DIR=`pwd`</span><br><span class="line"># 输出应用部署位置</span><br><span class="line">echo &quot;应用所在位置---&gt; $DEPLOY_DIR&quot;</span><br><span class="line"># 日志目录</span><br><span class="line">cd ../logs</span><br><span class="line">LOG_DIR=`pwd`</span><br><span class="line"># 输出部署文件列表</span><br><span class="line">for app in $(ls $DEPLOY_DIR)</span><br><span class="line">do</span><br><span class="line">	echo &quot;部署的应用---&gt; $app&quot;</span><br><span class="line">	# 判断应用是否运行</span><br><span class="line">	PIDS=`ps -ef | grep java | grep -v grep | grep &quot;$app&quot; | awk &#x27;&#123;print $2&#125;&#x27;`</span><br><span class="line">	if [ -n &quot;$PIDS&quot; ]; then</span><br><span class="line">        echo &quot;服务正在运行中....&quot;</span><br><span class="line">		echo &quot;PIDS: $PIDS&quot;</span><br><span class="line">		exit 1</span><br><span class="line">    fi</span><br><span class="line">	</span><br><span class="line">	# 运行应用</span><br><span class="line">	echo -e &quot;Starting the $app ...&quot;</span><br><span class="line">	# 执行运行脚本,使用&amp;进行后台运行</span><br><span class="line">	nohup java -jar $DEPLOY_DIR/$app &gt; $LOG_DIR/stdout.log 2&gt;&amp;1 &amp;</span><br><span class="line">	# 查询是否运行成功</span><br><span class="line">	PIDS=`ps -ef | grep java | grep -v grep | grep &quot;$app&quot; | awk &#x27;&#123;print $2&#125;&#x27;`</span><br><span class="line">	echo &quot;PID: $PIDS&quot;</span><br><span class="line">	echo &quot;运行成功...&quot;</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">注意: 官网提供了启动脚本 地址为:</span><br><span class="line">https://gitee.com/apache/dubbo/tree/3.0/dubbo-container/dubbo-container-api/src/main/resources/META-INF/assembly/bin</span><br></pre></td></tr></table></figure>
+
+<h3 id="第6节-Dubbo和SpringBoot整合-使用注解方式-需要-2-6-3-及以上版本支持"><a href="#第6节-Dubbo和SpringBoot整合-使用注解方式-需要-2-6-3-及以上版本支持" class="headerlink" title="第6节 Dubbo和SpringBoot整合(使用注解方式: 需要 2.6.3 及以上版本支持)"></a>第6节 Dubbo和SpringBoot整合(使用注解方式: 需要 2.6.3 及以上版本支持)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">注意: 非SpringBoot也可以使用Dubbo注解,本节使用SpringBoot的自动装配,官网地址:</span><br><span class="line"></span><br><span class="line">1. GITHUB地址: https://github.com/apache/dubbo-spring-boot-project</span><br><span class="line">2. GITEE地址 : https://gitee.com/mirrors/Dubbo-Spring-Boot-Project</span><br><span class="line"></span><br><span class="line">当前测试的SpringBoot版本为2.5.9 Dubbo(dubbo-spring-boot-starter)的版本为3.0.5</span><br><span class="line"></span><br><span class="line">注解配置地址(老版本,新版本的修改会在代码中体现): https://dubbo.apache.org/zh/docs/v2.7/user/configuration/annotation/</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-1-服务提供方"><a href="#6-1-服务提供方" class="headerlink" title="6.1 服务提供方"></a>6.1 服务提供方</h4><ul>
+<li>依赖</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1. xxx-api公共依赖</span><br><span class="line"></span><br><span class="line">2. 其他依赖</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;2.5.9&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.apache.dubbo&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;dubbo-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;3.0.5&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.apache.curator&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;curator-x-discovery&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;4.2.0&lt;/version&gt;</span><br><span class="line">	&lt;exclusions&gt;</span><br><span class="line">		&lt;exclusion&gt;</span><br><span class="line">			&lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;zookeeper&lt;/artifactId&gt;</span><br><span class="line">		&lt;/exclusion&gt;</span><br><span class="line">	&lt;/exclusions&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;zookeeper&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;3.4.9&lt;/version&gt;</span><br><span class="line">	&lt;exclusions&gt;</span><br><span class="line">		&lt;exclusion&gt;</span><br><span class="line">			&lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;</span><br><span class="line">			&lt;groupId&gt;org.slf4j&lt;/groupId&gt;</span><br><span class="line">		&lt;/exclusion&gt;</span><br><span class="line">		&lt;exclusion&gt;</span><br><span class="line">			&lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;</span><br><span class="line">			&lt;groupId&gt;org.slf4j&lt;/groupId&gt;</span><br><span class="line">		&lt;/exclusion&gt;</span><br><span class="line">	&lt;/exclusions&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>本地服务实现</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package io.ukoko.dubbo.provider.service;</span><br><span class="line">import io.ukoko.dubbo.api.DemoService;</span><br><span class="line">import org.apache.dubbo.config.annotation.DubboService;</span><br><span class="line"></span><br><span class="line">@DubboService(version = &quot;1.0.0&quot;)</span><br><span class="line">public class DemoServiceImpl implements DemoService &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public String sayHello(String name) &#123;</span><br><span class="line">        System.out.println(&quot;name:&quot;+name);</span><br><span class="line">        return &quot;Hello &quot;+name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 设置dubbo应用名称</span><br><span class="line">dubbo.application.name=springboot-provider</span><br><span class="line"># 配置注册中心</span><br><span class="line">dubbo.registry.address=zookeeper://127.0.0.1:2181</span><br><span class="line"># 服务协议和端口号</span><br><span class="line">dubbo.protocol.name=dubbo</span><br><span class="line">dubbo.protocol.port=-1</span><br><span class="line"># 配置dubbo服务化的包,扫描apache dubbo提供的@Service[2.7.0以前]注解,2.7.0之后注解修改成了@DubboService</span><br><span class="line">dubbo.scan.base-packages=io.ukoko.dubbo.provider.service</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>启动</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">public class DubboProviderApplication &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(DubboProviderApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">打成jar包启动多个进行测试(使用Dubbo-Admin)</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-2-服务消费方"><a href="#6-2-服务消费方" class="headerlink" title="6.2 服务消费方"></a>6.2 服务消费方</h4><ul>
+<li>依赖</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">同上,与提供者相同</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 设置dubbo应用名称</span><br><span class="line">dubbo.application.name=springboot-consumer</span><br><span class="line"># 配置注册中心</span><br><span class="line">dubbo.registry.address=zookeeper://127.0.0.1:2181</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>测试代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import io.ukoko.dubbo.api.DemoService;</span><br><span class="line">import org.apache.dubbo.config.annotation.DubboReference;</span><br><span class="line">import org.springframework.boot.ApplicationRunner;</span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class DubboConsumerApplication &#123;</span><br><span class="line"></span><br><span class="line">    /*</span><br><span class="line">        @Reference在Dubbo2.7.0版本之前使用</span><br><span class="line">        @DubboReference 在Dubbo2.7.0版本之后使用</span><br><span class="line">     */</span><br><span class="line">    @DubboReference(version = &quot;1.0.0&quot;)</span><br><span class="line">    private DemoService demoService;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(DubboConsumerApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public ApplicationRunner testService()&#123;</span><br><span class="line">        return args-&gt;System.out.println(demoService.sayHello(&quot;Dubbo...&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三章-Dubbo最佳实践"><a href="#第三章-Dubbo最佳实践" class="headerlink" title="第三章 Dubbo最佳实践"></a>第三章 Dubbo最佳实践</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Dubbo官网提供了官网的推荐用法: https://dubbo.apache.org/zh/docsv2.7/user/recommend/</span><br><span class="line"></span><br><span class="line">Dubbo配置:</span><br><span class="line">	1. 介绍 Dubbo各个功能、策略的成熟度: https://dubbo.apache.org/zh/docsv2.7/user/maturity/</span><br><span class="line">	2. 详细配置介绍: https://dubbo.apache.org/zh/docsv2.7/user/configuration/</span><br><span class="line">	3. 用法示例 : https://dubbo.apache.org/zh/docsv2.7/user/examples/</span><br><span class="line">	4. 参考手册: https://dubbo.apache.org/zh/docsv2.7/user/references/</span><br><span class="line">	...</span><br></pre></td></tr></table></figure>
+
+<h2 id="第四章-Nacos作为注册中心-不建议"><a href="#第四章-Nacos作为注册中心-不建议" class="headerlink" title="第四章 Nacos作为注册中心(不建议)"></a>第四章 Nacos作为注册中心(不建议)</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">Nacos服务器的安装和配置,请参考【nacos简单入门】</span><br><span class="line"></span><br><span class="line">使用nacos作为注册中心替换原有的zookeeper操作起来非常简单:</span><br><span class="line">1. 启动本地的nacos服务</span><br><span class="line">2. 在项目中注释掉zookeeper的客户端依赖,并且添加nacos客户端依赖</span><br><span class="line"></span><br><span class="line">&lt;!-- springboot 2.0.3 ~ 2.6.3 ,如果springboot版本过高可能nacos客户端不支持,因为nacos普通版为社区共建版本,可能与SpringBoot的更新不同步--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;com.alibaba.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;nacos-discovery-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;0.2.10&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">3. 修改配置文件application.properties中注册中心的地址</span><br><span class="line"></span><br><span class="line"># 配置注册中心</span><br><span class="line">dubbo.registry.address=nacos://127.0.0.1:8848</span><br><span class="line"># 配置元数据中心,如果不配置Dubbo-Admin控制台会不显示服务中的方法列表</span><br><span class="line">dubbo.metadata-report.address=nacos://127.0.0.1:8848</span><br><span class="line"></span><br><span class="line">4. 配置好之后启动服务提供者</span><br><span class="line"></span><br><span class="line">5. 查看nacos控制台的服务列表(也可以查看Dubbo-Admin控制台),Dubbo-Admin配置:只需要将一些注释取消即可</span><br><span class="line"></span><br><span class="line"># nacos注册中心</span><br><span class="line">admin.registry.address=nacos://127.0.0.1:8848?group=DEFAULT_GROUP&amp;namespace=public</span><br><span class="line">admin.config-center=nacos://127.0.0.1:8848?group=dubbo</span><br><span class="line">admin.metadata-report.address=nacos://127.0.0.1:8848?group=dubbo</span><br><span class="line"></span><br><span class="line"># nacos默认使用名称空间</span><br><span class="line">admin.registry.namespace=public</span><br><span class="line">admin.config-center.namespace=public</span><br><span class="line">admin.metadata-report.namespace=public</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">注意: </span><br><span class="line">	5.1 Dubbo-Admin控制台如果注册中心切换成nacos需要重新配置,否则不展示服务列表或者方法列表</span><br><span class="line">	5.2 官网建设比较烂,没有提供具体配置方案,在github上面issues(#659)没有及时解决  issues地址: https://github.com/apache/dubbo-admin/issues/659</span><br><span class="line">	5.3 官网在issues(#694)解决了部分问题  issues地址: https://github.com/apache/dubbo-admin/issues/694</span><br><span class="line">	5.3 但是在dubbo-admin的项目中dubbo-admin\dubbo-admin-server\src\main\resources\application.properties配置文件中,可以通过注释查看nacos配置方式.</span><br><span class="line">	5.4 个人不建议在中小型公司在内部项目上使用社区共建的技术(如果有商业版可以使用商业版),除非自己公司内部本身就有强大的技术团队.</span><br></pre></td></tr></table></figure>
+
+<table>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEB83d5bf513ef88024e8e4a47e54f65f0f?method=download&shareKey=720398d80a30d1e094d48f8e5bd5f403">
+        </td>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEBdef4244da04cda0bd0d7e9efcf423a72?method=download&shareKey=e67bc15915a062856f1c01999dc04a39">
+        </td>
+    </tr>
+</table>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/dubbo/" rel="tag"># dubbo</a>
+              <a href="/tags/nacos/" rel="tag"># nacos</a>
+              <a href="/tags/zookeeper/" rel="tag"># zookeeper</a>
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag"># 分布式</a>
+              <a href="/tags/RPC/" rel="tag"># RPC</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/09/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E4%BB%A5%E5%8F%8A%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BA%A7%E7%94%9F/" rel="prev" title="数据库设计以及分布式事务的产生">
+      <i class="fa fa-chevron-left"></i> 数据库设计以及分布式事务的产生
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/09/13/EasyExcel(%E7%94%9F%E6%88%90Excel%E6%8A%A5%E8%A1%A8)%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" rel="next" title="EasyExcel基本操作">
+      EasyExcel基本操作 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%88%86%E5%B8%83%E5%BC%8F%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">第一章 分布式简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC1%E8%8A%82-%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B"><span class="nav-number">1.1.</span> <span class="nav-text">第1节 架构演进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC2%E8%8A%82-%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">第2节 分布式框架解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC3%E8%8A%82-Dubbo%E6%A1%86%E6%9E%B6"><span class="nav-number">1.3.</span> <span class="nav-text">第3节 Dubbo框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-Dubbo%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 Dubbo框架介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-Dubbo%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 Dubbo架构介绍</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-Dubbo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8-Dubbo2-x"><span class="nav-number">2.</span> <span class="nav-text">第二章 Dubbo快速入门(Dubbo2.x)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC1%E8%8A%82-RPC%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.1.</span> <span class="nav-text">第1节 RPC介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC2%E8%8A%82-Dubbo%E5%92%8CSpring%E6%95%B4%E5%90%88-%E5%9F%BA%E4%BA%8EXML"><span class="nav-number">2.2.</span> <span class="nav-text">第2节 Dubbo和Spring整合(基于XML)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC3%E8%8A%82-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83-zookeeper"><span class="nav-number">2.3.</span> <span class="nav-text">第3节 注册中心(zookeeper)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC4%E8%8A%82-Dubbo%E7%AE%A1%E7%90%86%E6%8E%A7%E5%88%B6%E5%8F%B0"><span class="nav-number">2.4.</span> <span class="nav-text">第4节 Dubbo管理控制台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC5%E8%8A%82-Dubbo%E5%BA%94%E7%94%A8%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2"><span class="nav-number">2.5.</span> <span class="nav-text">第5节 Dubbo应用集群部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC6%E8%8A%82-Dubbo%E5%92%8CSpringBoot%E6%95%B4%E5%90%88-%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E6%96%B9%E5%BC%8F-%E9%9C%80%E8%A6%81-2-6-3-%E5%8F%8A%E4%BB%A5%E4%B8%8A%E7%89%88%E6%9C%AC%E6%94%AF%E6%8C%81"><span class="nav-number">2.6.</span> <span class="nav-text">第6节 Dubbo和SpringBoot整合(使用注解方式: 需要 2.6.3 及以上版本支持)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E6%96%B9"><span class="nav-number">2.6.1.</span> <span class="nav-text">6.1 服务提供方</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-%E6%9C%8D%E5%8A%A1%E6%B6%88%E8%B4%B9%E6%96%B9"><span class="nav-number">2.6.2.</span> <span class="nav-text">6.2 服务消费方</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-Dubbo%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">3.</span> <span class="nav-text">第三章 Dubbo最佳实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-Nacos%E4%BD%9C%E4%B8%BA%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83-%E4%B8%8D%E5%BB%BA%E8%AE%AE"><span class="nav-number">4.</span> <span class="nav-text">第四章 Nacos作为注册中心(不建议)</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="夜泊1990"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">夜泊1990</p>
+  <div class="site-description" itemprop="description">俱往矣,要多呲花,有多呲花</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">89</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夜泊1990</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">659k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">9:59</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

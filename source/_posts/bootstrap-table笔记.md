@@ -1907,97 +1907,152 @@ bootstrap-table还添加了表格数据结构化的支持TreeGrid,但是需要�
 [
   {
     "menuId": 1,
-    "menuName": "系统管理",
-    "pId": 0,
-    "child": [
-      {
-        "menuId": 3,
-        "menuName": "新增系统",
-        "pId": 1,
-        "child": [],
-        "isDelete": 1
-      },
-      {
-        "menuId": 4,
-        "menuName": "编辑系统",
-        "pId": 1,
-        "child": [],
-        "isDelete": 1
-      },
-      {
-        "menuId": 5,
-        "menuName": "删除系统",
-        "pId": 1,
-        "child": [],
-        "isDelete": 1
-      }
-    ],
+    "menuName": "顶级菜单标题1",
+    "menuUrl": null,
+    "level": 1,
+    "parentId": 0,
+    "createTime": "2022-09-17 14:55:38",
+    "updateTime": "2022-09-17 14:55:38",
     "isDelete": 1
   },
   {
     "menuId": 2,
-    "menuName": "字典管理",
-    "pId": 0,
-    "child": [
-      {
-        "menuId": 6,
-        "menuName": "角色管理",
-        "pId": 2,
-        "child": [
-          {
-            "menuId": 8,
-            "menuName": "新增角色",
-            "pId": 6,
-            "child": [],
-            "isDelete": 1
-          },
-          {
-            "menuId": 9,
-            "menuName": "编辑角色",
-            "pId": 6,
-            "child": [],
-            "isDelete": 1
-          },
-          {
-            "menuId": 10,
-            "menuName": "删除角色",
-            "pId": 6,
-            "child": [],
-            "isDelete": 1
-          }
-        ],
-        "isDelete": 1
-      },
-      {
-        "menuId": 7,
-        "menuName": "部门管理",
-        "pId": 2,
-        "child": [
-          {
-            "menuId": 11,
-            "menuName": "新增部门",
-            "pId": 7,
-            "child": [],
-            "isDelete": 1
-          },
-          {
-            "menuId": 12,
-            "menuName": "编辑部门",
-            "pId": 7,
-            "child": [],
-            "isDelete": 1
-          },
-          {
-            "menuId": 13,
-            "menuName": "删除部门",
-            "pId": 7,
-            "child": [],
-            "isDelete": 1
-          }
-        ],
-        "isDelete": 1
-      }
-    ],
+    "menuName": "顶级菜单标题2",
+    "menuUrl": null,
+    "level": 1,
+    "parentId": 0,
+    "createTime": "2022-09-17 14:55:38",
+    "updateTime": "2022-09-17 14:55:38",
+    "isDelete": 1
+  },
+  {
+    "menuId": 3,
+    "menuName": "顶级菜单标题3",
+    "menuUrl": null,
+    "level": 1,
+    "parentId": 0,
+    "createTime": "2022-09-17 14:55:38",
+    "updateTime": "2022-09-17 14:55:38",
+    "isDelete": 1
+  },
+  {
+    "menuId": 4,
+    "menuName": "顶级菜单标题4",
+    "menuUrl": null,
+    "level": 1,
+    "parentId": 0,
+    "createTime": "2022-09-17 14:55:38",
+    "updateTime": "2022-09-17 14:55:38",
+    "isDelete": 1
+  },
+  {
+    "menuId": 5,
+    "menuName": "顶级菜单标题5",
+    "menuUrl": null,
+    "level": 1,
+    "parentId": 0,
+    "createTime": "2022-09-17 14:55:38",
+    "updateTime": "2022-09-17 14:55:38",
+    "isDelete": 1
+  },
+  {
+    "menuId": 6,
+    "menuName": "子集菜单标题1",
+    "menuUrl": null,
+    "level": 2,
+    "parentId": 1,
+    "createTime": "2022-09-17 14:56:49",
+    "updateTime": "2022-09-17 14:56:49",
+    "isDelete": 1
+  },
+  {
+    "menuId": 7,
+    "menuName": "子集菜单标题2",
+    "menuUrl": null,
+    "level": 2,
+    "parentId": 1,
+    "createTime": "2022-09-17 14:56:49",
+    "updateTime": "2022-09-17 14:56:49",
+    "isDelete": 1
+  },
+  {
+    "menuId": 8,
+    "menuName": "子集菜单标题1",
+    "menuUrl": null,
+    "level": 2,
+    "parentId": 2,
+    "createTime": "2022-09-17 14:56:49",
+    "updateTime": "2022-09-17 14:56:49",
+    "isDelete": 1
+  },
+  {
+    "menuId": 9,
+    "menuName": "子集菜单标题2",
+    "menuUrl": null,
+    "level": 2,
+    "parentId": 2,
+    "createTime": "2022-09-17 14:56:49",
+    "updateTime": "2022-09-17 14:56:49",
+    "isDelete": 1
+  },
+  {
+    "menuId": 10,
+    "menuName": "子集菜单标题1",
+    "menuUrl": null,
+    "level": 2,
+    "parentId": 3,
+    "createTime": "2022-09-17 14:56:49",
+    "updateTime": "2022-09-17 14:56:49",
+    "isDelete": 1
+  },
+  {
+    "menuId": 11,
+    "menuName": "子集菜单标题2",
+    "menuUrl": null,
+    "level": 2,
+    "parentId": 3,
+    "createTime": "2022-09-17 14:56:49",
+    "updateTime": "2022-09-17 14:56:49",
+    "isDelete": 1
+  },
+  {
+    "menuId": 12,
+    "menuName": "子集菜单标题1",
+    "menuUrl": null,
+    "level": 2,
+    "parentId": 4,
+    "createTime": "2022-09-17 14:56:49",
+    "updateTime": "2022-09-17 14:56:49",
+    "isDelete": 1
+  },
+  {
+    "menuId": 13,
+    "menuName": "子集菜单标题2",
+    "menuUrl": null,
+    "level": 2,
+    "parentId": 4,
+    "createTime": "2022-09-17 14:56:49",
+    "updateTime": "2022-09-17 14:56:49",
+    "isDelete": 1
+  },
+  {
+    "menuId": 14,
+    "menuName": "子集菜单标题1",
+    "menuUrl": null,
+    "level": 2,
+    "parentId": 5,
+    "createTime": "2022-09-17 14:56:49",
+    "updateTime": "2022-09-17 14:56:49",
+    "isDelete": 1
+  },
+  {
+    "menuId": 15,
+    "menuName": "子集菜单标题2",
+    "menuUrl": null,
+    "level": 2,
+    "parentId": 5,
+    "createTime": "2022-09-17 14:56:49",
+    "updateTime": "2022-09-17 14:56:49",
     "isDelete": 1
   }
 ]
@@ -2073,7 +2128,6 @@ bootstrap-table还添加了表格数据结构化的支持TreeGrid,但是需要�
 			      }
 			    })
 			  })
-			</script>
 		</script>
 	</body>
 </html>

@@ -1,7 +1,7 @@
 ---
 title: 01-前端(Web)概述
-categories: web
-tags: ["web","html","css","js","javascript"]
+categories: 前端
+tags: ["前端","html","css","js","javascript"]
 ---
 
 ```xml

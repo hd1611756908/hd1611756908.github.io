@@ -1,6 +1,6 @@
 ---
 title: bootstrap-table笔记
-categories: bootstrap
+categories: 前端
 tags: ["html","css","javascript","bootstrap","bootstrap-table","jquery"]
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 03-CSS笔记
+title: 02-CSS笔记
 categories: 前端
 tags: ["前端","html","css","js","javascript"]
 ---
@@ -149,13 +149,18 @@ CSS样式定义由两部分组成,形式如下:
 	font-size:14px;
 }
 
-6、伪类选择器 :hover    语法:  p:hover{}
+6、伪类选择器(鼠标移入伪类) :hover    语法:  p:hover{}
    HTML所有标签元素都可以添加伪类选择器,伪类的意义是当鼠标悬停到当前标签下时,呈现的样式 案例如下:
    
    <div id="box"> 我是hover伪类 </div>
    #box:hover{
    	font-size: 100px;
    }
+   
+   其它伪类:
+	   a:link {color:#FF0000;} /* 未访问的链接 */
+	   a:visited {color:#00FF00;} /* 已访问的链接 */
+	   a:active {color:#0000FF;} /* 已选中的链接 */
 
 7、分组选择器 h1,h2,p  语法:  h1,h2,p{}
    分组选择器是给一组HTML标签添加样式,多个选择器使用逗号分隔
@@ -317,14 +322,14 @@ display属性可以将一个元素转换成其它元素类型
 display: none; 设置display属性为none,当前标签就会隐藏
 ```
 
-### 第3节 CSS布局
+### 第4节 CSS布局
 ```xml
 前端提供了很多标签,本质上都可以进行布局,但是因为大多数标签都有自己明确的语义,不适合布局,布局一般使用没有语义或者语义不明确的标签.
 
 HTML提供了两个特殊标签,来进行布局.一个为块状元素标签(div),一个为内联元素标签(span),并且前端为了更方便的进行布局,提出来盒模型概念
 ```
 
-#### 3.1 CSS盒模型
+#### 4.1 CSS盒模型
 
 ```xml
 盒模型是CSS布局的基石,它规定了网页元素如何显示以及元素间相互关系(用于前端布局),所有的块状元素都具有盒子模型的特点
@@ -332,9 +337,9 @@ HTML提供了两个特殊标签,来进行布局.一个为块状元素标签(div)
 
 <img src="https://note.youdao.com/yws/api/personal/file/91B9F1C034C24541BF159D28E6C89A8E?method=download&shareKey=33ac7d5675081a662dbe7c9a0c8aabc3">
 
-#### 3.2 CSS的布局
+#### 4.2 CSS的布局
 
-##### 3.2.1 流动模型(Flow)
+##### 4.2.1 流动模型(Flow)
 
 ```xml
 流动模型，流动（Flow）是默认的网页布局模式。也就是说网页在默认状态下的 HTML网页元素都是根据流动模型来分布网页内容的
@@ -344,7 +349,7 @@ HTML提供了两个特殊标签,来进行布局.一个为块状元素标签(div)
 2、内联元素不会独占一行而是从左向右排列
 ```
 
-##### 3.2.2 浮动模型(Float)
+##### 4.2.2 浮动模型(Float)
 
 ```xml
 正常情况下块状元素独占一行,那么怎么能让块状元素并排显示呢?这时候就用到了浮动模型
@@ -367,7 +372,7 @@ clear：left | right | both;
 	</tr>
 </table>
 
-##### 3.2.3 层模型(Layer)
+##### 4.2.3 层模型(Layer)
 
 * 绝对定位(position: absolute)
 
@@ -445,15 +450,15 @@ div{
 	</tr>
 </table>
 
-#### 3.3 前端布局
+#### 4.3 前端布局
 
-##### 3.3.1 一列布局
+##### 4.3.1 一列布局
 
 ```xml
 <div style="width: 1200px;height: 500px;background-color: pink;margin: 0 auto;"></div>
 ```
 
-##### 3.3.2 二列布局
+##### 4.3.2 二列布局
 
 ```xml
 <div style="width: 100%;height: 500px;background-color: pink;margin: 0 auto;">
@@ -462,7 +467,7 @@ div{
 </div>
 ```
 
-##### 3.3.3 三列布局
+##### 4.3.3 三列布局
 
 ```xml
 <div style="width: 100%;height: 500px;background-color: pink;margin: 0 auto;">
@@ -804,7 +809,61 @@ stretch（默认值）：轴线占满整个交叉轴
 	background-repeat: no-repeat; 不平铺
 ```
 
-## 第十一章 Google搜索首页练习
+## 第十一章 文本溢出处理
+
+<img src="https://note.youdao.com/yws/api/personal/file/WEBc071f7b1a08d42c211d416f4547bac31?method=download&shareKey=bab32622f8c16c8f905c0d76b2d6feb3">
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>文本溢出</title>
+		<style>
+			.box{
+				/* 
+					当父容器的宽度不能装下当前文本时,文本会折行. 
+					如果不想让文本折行,而是隐藏溢出文本并显示省略号.
+					注意: 父容器宽度固定,可以是具体像素,也可以是百分数.
+				*/
+				width: 100px;/* 也可以是 width: 10%; */
+				background-color: pink;
+				/* 溢出不换行 */
+				white-space: nowrap;
+				/* 溢出隐藏 */
+				overflow: hidden;
+				/* 显示省略号 */
+				text-overflow: ellipsis;
+			}
+			.box2{
+				width: 200px;/* 也可以是 width: 20%; */
+				background-color: pink;
+				/* 超出部分隐藏 */
+				overflow: hidden;
+				/* 弹性伸缩盒子 */
+				display: -webkit-box;
+				/* 子元素垂直排列,里面的文本为子元素 */
+				-webkit-box-orient: vertical;
+				/* 文本超过三行显示省略号 */
+				-webkit-line-clamp: 3;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 单行文本溢出 -->
+		<div class="box">
+			这是一段文本,文本溢出了
+		</div>
+		<hr>
+		<!-- 多行文本溢出 -->
+		<div class="box2">
+			这是一段多行文本,多行文本溢出,这里以显示三行为例,如果文本内容大于三行,那么三行以后显示省略号
+		</div>
+	</body>
+</html>
+```
+
+## 第十二章 Google搜索首页练习
 
 <table>
 	<tr>

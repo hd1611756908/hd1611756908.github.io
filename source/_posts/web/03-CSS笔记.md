@@ -875,3 +875,9 @@ stretch（默认值）：轴线占满整个交叉轴
 		</td>
 	</tr>
 </table>
+
+---
+
+<div style="font-size:10px;text-align:center;"><strong style="color:blue;">※※※※※※</strong> 我的梦想是有很多很多钱,有钱可以实现很多梦想.如果上一个梦想不能实现,那么我想有点钱,有点够花的钱(~(@^_^@)~) <strong style="color:blue;">※※※※※※</strong></div>
+
+---

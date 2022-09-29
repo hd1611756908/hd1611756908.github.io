@@ -457,3 +457,9 @@ div和span标签,本身没什么意义,主要用来布局,后面学习CSS时候�
 1. 更容易被搜索引擎收录
 2. 更容易让屏幕阅读器读出网页内容
 ```
+
+---
+
+<div style="font-size:10px;text-align:center;"><strong style="color:blue;">※※※※※※</strong> 我的梦想是有很多很多钱,有钱可以实现很多梦想.如果上一个梦想不能实现,那么我想有点钱,有点够花的钱(~(@^_^@)~) <strong style="color:blue;">※※※※※※</strong></div>
+
+---

@@ -73,3 +73,9 @@ tags: ["前端","html","css","js","javascript"]
 	2. CSS 	   : 实现前端样式的展示,前端单纯展示内容比较丑,使用CSS技术对前端进行装修,让前端内容展示更漂亮
 	3. JavaScript : 前端有些地方需要动态效果的展示(轮播图,点击上一页或者下一页动态获取数据等)
 ```
+
+---
+
+<div style="font-size:10px;text-align:center;"><strong style="color:blue;">※※※※※※</strong> 我的梦想是有很多很多钱,有钱可以实现很多梦想.如果上一个梦想不能实现,那么我想有点钱,有点够花的钱(~(@^_^@)~) <strong style="color:blue;">※※※※※※</strong></div>
+
+---

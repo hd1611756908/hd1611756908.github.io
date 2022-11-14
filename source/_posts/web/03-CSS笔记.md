@@ -18,6 +18,7 @@ tags: ["前端","html","css","js","javascript"]
 CSS全称为"层叠样式表"(Cascading[kæˈskeɪdɪŋ] Style Sheets),它主要作用是定义HTML内容在浏览器内的显示样式,如文字大小、颜色、字体加粗等
 ```
 
+
 <!-- more -->
 
 ## 第二章 CSS编写位置
@@ -585,7 +586,7 @@ Webkit 内核的浏览器，必须加上-webkit前缀(这是兼容老版本浏�
 	</tr>
 	<tr>
 		<td style="width:50%;">
-			<img src="https://note.youdao.com/yws/api/personal/file/WEBeea1915ed52f0a8f2b56ced3f6c9a354?method=download&shareKey=86a091daea346406f40559a6147fa9e4" >
+			<img src="https://note.youdao.com/yws/api/personal/file/WEB41a7f732428622b3ecdda1ea86b81497?method=download&shareKey=844b6db8ef95189bda74db1f3beb7bad" >
 		</td>
 		<td style="width:50%;font-size:12px;">
 			容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end

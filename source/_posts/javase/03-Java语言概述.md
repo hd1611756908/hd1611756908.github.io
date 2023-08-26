@@ -1,7 +1,7 @@
 ---
-title: 02-Java语言概述与环境搭建
+title: 03-Java语言概述
 categories: javase
-tags: ["java","javase","jvm","软件","编译"]
+tags: ["后端","java","javase","jdk8","jdk0","环境变量","JAVA_HOME"]
 ---
 
 ```xml
@@ -127,10 +127,11 @@ https://www.oracle.com/java/technologies/downloads/
 ### 第1节 开发工具介绍
 
 ```xml
-Windows自带的文本文档
-notepad++ (后改名为 notepad-plus)
-Eclipse
-IntelliJ IDEA
+Windows自带的文本文档              免费(功能较少)
+notepad++ (后改名为 notepad-plus)  免费
+SublimeText                       收费
+Eclipse                           免费
+IntelliJ IDEA                     收费
 ...
 ```
 

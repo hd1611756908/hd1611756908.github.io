@@ -37,8 +37,8 @@ https://layui.dev/
 ```
 方式一 : 在线第三方 CDN 引入,UNPKG 和 CDNJS 均为第三方免费 CDN (详细请看官网)
 
-	<!-- 引入 layui.css -->
-	<link href="//unpkg.com/layui@2.9.7/dist/css/layui.css" rel="stylesheet">
+    <!-- 引入 layui.css -->
+    <link href="//unpkg.com/layui@2.9.7/dist/css/layui.css" rel="stylesheet">
     <!-- 引入 layui.js -->
     <script src="//unpkg.com/layui@2.9.7/dist/layui.js"></script>
 

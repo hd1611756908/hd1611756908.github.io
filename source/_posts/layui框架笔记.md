@@ -1,6 +1,6 @@
 ---
 title: Layui快速入门
-categories: layui
+categories: Layui
 tags: ["html","css","JavaScript","Layui","pearAdmin","JS"]
 ---
 

@@ -1,8 +1,23 @@
+---
+title: MQTT协议快速入门
+categories: MQTT
+tags: ["mqtt","tcp","websocket"]
+---
+
+```
+作者: 夜泊1990
+企鹅: 1611756908
+鹅群: 948233848
+邮箱: hd1611756908@163.com
+博客: https://hd1611756908.github.io/
+B 站: https://space.bilibili.com/514155929/
+```
+
 ## 第一章 MQTT协议概述
 
 ### 第1节 MQTT协议介绍
 
-```xml
+```
 MQTT是一种基于发布/订阅模式的轻量级消息传输协议，设计用于低带宽、高延迟或不稳定的网络环境，广泛应用于物联网领域
 ```
 
@@ -14,6 +29,8 @@ MQTT是一种基于发布/订阅模式的轻量级消息传输协议，设计用
 2014年10月 MQTT v3.1.1 MQTT正式成为OASIS标准                   --当前主流版本
 2019年03月 OASIS发布了 MQTT v5.0 5.0版本成为了OASIS的新的标准     -- 后起之秀版本
 ```
+
+<!-- more -->
 
 ### 第3节 MQTT协议的应用场景
 
@@ -99,17 +116,16 @@ byte1的高4位取值范围:
 | DISCONNECT   | 14             | 客户端到服务端 | 客户端断开连接                      | 高4位 取值 1110        |
 | Reserved     | 15             | 禁止           | 保留位                              | 高4位 取值 1111        |
 
----
 
 > byte1 低4位MQTT其他配置介绍
 
-```xml
+```
 byte1 低4位默认大多都是保留位,没有意义,但是当MQTT类型为PUBLISH(0011)时 低4位开始有意义,具体如下:
 ```
 
 ![geshi](https://note.youdao.com/yws/api/personal/file/WEB1fdb1211e214cb9c03493c1e267db436?method=download&shareKey=55700ec7529325c88727738673944231)
 
-```bash
+```
 当byte1的高4位取值为0011时，byte1的低4位就会有意义
 
 DUP位: 如果设置0客户端或服务端第一次请求发送这个PUBLISH报文,如果设置1，表示这可能是一个早前报文请求的重发

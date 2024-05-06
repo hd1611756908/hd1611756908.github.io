@@ -171,33 +171,79 @@ MQTT协议基于TCP/IP协议,TCP/IP协议是一个安全稳定的协议,通信�
 
 ### 第1节 MQTT代理服务器介绍
 
-```
+#### 1.1 Eclipse Mosquitto
 
 ```
+官网地址: https://mosquitto.org/
 
-### 第2节 MQTT代理服务器安装
-
+介绍:
+1. 开源的消息代理服务器
+2. 支持MQTT协议版本 3.1 3.1.1 5.0 版本
+3. 轻量级,适用从低功耗单板计算机到完整服务器的所有设备
+4. 不支持集群功能
 ```
 
+#### 1.2 EMQX
+
+```
+官网地址: https://www.emqx.io/zh
+
+介绍:
+1. 开源大规模分布式MQTT代理服务器
+2. 支持MQTT协议版本 3.1 3.1.1 5.0 版本
+3. 单台并发连接数可以高达一亿,每秒处理百万级消息
+4. 安全可靠的消息传递
+```
+
+### 第2节 MQTT代理服务器安装(EMQX)
+
+```
+EMQX安装: windows
+1. 下载地址: https://www.emqx.io/zh/get-started
+2. 安装步骤:
+	第一步: 下载 emqx-5.3.2-windows-amd64.zip 安装包,版本可能和我这个不同
+	第二步: 解压
+	第三步: 打开命令行(以管理员身份运行),切换到解压目录的bin目录下
+	第四步: 安装,在bin目录下执行EMQX安装命令  emqx.cmd install ,完成之后有类似下面的输出,说明安装成功,只需要安装一次
+        D:\app\emqx-5.3.2-windows-amd64\bin>emqx.cmd install
+        EMQX_NODE__DB_ROLE [node.role]: core
+        EMQX_NODE__DB_BACKEND [node.db_backend]: mnesia
+        D:\app\emqx-5.3.2-windows-amd64\erts-13.2.2.4\bin\erlsrv.exe: Service emqx_5.3.2 added to system.
+        [SC] ChangeServiceConfig 成功
+	第五步(可选择): 如果想将EMQX从windows上卸载可以执行 emqx.cmd uninstall 命令
+	第六步: 去windows服务列表中找到第四步安装的EMQX的服务,鼠标右键启动
+	第七步: 在命令行输入 emqx.cmd console 命令，查看是否启动成功,如果有类似以下日志启动成功
+		D:\app\emqx-5.3.2-windows-amd64\bin>emqx.cmd console
+        EMQX_LOG__CONSOLE_HANDLER__ENABLE [log.console.enable]: true
+        EMQX_NODE__DB_ROLE [node.role]: core
+        EMQX_NODE__DB_BACKEND [node.db_backend]: mnesia
+
+        D:\app\emqx-5.3.2-windows-amd64>D:\app\emqx-5.3.2-windows-amd64\erts-13.2.2.4\bin\erl.exe -mode embedded -boot "D:\app\emqx-5.3.2-windows-amd64\releases\5.3.2\start" -config "D:\app\emqx-5.3.2-windows-amd64\data\configs\app.2024.05.06.16.38.19.config" -args_file "D:\app\emqx-5.3.2-windows-amd64\data\configs\vm.2024.05.06.16.38.19.args" -mnesia dir 'd:/app/emqx-5.3.2-windows-amd64/data/mnesia/emqx@127.0.0.1'
+        Listener ssl:default on 0.0.0.0:8883 started.
+        Listener tcp:default on 0.0.0.0:1883 started.
+        Listener ws:default on 0.0.0.0:8083 started.
+        Listener wss:default on 0.0.0.0:8084 started.
+        Listener http:dashboard on :18083 started.
+        EMQX 5.3.2 is running now!
+        Eshell V13.2.2.4  (abort with ^G)
+        v5.3.2(emqx@127.0.0.1)1>
+    
+    第八步:通过浏览器访问控制台http://127.0.0.1:18083 默认初始化用户名: admin 默认密码: public 进入之后会让你重新修改密码
 ```
 
 ### 第3节 MQTT客户端工具介绍
 
 ```
-
+EMQX官网自带工具MQTTX官网地址: https://mqttx.app/zh/downloads
 ```
 
 ### 第4节 MQTT客户端工具安装和使用
 
 ```
-
+傻瓜式安装,无脑下一步
 ```
 
 ## 第三章MQTT协议练习(Java版)
 
 
-
-
-
-## 第四章 MQTT协议练习(Go版)
 

@@ -67,7 +67,7 @@ RabbitMQ是一个开源的AMQP(高级消息队列协议)实现,服务器端用Er
 
 4. 运行RabbitMQ服务器
 
-    docker run –name rabbitmq-server -d -p 15672:15672 -p 5672:5672 rabbitmq:management
+    docker run --name rabbitmq-server -d -p 15672:15672 -p 5672:5672 rabbitmq:management
     
     4.1 –name指定了容器名称
     4.2 -d 指定容器以后台守护进程方式运行

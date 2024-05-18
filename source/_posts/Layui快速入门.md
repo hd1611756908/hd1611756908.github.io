@@ -329,7 +329,7 @@ CREATE DATABASE auth DEFAULT CHARACTER SET UTF8;
 CREATE TABLE role(
     role_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '角色ID',
     role_name VARCHAR(255) NOT NULL COMMENT '角色名称',
-    status TINYINT(1) NOT NULL DEFAULT 1 COMMENT '状态(定义逻辑删除) 1:未删除 0:已删除'
+    status TINYINT(1) NOT NULL DEFAULT 1 COMMENT '状态(定义逻辑删除) 1:有效 0:无效',
 ) DEFAULT CHARSET='UTF8' AUTO_INCREMENT=10000 COMMENT '角色表';
 
 -- 创建用户表
@@ -338,20 +338,46 @@ CREATE TABLE user(
     user_name VARCHAR(255) NOT NULL COMMENT '用户名称',
     email VARCHAR(255) NOT NULL COMMENT '邮箱',
     password VARCHAR(255) NOT NULL COMMENT '密码',
-    status TINYINT(1) NOT NULL DEFAULT 1 COMMENT '状态(定义逻辑删除) 1:未删除 0:已删除'
+    status TINYINT(1) NOT NULL DEFAULT 1 COMMENT '状态(定义逻辑删除) 1:有效 0:无效',
 ) DEFAULT CHARSET='UTF8' AUTO_INCREMENT=10000 COMMENT '用户表';
 
 -- 创建用户角色关联表
 CREATE TABLE user_role(
     role_id INT NOT NULL  COMMENT '角色ID',
     user_id INT NOT NULL COMMENT '用户ID',
-    status TINYINT(1) NOT NULL DEFAULT 1 COMMENT '状态(定义逻辑删除) 1:有效哦 0:无效',
+    status TINYINT(1) NOT NULL DEFAULT 1 COMMENT '状态(定义逻辑删除) 1:有效 0:无效',
     PRIMARY KEY(role_id,user_id)
 ) DEFAULT CHARSET='UTF8' AUTO_INCREMENT=10000 COMMENT '用户角色关联表';
 
 -- 外键关联
 ALTER TABLE user_role ADD FOREIGN KEY (role_id) REFERENCES role(role_id);
 ALTER TABLE user_role ADD FOREIGN KEY (user_id) REFERENCES user(user_id);
+
+-- 菜单表
+CREATE TABLE menu(
+    id INT PRIMARY KEY COMMENT '菜单ID',
+    title VARCHAR(255) NOT NULL COMMENT '菜单标题',
+    icon  VARCHAR(255) COMMENT '菜单图标',
+    type INT DEFAULT 0 COMMENT '菜单类型',
+    openType VARCHAR(255) DEFAULT "" COMMENT "菜单类型名称",
+    href VARCHAR(255) COMMENT "菜单指向地址",
+    parent_id INT DEFAULT 0 COMMENT "菜单父ID,关联主键",
+    level INT DEFAULT 1 COMMENT "菜单级别",
+    status TINYINT DEFAULT 1 COMMENT "菜单状态 1:有效 0:禁用",
+    update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '设置当前时间，并且自动更更新时间'
+) DEFAULT CHARSET='UTF8' AUTO_INCREMENT=10000 COMMENT '用户角色关联表';
+
+-- 菜单角色关联表
+CREATE TABLE menu_role(
+    role_id INT NOT NULL  COMMENT '角色ID',
+    id INT NOT NULL COMMENT '菜单ID',
+    status TINYINT(1) NOT NULL DEFAULT 1 COMMENT '状态(定义逻辑删除) 1:有效 0:无效',
+    PRIMARY KEY(role_id,id)
+) DEFAULT CHARSET='UTF8' AUTO_INCREMENT=10000 COMMENT '菜单角色关联表';
+
+-- 外键关联
+ALTER TABLE menu_role ADD FOREIGN KEY (role_id) REFERENCES role(role_id);
+ALTER TABLE menu_role ADD FOREIGN KEY (id) REFERENCES menu(id);
 ```
 
 #### 2.2 页面展示

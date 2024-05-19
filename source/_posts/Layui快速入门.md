@@ -359,7 +359,7 @@ CREATE TABLE menu(
     title VARCHAR(255) NOT NULL COMMENT '菜单标题',
     icon  VARCHAR(255) COMMENT '菜单图标',
     type INT DEFAULT 0 COMMENT '菜单类型',
-    openType VARCHAR(255) DEFAULT "" COMMENT "菜单类型名称",
+    open_type VARCHAR(255) DEFAULT "" COMMENT "菜单类型名称",
     href VARCHAR(255) COMMENT "菜单指向地址",
     parent_id INT DEFAULT 0 COMMENT "菜单父ID,关联主键",
     level INT DEFAULT 1 COMMENT "菜单级别",

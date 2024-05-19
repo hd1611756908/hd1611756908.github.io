@@ -355,7 +355,7 @@ ALTER TABLE user_role ADD FOREIGN KEY (user_id) REFERENCES user(user_id);
 
 -- 菜单表
 CREATE TABLE menu(
-    id INT PRIMARY KEY COMMENT '菜单ID',
+    id INT PRIMARY KEY AUTO_INCREMENT COMMENT '菜单ID',
     title VARCHAR(255) NOT NULL COMMENT '菜单标题',
     icon  VARCHAR(255) COMMENT '菜单图标',
     type INT DEFAULT 0 COMMENT '菜单类型',

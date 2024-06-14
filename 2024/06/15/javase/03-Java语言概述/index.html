@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hd1611756908.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="123456作者: 夜泊1990企鹅: 1611756908鹅群: 948233848邮箱: hd1611756908@163.com博客: https:&#x2F;&#x2F;hd1611756908.github.io&#x2F;B 站: https:&#x2F;&#x2F;space.bilibili.com&#x2F;514155929&#x2F;  第一章 Java语言发展史12345678910111213141516171819202122232425">
+<meta property="og:type" content="article">
+<meta property="og:title" content="03-Java语言概述">
+<meta property="og:url" content="https://hd1611756908.github.io/2024/06/15/javase/03-Java%E8%AF%AD%E8%A8%80%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="枫桥夜泊">
+<meta property="og:description" content="123456作者: 夜泊1990企鹅: 1611756908鹅群: 948233848邮箱: hd1611756908@163.com博客: https:&#x2F;&#x2F;hd1611756908.github.io&#x2F;B 站: https:&#x2F;&#x2F;space.bilibili.com&#x2F;514155929&#x2F;  第一章 Java语言发展史12345678910111213141516171819202122232425">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB46e65b155fd784526a889d04673cf545?method=download&shareKey=9c57ce9c71cabbbfb0ad318b8d164027">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB6fcb67dc62b4622f59bb2d8c755176c4?method=download&shareKey=43b8f42212b4cf094cfa7cc9035e01b0">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB4cf28e123fcaf24959991d947af085f6?method=download&shareKey=9a37def37a7dbd7751c14799b6abd74c">
+<meta property="article:published_time" content="2024-06-14T16:32:54.455Z">
+<meta property="article:modified_time" content="2024-06-14T16:33:56.884Z">
+<meta property="article:author" content="夜泊1990">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Javase">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/WEB46e65b155fd784526a889d04673cf545?method=download&shareKey=9c57ce9c71cabbbfb0ad318b8d164027">
+
+<link rel="canonical" href="https://hd1611756908.github.io/2024/06/15/javase/03-Java%E8%AF%AD%E8%A8%80%E6%A6%82%E8%BF%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>03-Java语言概述 | 枫桥夜泊</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="枫桥夜泊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">枫桥夜泊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每走一步,都是进步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://gitee.com/ukoko" class="github-corner" title="Follow me on GitEE" aria-label="Follow me on GitEE" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hd1611756908.github.io/2024/06/15/javase/03-Java%E8%AF%AD%E8%A8%80%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="夜泊1990">
+      <meta itemprop="description" content="俱往矣,要多呲花,有多呲花">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫桥夜泊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          03-Java语言概述
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-06-15 00:32:54 / 修改时间：00:33:56" itemprop="dateCreated datePublished" datetime="2024-06-15T00:32:54+08:00">2024-06-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javase/" itemprop="url" rel="index"><span itemprop="name">javase</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">作者: 夜泊1990</span><br><span class="line">企鹅: 1611756908</span><br><span class="line">鹅群: 948233848</span><br><span class="line">邮箱: hd1611756908@163.com</span><br><span class="line">博客: https://hd1611756908.github.io/</span><br><span class="line">B 站: https://space.bilibili.com/514155929/</span><br></pre></td></tr></table></figure>
+
+<h2 id="第一章-Java语言发展史"><a href="#第一章-Java语言发展史" class="headerlink" title="第一章 Java语言发展史"></a>第一章 Java语言发展史</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">硬件的发展 -- 廉价的单片式微控制器 -- 用于智能化家居</span><br><span class="line"></span><br><span class="line">1991年成立Green小组(詹姆斯·高斯林任组长),专攻计算机在家电领域的嵌入式应用</span><br><span class="line">1992年夏Oak开发成功(根据C++语言改造),Oak开发成功之后需要硬件厂家支持,但是硬件厂家没同意(因为Oak没人用,硬件厂商怕支持了没人买)Oak直接凉了</span><br><span class="line">1995年互联网蓬勃发展,那时候需要一种语言可以在网络上传输,并且给页面增加动态效果,Green小组成员发现Oak可以完成这样的要求,并且当初设计的时候这门语言也比较小适合在网络上传输,所以对Oak语言一顿修改,重命名为Java,并且在Sun World大会上亮相被认可(IBM,微软,HP..)</span><br><span class="line">1996年1月 Sun公司发布了Java的第一个开发工具包（JDK1.0）</span><br><span class="line">1997年2月 JDK1.1</span><br><span class="line">1999年6月 JDK1.2</span><br><span class="line">	J2ME（Java2 Micro Edition Java2平台的微型版）应用于嵌入式、无线领域</span><br><span class="line">	J2SE（Java2 Standard Edition Java2平台的标准版）应用于桌面环境,现在已经被Android应用和IOS应用取代</span><br><span class="line">	J2EE（Java2 Enterprise Edition Java2平台的企业版）应用于基于Java的应用服务器,以后的学习方向</span><br><span class="line">2000年5月 JDK1.3、JDK1.4</span><br><span class="line">2004年9月 JDK5(从原来的1.x版本修改成x版本) 里程碑版本,增加了很多实用功能</span><br><span class="line">2005年6月 JDK6</span><br><span class="line">2009年    甲骨文(Oracle)公司宣布收购Sun</span><br><span class="line">2011年    JDK7</span><br><span class="line">2014年    JDK8(JDK8版本开始部分收费 JDK8u211及以上版本开始收费,以下版本依然免费) 当前国内使用的版本</span><br><span class="line">2017年9月 JDK9 收费</span><br><span class="line">2018年3月 JDK10 收费</span><br><span class="line">...</span><br><span class="line">2021年    JDK16 收费</span><br><span class="line">2021年    JDK17 免费</span><br><span class="line">...</span><br><span class="line">          JDK19 免费</span><br><span class="line">2023年	 JDK20</span><br><span class="line">...        </span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="第二章-Java语言优势"><a href="#第二章-Java语言优势" class="headerlink" title="第二章 Java语言优势"></a>第二章 Java语言优势</h2><h3 id="第1节-Java语言应用方向"><a href="#第1节-Java语言应用方向" class="headerlink" title="第1节 Java语言应用方向"></a>第1节 Java语言应用方向</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Java语言的职业方向</span><br><span class="line">1. Android系统应用早期是用Java语言开发的,当然现在也可以使用,不过现在有替代语言Kotlin</span><br><span class="line">2. 很多大数据相关框架都是使用Java语言开发的,比如hadoop，Hbase，Elasticsearch等</span><br><span class="line">3. 在应用领域很多软件的后台服务都是基于Java开发</span><br><span class="line">	3.1 电商领域(淘宝、京东...)</span><br><span class="line">	3.2 金融领域(支付宝、银行...)</span><br><span class="line">	3.3 软件工具(Eclipse...)</span><br><span class="line">	3.4 国内的各个领域(政府、金融、保险、医疗、教育...)Java占着举足轻重的地位</span><br><span class="line"></span><br><span class="line">打开我们的手机,里面的APP软件大部分后台都是Java语言编写的.</span><br></pre></td></tr></table></figure>
+
+<h3 id="第2节-Java语言自身特点"><a href="#第2节-Java语言自身特点" class="headerlink" title="第2节 Java语言自身特点"></a>第2节 Java语言自身特点</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 简单性</span><br><span class="line">2. 面向对象</span><br><span class="line">3. 分布性</span><br><span class="line">4. 健壮性</span><br><span class="line">5. 安全性</span><br><span class="line">6. 跨平台</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="第三章-Java语言的环境搭建"><a href="#第三章-Java语言的环境搭建" class="headerlink" title="第三章 Java语言的环境搭建"></a>第三章 Java语言的环境搭建</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Java语言属于高级语言,采用Java语言编写的程序,计算机是不能直接运行的,这时候需要一个语言翻译(编译)工具,翻译成机器可以识别的机器码才可以.</span><br><span class="line"></span><br><span class="line">Java官方提供了JDK(Java Development Kit)Java开发工具包,工具包中包含了开发Java语言的各种工具(包含语言编译工具)以及运行Java软件的环境等</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>下载地址</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.oracle.com/java/technologies/downloads/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">傻瓜式安装</span><br><span class="line">注意: 安装路径不能有中文,不能有空格,不需要额外安装jre(Java运行时环境)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装目录介绍</li>
+</ul>
+<table>
+    <tr>
+        <td> <img src="https://note.youdao.com/yws/api/personal/file/WEB46e65b155fd784526a889d04673cf545?method=download&shareKey=9c57ce9c71cabbbfb0ad318b8d164027"> </td>
+    </tr>
+    <tr>
+        <td> <img src="https://note.youdao.com/yws/api/personal/file/WEB6fcb67dc62b4622f59bb2d8c755176c4?method=download&shareKey=43b8f42212b4cf094cfa7cc9035e01b0"> </td>
+    </tr>
+</table>
+
+<ul>
+<li>环境变量配置</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 设置变量 JAVA_HOME=JDK安装路径,精确到bin目录的上一级</span><br><span class="line">2. 将JAVA_HOME添加到Path路径下 %JAVA_HOME%\bin;</span><br><span class="line"></span><br><span class="line">注意:</span><br><span class="line">1. JAVA_HOME 必须全部大写</span><br><span class="line">2. JAVA_HOME 两个单词中间是下划线而非减号</span><br><span class="line">3. %XXX% 百分号是windows系统中取变量值的一种语法 </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>测试</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在DOS命令行窗口中执行 java -version 命令. 如果打印出jdk的版本,说明安装成功.</span><br></pre></td></tr></table></figure>
+
+<h2 id="第四章-第一个Java软件编写"><a href="#第四章-第一个Java软件编写" class="headerlink" title="第四章 第一个Java软件编写"></a>第四章 第一个Java软件编写</h2><h3 id="第1节-开发工具介绍"><a href="#第1节-开发工具介绍" class="headerlink" title="第1节 开发工具介绍"></a>第1节 开发工具介绍</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Windows自带的文本文档              免费(功能较少)</span><br><span class="line">notepad++ (后改名为 notepad-plus)  免费</span><br><span class="line">SublimeText                       收费</span><br><span class="line">Eclipse                           免费</span><br><span class="line">IntelliJ IDEA                     收费</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="第2节-Java代码编写步骤"><a href="#第2节-Java代码编写步骤" class="headerlink" title="第2节 Java代码编写步骤"></a>第2节 Java代码编写步骤</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 创建一个文本文件,文件的格式以.java结尾(这里为了能看清你电脑上每一个文件的格式,需要将文件后缀名设置出来.)</span><br><span class="line">2. 文件的名字理论上可以随意命名,但是这里强调不能使用中文,只能使用 0-9、a-z、A-Z、_、$ 不能使用其他</span><br><span class="line">3. 文件名字不能以数字开头</span><br><span class="line">4. 在给文件起名字时,英文单词的首字母必须大写,多英文单词的时候首字母也一定要大写 eg: XxxYyyZzz</span><br></pre></td></tr></table></figure>
+
+<h3 id="第3节-代码编写"><a href="#第3节-代码编写" class="headerlink" title="第3节 代码编写"></a>第3节 代码编写</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;HelloWorld&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第五章-软件的运行流程"><a href="#第五章-软件的运行流程" class="headerlink" title="第五章 软件的运行流程"></a>第五章 软件的运行流程</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 首先Java语言是高级语言,高级语言编写的代码是不能直接被计算机解析和运行的(计算机只认识0和1)</span><br><span class="line">2. 所以首先就是对我们编写的代码进行处理(编译),处理成可以被计算机认识的形式</span><br><span class="line">3. 编译 javac XxxYyyZzz.java 将.java的源文件编译成XxxYyyZzz.class字节码文件</span><br><span class="line">4. 运行 java XxxYyyZzz  -- 将其加载到JVM虚拟机的内存中由CPU解析和运行</span><br></pre></td></tr></table></figure>
+
+<table>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEB4cf28e123fcaf24959991d947af085f6?method=download&shareKey=9a37def37a7dbd7751c14799b6abd74c">
+        </td>
+    </tr>
+</table>
+
+<h2 id="第六章-Java语言注释"><a href="#第六章-Java语言注释" class="headerlink" title="第六章 Java语言注释"></a>第六章 Java语言注释</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">什么是注释: 标注计算机代码,起到解释说明作用,给程序员(软件开发者)看的.</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//单行注释</span><br><span class="line">/* </span><br><span class="line"> * 多行注释</span><br><span class="line"> */</span><br><span class="line">/**</span><br><span class="line"> * 文档型注释/多行注释/Java语言独有的</span><br><span class="line"> */</span><br><span class="line">jdk提供了对文档注释的操作使用javadoc命令可以生成java文档</span><br><span class="line">eg: </span><br><span class="line">javadoc  -d C:\Users\Administrator\Desktop\d  -encoding utf-8  HelloWorld.java</span><br></pre></td></tr></table></figure>
+
+<hr>
+<div style="font-size:10px;text-align:center;"><strong style="color:blue;">※※※※※※</strong> 大道至简(~(@^_^@)~) <strong style="color:blue;">※※※※※※</strong></div>
+
+<hr>
+
+    </div>
+
+    
+    
+    <div>
+	
+		<div style="text-align:center;color: #ccc;font-size:14px; padding-top: 10px;">----------------本文结束<i class="fa fa-paw"></i>感谢您的阅读---------------</div>
+	
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Javase/" rel="tag"># Javase</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/06/15/javase/01-Java%E5%85%A5%E9%97%A8%E5%BF%85%E8%AF%BB/" rel="prev" title="01-Java入门必读">
+      <i class="fa fa-chevron-left"></i> 01-Java入门必读
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-Java%E8%AF%AD%E8%A8%80%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="nav-text">第一章 Java语言发展史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-Java%E8%AF%AD%E8%A8%80%E4%BC%98%E5%8A%BF"><span class="nav-text">第二章 Java语言优势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC1%E8%8A%82-Java%E8%AF%AD%E8%A8%80%E5%BA%94%E7%94%A8%E6%96%B9%E5%90%91"><span class="nav-text">第1节 Java语言应用方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC2%E8%8A%82-Java%E8%AF%AD%E8%A8%80%E8%87%AA%E8%BA%AB%E7%89%B9%E7%82%B9"><span class="nav-text">第2节 Java语言自身特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-Java%E8%AF%AD%E8%A8%80%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-text">第三章 Java语言的环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%AC%AC%E4%B8%80%E4%B8%AAJava%E8%BD%AF%E4%BB%B6%E7%BC%96%E5%86%99"><span class="nav-text">第四章 第一个Java软件编写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC1%E8%8A%82-%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D"><span class="nav-text">第1节 开发工具介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC2%E8%8A%82-Java%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E6%AD%A5%E9%AA%A4"><span class="nav-text">第2节 Java代码编写步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC3%E8%8A%82-%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="nav-text">第3节 代码编写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BD%AF%E4%BB%B6%E7%9A%84%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="nav-text">第五章 软件的运行流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-Java%E8%AF%AD%E8%A8%80%E6%B3%A8%E9%87%8A"><span class="nav-text">第六章 Java语言注释</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="夜泊1990"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">夜泊1990</p>
+  <div class="site-description" itemprop="description">俱往矣,要多呲花,有多呲花</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夜泊1990</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">67k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:01</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

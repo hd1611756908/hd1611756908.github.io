@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hd1611756908.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="123456作者: 夜泊1990企鹅: 1611756908鹅群: 948233848邮箱: hd1611756908@163.com博客: https:&#x2F;&#x2F;hd1611756908.github.io&#x2F;B 站: https:&#x2F;&#x2F;space.bilibili.com&#x2F;514155929&#x2F;  第一章 模板介绍第1节 vue-element-admin概述1234567官网地址: https:&#x2F;&#x2F;pa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-admin-template快速入门">
+<meta property="og:url" content="https://hd1611756908.github.io/2024/06/16/web/vue-admin-template%E7%AE%80%E5%8D%95%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="枫桥夜泊">
+<meta property="og:description" content="123456作者: 夜泊1990企鹅: 1611756908鹅群: 948233848邮箱: hd1611756908@163.com博客: https:&#x2F;&#x2F;hd1611756908.github.io&#x2F;B 站: https:&#x2F;&#x2F;space.bilibili.com&#x2F;514155929&#x2F;  第一章 模板介绍第1节 vue-element-admin概述1234567官网地址: https:&#x2F;&#x2F;pa">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBd40f111969498907c275bd47dee662ec?method=download&shareKey=7d61f238d36c3e69aeb03a58cb0b48ae">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB962f59d88c36b6cb76394b70545dca67?method=download&shareKey=604d1722e6f45626d4a0c7052960f1d1">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBf8ff376348617ea8581d8eeda0e27a60?method=download&shareKey=9dacfa40d03d5f2a5b7b920ebb449b0f">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBe98538afb8c80609b3d5cfd32acafa18?method=download&shareKey=94619cd32d4775d24fb75811d88568cc">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB74e3dddff3dec344e5e739cf566c10cf?method=download&shareKey=1c24776b5f88b62a913e70d492b69a52">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBe986b0f5befbb3a2ae4802db83964e9e?method=download&shareKey=965e0019a774451ec1cb8c3d032960d0">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB5ee0c76c04b0c7e42559d025472e4985?method=download&shareKey=4bbd2df365848712edfdda7c43be0381">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBb3db6adcab7bace31e1c1d4288943e71?method=download&shareKey=a85d41db232ccbab97511ccdf4f645d5">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB2ad5f7e8df21d9de6b0c0e00b9bf8b61?method=download&shareKey=5560c0ef3544410569a34c1e33966720">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB2bcbcb16ad68501a928cf847152d8288?method=download&shareKey=d35ab066bdf54f4d99d5c6918e91a30b">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBf0c4d438dedb62e0faaf472f3d66fc8c?method=download&shareKey=68ee161ce86652471902dc95533bd546">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBc656dfc0b1bc9e77a5e43e8354857c34?method=download&shareKey=033f68d21834c7becdb6d077e9e536ec">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB29d834311db51cea37fff3245da1b57b?method=download&shareKey=25ccc629ad1673ebad5f76982552445f">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBb3e5a2b8f017222d155f1f0b3dcf1735?method=download&shareKey=2bf7c6b5cdbeec73d4af361425ac6dec">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBa7ca763e0c87ebbba76a39f2cc2fc1d3?method=download&shareKey=3dd1741793fcbe71a6fff00d42e0102f">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBe5e415d4c88cbbba965c27d05d4b7f13?method=download&shareKey=7494b431a3f7ab7b333fb875f624d9a6">
+<meta property="og:image" content="https://hd1611756908.github.io/pic%5Cvue-admin-17.png">
+<meta property="article:published_time" content="2024-06-16T03:12:14.530Z">
+<meta property="article:modified_time" content="2024-06-16T10:24:20.310Z">
+<meta property="article:author" content="夜泊1990">
+<meta property="article:tag" content="html">
+<meta property="article:tag" content="css">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="element">
+<meta property="article:tag" content="vue-element-admin">
+<meta property="article:tag" content="vue-admin-template">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/WEBd40f111969498907c275bd47dee662ec?method=download&shareKey=7d61f238d36c3e69aeb03a58cb0b48ae">
+
+<link rel="canonical" href="https://hd1611756908.github.io/2024/06/16/web/vue-admin-template%E7%AE%80%E5%8D%95%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>vue-admin-template快速入门 | 枫桥夜泊</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="枫桥夜泊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">枫桥夜泊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每走一步,都是进步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://gitee.com/ukoko" class="github-corner" title="Follow me on GitEE" aria-label="Follow me on GitEE" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hd1611756908.github.io/2024/06/16/web/vue-admin-template%E7%AE%80%E5%8D%95%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="夜泊1990">
+      <meta itemprop="description" content="俱往矣,要多呲花,有多呲花">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫桥夜泊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vue-admin-template快速入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-06-16 11:12:14 / 修改时间：18:24:20" itemprop="dateCreated datePublished" datetime="2024-06-16T11:12:14+08:00">2024-06-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">作者: 夜泊1990</span><br><span class="line">企鹅: 1611756908</span><br><span class="line">鹅群: 948233848</span><br><span class="line">邮箱: hd1611756908@163.com</span><br><span class="line">博客: https://hd1611756908.github.io/</span><br><span class="line">B 站: https://space.bilibili.com/514155929/</span><br></pre></td></tr></table></figure>
+
+<h2 id="第一章-模板介绍"><a href="#第一章-模板介绍" class="headerlink" title="第一章 模板介绍"></a>第一章 模板介绍</h2><h3 id="第1节-vue-element-admin概述"><a href="#第1节-vue-element-admin概述" class="headerlink" title="第1节 vue-element-admin概述"></a>第1节 vue-element-admin概述</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">官网地址: https://panjiachen.github.io/vue-element-admin-site/zh/</span><br><span class="line"></span><br><span class="line">是一个前端模版,可以帮助前端开发者快速构建管理系统的前端页面</span><br><span class="line"></span><br><span class="line">模板中提供了 【登录 / 注销】【权限验证】【多环境发布】【全局功能】【编辑器/Excel】... 等常见功能</span><br><span class="line"></span><br><span class="line">样式如下: ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓</span><br></pre></td></tr></table></figure>
+
+
+
+<span id="more"></span>
+
+
+
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBd40f111969498907c275bd47dee662ec?method=download&shareKey=7d61f238d36c3e69aeb03a58cb0b48ae" alt="vue"></p>
+<h3 id="第2节-vue-admin-template概述"><a href="#第2节-vue-admin-template概述" class="headerlink" title="第2节 vue-admin-template概述"></a>第2节 vue-admin-template概述</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vue-admin-template是vue-element-admin的简洁版</span><br><span class="line">在实际开发中,vue-element-admin里的很多功能都不是我们想要的</span><br><span class="line">所以作者基于vue-element-admin进行了删减,vue-admin-template版本适合开发</span><br><span class="line">如果想使用vue-element-admin里面的某些功能,可以去复制和粘贴.</span><br></pre></td></tr></table></figure>
+
+<h3 id="第3节-源码地址"><a href="#第3节-源码地址" class="headerlink" title="第3节 源码地址"></a>第3节 源码地址</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vue-element-admin地址:</span><br><span class="line">	GITEE: https://gitee.com/panjiachen/vue-element-admin.git</span><br><span class="line">	GITHUB: https://github.com/PanJiaChen/vue-element-admin.git</span><br><span class="line">vue-admin-template地址:</span><br><span class="line">	GITEE: https://gitee.com/panjiachen/vue-admin-template.git</span><br><span class="line">	GITHUB: https://github.com/PanJiaChen/vue-admin-template.git</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二章-下载和运行"><a href="#第二章-下载和运行" class="headerlink" title="第二章 下载和运行"></a>第二章 下载和运行</h2><h3 id="第1节-系统环境"><a href="#第1节-系统环境" class="headerlink" title="第1节 系统环境"></a>第1节 系统环境</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">我个人本地环境</span><br><span class="line"></span><br><span class="line">操作系统: Windows 11 教育版</span><br><span class="line">node:    v20.13.0   官网要求版本&#123; node: &#x27;8 || 10 || 12 || 14 || 16 || 17&#x27; &#125; 但是v20.13.0也可以</span><br><span class="line">npm:     10.5.2 </span><br><span class="line">vue-cli: @vue/cli 5.0.8</span><br><span class="line"></span><br><span class="line">npm包镜像站地址: https://npmmirror.com/</span><br><span class="line"></span><br><span class="line">因为国外镜像源地址下载容易失败,可以切换成国内的镜像源</span><br><span class="line"></span><br><span class="line">1. 查看镜像源命令:  npm config list</span><br><span class="line">2. 设置镜像源命令:  npm config set registry https://registry.npmmirror.com</span><br><span class="line"></span><br><span class="line">注意: 不允许使用cnpm进行依赖下载</span><br></pre></td></tr></table></figure>
+
+<h3 id="第2节-依赖下载和运行"><a href="#第2节-依赖下载和运行" class="headerlink" title="第2节 依赖下载和运行"></a>第2节 依赖下载和运行</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">依赖下载和:</span><br><span class="line">	第一步: 打开命令行工具</span><br><span class="line">	第二步: 切换到项目的根目录</span><br><span class="line">	第三步: 在命令行输入 npm install 命令</span><br><span class="line">	第四步: 等待依赖安装完成</span><br><span class="line">	第五步: 在命令行输入  npm run dev 启动运行</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三章-目录结构介绍"><a href="#第三章-目录结构介绍" class="headerlink" title="第三章 目录结构介绍"></a>第三章 目录结构介绍</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">略 请参考 vue-cli脚手架的官网: https://cli.vuejs.org/zh/</span><br></pre></td></tr></table></figure>
+
+<h2 id="第四章-左侧菜单名称以及图标修改"><a href="#第四章-左侧菜单名称以及图标修改" class="headerlink" title="第四章 左侧菜单名称以及图标修改"></a>第四章 左侧菜单名称以及图标修改</h2><h3 id="第1节-菜单名称修改"><a href="#第1节-菜单名称修改" class="headerlink" title="第1节 菜单名称修改"></a>第1节 菜单名称修改</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">左侧菜单名称是在路由配置中生成的  文件位置: vue-admin-template\src\router\index.js</span><br><span class="line"></span><br><span class="line">修改title属性的值就是对应着左侧菜单的名称显示</span><br></pre></td></tr></table></figure>
+
+<img src="https://note.youdao.com/yws/api/personal/file/WEB962f59d88c36b6cb76394b70545dca67?method=download&shareKey=604d1722e6f45626d4a0c7052960f1d1" alt="vue-admin-02" />
+
+<h3 id="第2节-菜单图标修改"><a href="#第2节-菜单图标修改" class="headerlink" title="第2节 菜单图标修改"></a>第2节 菜单图标修改</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">左侧菜单中的图标是在路由配置中生成的  文件位置: vue-admin-template\src\router\index.js</span><br><span class="line"></span><br><span class="line">修改icon属性的值就可以修改图标了</span><br><span class="line">icon的值可以使用element-ui官网提供的图标显示,如果想定制化图标,可以参考官网: https://panjiachen.github.io/vue-element-admin-site/</span><br></pre></td></tr></table></figure>
+
+<img src="https://note.youdao.com/yws/api/personal/file/WEBf8ff376348617ea8581d8eeda0e27a60?method=download&shareKey=9dacfa40d03d5f2a5b7b920ebb449b0f" alt="vue-admin-03" />
+
+<h2 id="第五章-面包屑导航名称不一致修改"><a href="#第五章-面包屑导航名称不一致修改" class="headerlink" title="第五章 面包屑导航名称不一致修改"></a>第五章 面包屑导航名称不一致修改</h2><img src="https://note.youdao.com/yws/api/personal/file/WEBe98538afb8c80609b3d5cfd32acafa18?method=download&shareKey=94619cd32d4775d24fb75811d88568cc" alt="vue-admin-04" />
+
+
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">修改菜单之后,面包屑导航菜单和首页名称不一致</span><br><span class="line"></span><br><span class="line">修改文件位置: vue-admin-template\src\components\Breadcrumb\index.vue</span><br><span class="line"></span><br><span class="line">修改如下: 👇👇👇👇👇</span><br></pre></td></tr></table></figure>
+
+<img src="https://note.youdao.com/yws/api/personal/file/WEB74e3dddff3dec344e5e739cf566c10cf?method=download&shareKey=1c24776b5f88b62a913e70d492b69a52" alt="vue-admin-05" style="zoom:100%;" />
+
+<h2 id="第六章-浏览器选项卡标题名称修改"><a href="#第六章-浏览器选项卡标题名称修改" class="headerlink" title="第六章 浏览器选项卡标题名称修改"></a>第六章 浏览器选项卡标题名称修改</h2><p><img src="https://note.youdao.com/yws/api/personal/file/WEBe986b0f5befbb3a2ae4802db83964e9e?method=download&shareKey=965e0019a774451ec1cb8c3d032960d0" alt="vue"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">浏览器选项卡标题修改文件位置: vue-admin-template\src\settings.js</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB5ee0c76c04b0c7e42559d025472e4985?method=download&shareKey=4bbd2df365848712edfdda7c43be0381" alt="vue"></p>
+<h2 id="第七章-标签导航实现"><a href="#第七章-标签导航实现" class="headerlink" title="第七章 标签导航实现"></a>第七章 标签导航实现</h2><p><img src="https://note.youdao.com/yws/api/personal/file/WEBb3db6adcab7bace31e1c1d4288943e71?method=download&shareKey=a85d41db232ccbab97511ccdf4f645d5" alt="vue"></p>
+<hr>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB2ad5f7e8df21d9de6b0c0e00b9bf8b61?method=download&shareKey=5560c0ef3544410569a34c1e33966720" alt="vue"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">vue-admin-template默认情况下是没有标签导航的,如果想实现标签导航,需要去vue-element-admin项目中复制</span><br><span class="line"></span><br><span class="line">步骤如下:</span><br><span class="line"></span><br><span class="line">第一步: 去vue-element-admin项目中复制标签导航的功能组件</span><br><span class="line">	文件位置: vue-element-admin\src\layout\components\TagsView </span><br><span class="line">	将TagsView文件夹整个复制到vue-admin-template对应的目录中</span><br><span class="line"></span><br><span class="line">第二步: 复制配置文件</span><br><span class="line">	文件位置:</span><br><span class="line">		vue-element-admin\src\store\modules\tagsView.js</span><br><span class="line">		vue-element-admin\src\store\modules\permission.js</span><br><span class="line">	复制到vue-admin-template对应的目录下</span><br><span class="line"></span><br><span class="line">第三步: 修改配置文件,详细修改如下</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第一个文件 vue-element-admin\src\layout\index.vue</li>
+</ul>
+<img src="https://note.youdao.com/yws/api/personal/file/WEB2bcbcb16ad68501a928cf847152d8288?method=download&shareKey=d35ab066bdf54f4d99d5c6918e91a30b" alt="vue" style="zoom:80%;" />
+
+<ul>
+<li>第二个文件 vue-admin-template\src\layout\components\index.js</li>
+</ul>
+<img src="https://note.youdao.com/yws/api/personal/file/WEBf0c4d438dedb62e0faaf472f3d66fc8c?method=download&shareKey=68ee161ce86652471902dc95533bd546" style="zoom:80%;" />
+
+<ul>
+<li>第三个文件 vue-admin-template\src\store\index.js</li>
+</ul>
+<img src="https://note.youdao.com/yws/api/personal/file/WEBc656dfc0b1bc9e77a5e43e8354857c34?method=download&shareKey=033f68d21834c7becdb6d077e9e536ec" alt="vue" style="zoom:100%;" />
+
+<ul>
+<li>第四个文件 vue-admin-template\src\store\getters.js</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这个文件内容可以去vue-element-admin中去复制</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB29d834311db51cea37fff3245da1b57b?method=download&shareKey=25ccc629ad1673ebad5f76982552445f" alt="vue"></p>
+<ul>
+<li>第五个文件  vue-admin-template\src\layout&#x2F;components&#x2F;AppMain.vue</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这个文件的内容可以去vue-element-admin中去复制</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBb3e5a2b8f017222d155f1f0b3dcf1735?method=download&shareKey=2bf7c6b5cdbeec73d4af361425ac6dec" alt="vue"></p>
+<ul>
+<li>第六个文件(钉) vue-admin-template\src\router\index.js</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这个一定要配置,否则当标签实现的时候，当用户把标签全部删除没了之后会报404,所以必须得留下一个标签,所以需要钉一下</span><br><span class="line"></span><br><span class="line">这个需要看你需要将哪个标签固定下来,关闭不掉即可.配置方式见下图</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBa7ca763e0c87ebbba76a39f2cc2fc1d3?method=download&shareKey=3dd1741793fcbe71a6fff00d42e0102f" alt="vue"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置affix: true 参数，首页就会被固定住,此标签不会被关闭掉. 见下图</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBe5e415d4c88cbbba965c27d05d4b7f13?method=download&shareKey=7494b431a3f7ab7b333fb875f624d9a6" alt="vue"></p>
+<h2 id="第八章-标签导航经控制台警告处理"><a href="#第八章-标签导航经控制台警告处理" class="headerlink" title="第八章 标签导航经控制台警告处理"></a>第八章 标签导航经控制台警告处理</h2><p><img src="/pic%5Cvue-admin-17.png" alt="vue"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">控制台出现警告的原因是因为在 vue-admin-template\src\store\modules\permission.js 文件中没有找到asyncRoutes变量</span><br><span class="line"></span><br><span class="line">这个变量需要在vue-admin-template\src\router\index.js文件中声明,所在此文件中暂时先声明一个asyncRoutes变量,是一个数组</span><br><span class="line"></span><br><span class="line">export const asyncRoutes = [] 可以解决,后面在说这个变量的意义.</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    <div>
+	
+		<div style="text-align:center;color: #ccc;font-size:14px; padding-top: 10px;">----------------本文结束<i class="fa fa-paw"></i>感谢您的阅读---------------</div>
+	
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/html/" rel="tag"># html</a>
+              <a href="/tags/css/" rel="tag"># css</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/vue/" rel="tag"># vue</a>
+              <a href="/tags/element/" rel="tag"># element</a>
+              <a href="/tags/vue-element-admin/" rel="tag"># vue-element-admin</a>
+              <a href="/tags/vue-admin-template/" rel="tag"># vue-admin-template</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/06/15/javase/03-Java%E8%AF%AD%E8%A8%80%E6%A6%82%E8%BF%B0/" rel="prev" title="03-Java语言概述">
+      <i class="fa fa-chevron-left"></i> 03-Java语言概述
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A8%A1%E6%9D%BF%E4%BB%8B%E7%BB%8D"><span class="nav-text">第一章 模板介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC1%E8%8A%82-vue-element-admin%E6%A6%82%E8%BF%B0"><span class="nav-text">第1节 vue-element-admin概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC2%E8%8A%82-vue-admin-template%E6%A6%82%E8%BF%B0"><span class="nav-text">第2节 vue-admin-template概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC3%E8%8A%82-%E6%BA%90%E7%A0%81%E5%9C%B0%E5%9D%80"><span class="nav-text">第3节 源码地址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E4%B8%8B%E8%BD%BD%E5%92%8C%E8%BF%90%E8%A1%8C"><span class="nav-text">第二章 下载和运行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC1%E8%8A%82-%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83"><span class="nav-text">第1节 系统环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC2%E8%8A%82-%E4%BE%9D%E8%B5%96%E4%B8%8B%E8%BD%BD%E5%92%8C%E8%BF%90%E8%A1%8C"><span class="nav-text">第2节 依赖下载和运行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D"><span class="nav-text">第三章 目录结构介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%B7%A6%E4%BE%A7%E8%8F%9C%E5%8D%95%E5%90%8D%E7%A7%B0%E4%BB%A5%E5%8F%8A%E5%9B%BE%E6%A0%87%E4%BF%AE%E6%94%B9"><span class="nav-text">第四章 左侧菜单名称以及图标修改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC1%E8%8A%82-%E8%8F%9C%E5%8D%95%E5%90%8D%E7%A7%B0%E4%BF%AE%E6%94%B9"><span class="nav-text">第1节 菜单名称修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC2%E8%8A%82-%E8%8F%9C%E5%8D%95%E5%9B%BE%E6%A0%87%E4%BF%AE%E6%94%B9"><span class="nav-text">第2节 菜单图标修改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E9%9D%A2%E5%8C%85%E5%B1%91%E5%AF%BC%E8%88%AA%E5%90%8D%E7%A7%B0%E4%B8%8D%E4%B8%80%E8%87%B4%E4%BF%AE%E6%94%B9"><span class="nav-text">第五章 面包屑导航名称不一致修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E6%B5%8F%E8%A7%88%E5%99%A8%E9%80%89%E9%A1%B9%E5%8D%A1%E6%A0%87%E9%A2%98%E5%90%8D%E7%A7%B0%E4%BF%AE%E6%94%B9"><span class="nav-text">第六章 浏览器选项卡标题名称修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E6%A0%87%E7%AD%BE%E5%AF%BC%E8%88%AA%E5%AE%9E%E7%8E%B0"><span class="nav-text">第七章 标签导航实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%A0%87%E7%AD%BE%E5%AF%BC%E8%88%AA%E7%BB%8F%E6%8E%A7%E5%88%B6%E5%8F%B0%E8%AD%A6%E5%91%8A%E5%A4%84%E7%90%86"><span class="nav-text">第八章 标签导航经控制台警告处理</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="夜泊1990"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">夜泊1990</p>
+  <div class="site-description" itemprop="description">俱往矣,要多呲花,有多呲花</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夜泊1990</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">70k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:04</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

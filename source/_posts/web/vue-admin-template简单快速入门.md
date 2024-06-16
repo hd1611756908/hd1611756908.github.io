@@ -215,7 +215,7 @@ vue-admin-template默认情况下是没有标签导航的,如果想实现标签�
 
 ## 第八章 标签导航经控制台警告处理
 
-![vue](pic\vue-admin-17.png)
+![vue](https://note.youdao.com/yws/api/personal/file/WEB1635e599ef6ddd68908e142497698219?method=download&shareKey=a0fb210714bd1b34cc2808f511791d6f)
 
 ```
 控制台出现警告的原因是因为在 vue-admin-template\src\store\modules\permission.js 文件中没有找到asyncRoutes变量

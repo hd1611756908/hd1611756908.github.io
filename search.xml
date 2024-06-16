@@ -190,22 +190,6 @@
       </tags>
   </entry>
   <entry>
-    <title>01-Java入门必读</title>
-    <url>/2024/06/15/javase/01-Java%E5%85%A5%E9%97%A8%E5%BF%85%E8%AF%BB/</url>
-    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">作者: 夜泊1990</span><br><span class="line">企鹅: 1611756908</span><br><span class="line">鹅群: 948233848</span><br><span class="line">邮箱: hd1611756908@163.com</span><br><span class="line">博客: https://hd1611756908.github.io/</span><br><span class="line">B 站: https://space.bilibili.com/514155929/</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">学习计算机语言,首先要了解计算机,然后了解计算机软件,最后开始我们的计算机语言之旅.</span><br><span class="line"></span><br><span class="line">软件是用计算机语言编写,软件运行在计算机上. 为了更好的学习计算机语言,所以从计算机学习开始 ...</span><br></pre></td></tr></table></figure>
-<span id="more"></span>]]></content>
-      <categories>
-        <category>javase</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Javase</tag>
-        <tag>计算机语言</tag>
-        <tag>面向对象语言</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>快速入门RabbitMQ</title>
     <url>/2024/05/13/RabbitMQ%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">作者: 夜泊1990</span><br><span class="line">企鹅: 1611756908</span><br><span class="line">鹅群: 948233848</span><br><span class="line">邮箱: hd1611756908@163.com</span><br><span class="line">博客: https://hd1611756908.github.io/</span><br><span class="line">B 站: https://space.bilibili.com/514155929/</span><br></pre></td></tr></table></figure>
@@ -657,6 +641,269 @@
       </tags>
   </entry>
   <entry>
+    <title>Layui快速入门</title>
+    <url>/2024/05/03/web/Layui%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">作者: 夜泊1990</span><br><span class="line">企鹅: 1611756908</span><br><span class="line">鹅群: 948233848</span><br><span class="line">邮箱: hd1611756908@163.com</span><br><span class="line">博客: https://hd1611756908.github.io/</span><br><span class="line">B 站: https://space.bilibili.com/514155929/</span><br></pre></td></tr></table></figure>
+
+<h2 id="第一章-Layui是什么"><a href="#第一章-Layui是什么" class="headerlink" title="第一章 Layui是什么"></a>第一章 Layui是什么</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">Layui 是一套免费的开源 Web UI 组件库,遵循原生态的 HTML/CSS/JavaScript 开发模式,极易上手,拿来即用</span><br><span class="line"></span><br><span class="line">学习框架的意义: 写更少的代码,实现相同的功能.</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="第二章-Layui环境搭建"><a href="#第二章-Layui环境搭建" class="headerlink" title="第二章 Layui环境搭建"></a>第二章 Layui环境搭建</h2><h3 id="第1节-官网地址"><a href="#第1节-官网地址" class="headerlink" title="第1节 官网地址"></a>第1节 官网地址</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/</span><br><span class="line"></span><br><span class="line">当前版本 2.9.x 版本,相比于2.8.x和2.7.x新增了很多实用功能,下面会介绍.</span><br></pre></td></tr></table></figure>
+
+<h3 id="第2节-环境搭建"><a href="#第2节-环境搭建" class="headerlink" title="第2节 环境搭建"></a>第2节 环境搭建</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">方式一 : 在线第三方 CDN 引入,UNPKG 和 CDNJS 均为第三方免费 CDN (详细请看官网)</span><br><span class="line"></span><br><span class="line">    &lt;!-- 引入 layui.css --&gt;</span><br><span class="line">    &lt;link href=&quot;//unpkg.com/layui@2.9.7/dist/css/layui.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">    &lt;!-- 引入 layui.js --&gt;</span><br><span class="line">    &lt;script src=&quot;//unpkg.com/layui@2.9.7/dist/layui.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">方式二 : 离线引入</span><br><span class="line"></span><br><span class="line">	离线引入方式需要去官网下载layui安装包,将css文件和js文件复制粘贴到项目中,然后在引入</span><br><span class="line">	下载地址: https://foruda.gitee.com/attach_file/1709083131303683727/layui-v2.9.7.zip?token=4d86625f99f8aa72a6131358c786aeb4&amp;ts=1709353417&amp;attname=layui-v2.9.7.zip</span><br><span class="line"></span><br><span class="line">方式三 : npm 引入(略)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 前端模板如下: --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>layui<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 引入 layui.css --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;//unpkg.com/layui@2.9.7/dist/css/layui.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">&lt;!-- 你的 HTML 代码 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 引入 layui.js --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;//unpkg.com/layui@2.9.7/dist/layui.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="第三章-Layui知识点大纲"><a href="#第三章-Layui知识点大纲" class="headerlink" title="第三章 Layui知识点大纲"></a>第三章 Layui知识点大纲</h2><table>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEBa5414dbd90479d79d9a5a9539ee12e0d?method=download&shareKey=4b8d238ab4f7e8c12ad2310701d2c067">
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size:14px;">
+            大纲中只列举了常用的Layui前端知识点,其它的请查看官网.
+        </td>
+    </tr>
+</table>
+
+
+
+<h2 id="第四章-Layui页面元素"><a href="#第四章-Layui页面元素" class="headerlink" title="第四章 Layui页面元素"></a>第四章 Layui页面元素</h2><h3 id="第1节-布局元素"><a href="#第1节-布局元素" class="headerlink" title="第1节 布局元素"></a>第1节 布局元素</h3><h4 id="1-1-栅格布局"><a href="#1-1-栅格布局" class="headerlink" title="1.1 栅格布局"></a>1.1 栅格布局</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/layout/grid.html</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>案例展示</li>
+</ul>
+<table>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEBec329b24422feb6d79299856f591445d?method=download&shareKey=50201b0b98fed97eaf5b30be3509dfbc">
+        </td>
+    </tr>
+</table>
+
+
+<ul>
+<li>传统布局(略)</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用传统布局实现案例样式代码量会比较多</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Layui布局</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>Layui布局<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 引入 layui.css --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;//unpkg.com/layui@2.9.7/dist/css/layui.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 布局容器,水平居中  --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-container&quot;</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-row&quot;</span>&gt;</span></span><br><span class="line">			  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-col-md3&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: 350px;border: 1px solid #ccc;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-col-md9&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: 350px;border: 1px solid royalblue;&quot;</span>&gt;</span></span><br><span class="line">				  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-row&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: 45px;border: 1px solid red;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-row&quot;</span>&gt;</span></span><br><span class="line">				  	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-col-md9&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: 303px;border: 1px solid fuchsia;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-col-md3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 引入 layui.js --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;//unpkg.com/layui@2.9.7/dist/layui.js</span></span></span><br><span class="line"><span class="string"><span class="tag">	&lt;/body&gt;</span></span></span><br><span class="line"><span class="string"><span class="tag">&lt;/html&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<table>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEB523a50d186bcf3f3f1e30e4106e209a1?method=download&shareKey=484d05317dd2b41e30bc9ee3439eb558">
+        </td>
+    </tr>
+</table>
+
+
+<h4 id="1-2-布局容器"><a href="#1-2-布局容器" class="headerlink" title="1.2 布局容器"></a>1.2 布局容器</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/layout/grid.html#container</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/* 宽度固定水平居中 */</span><br><span class="line">&lt;div class=&quot;layui-container&quot;&gt;&lt;/div&gt;</span><br><span class="line">/* 宽度100% */</span><br><span class="line">&lt;div class=&quot;layui-fluid&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="第2节-表格"><a href="#第2节-表格" class="headerlink" title="第2节 表格"></a>第2节 表格</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/table/</span><br></pre></td></tr></table></figure>
+
+<h3 id="第3节-按钮-x2F-图标"><a href="#第3节-按钮-x2F-图标" class="headerlink" title="第3节 按钮&#x2F;图标"></a>第3节 按钮&#x2F;图标</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/button/</span><br><span class="line">https://layui.dev/docs/2/icon/</span><br></pre></td></tr></table></figure>
+
+<h3 id="第4节-表单"><a href="#第4节-表单" class="headerlink" title="第4节 表单"></a>第4节 表单</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/form/</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="第5节-其它"><a href="#第5节-其它" class="headerlink" title="第5节 其它"></a>第5节 其它</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">动画、导航、菜单等...</span><br></pre></td></tr></table></figure>
+
+<h2 id="第五章-Layui内置模块"><a href="#第五章-Layui内置模块" class="headerlink" title="第五章 Layui内置模块"></a>第五章 Layui内置模块</h2><h3 id="第1节-分页模块"><a href="#第1节-分页模块" class="headerlink" title="第1节 分页模块"></a>第1节 分页模块</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/laypage/</span><br></pre></td></tr></table></figure>
+
+<h3 id="第2节-数据表格"><a href="#第2节-数据表格" class="headerlink" title="第2节 数据表格"></a>第2节 数据表格</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/table/</span><br></pre></td></tr></table></figure>
+<h3 id="第3节-弹出层"><a href="#第3节-弹出层" class="headerlink" title="第3节 弹出层"></a>第3节 弹出层</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/layer/</span><br></pre></td></tr></table></figure>
+<h3 id="第4节-表单模块"><a href="#第4节-表单模块" class="headerlink" title="第4节 表单模块"></a>第4节 表单模块</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/form/</span><br></pre></td></tr></table></figure>
+<h3 id="第5节-时间模块"><a href="#第5节-时间模块" class="headerlink" title="第5节 时间模块"></a>第5节 时间模块</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/laydate/</span><br></pre></td></tr></table></figure>
+<h3 id="第6节-文件上传模块"><a href="#第6节-文件上传模块" class="headerlink" title="第6节 文件上传模块"></a>第6节 文件上传模块</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/upload/</span><br></pre></td></tr></table></figure>
+<h3 id="第7节-树状表格模块"><a href="#第7节-树状表格模块" class="headerlink" title="第7节 树状表格模块"></a>第7节 树状表格模块</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">方式 1 : layui2.7版本不带树状表格,需要借助第三方   https://dev.layuion.com/extend/</span><br><span class="line">方式 2 : layui2.8/9版本新增树状表格,使用起来更方便   https://layui.dev/docs/2/treeTable/</span><br></pre></td></tr></table></figure>
+
+<h3 id="第8节-其它模块"><a href="#第8节-其它模块" class="headerlink" title="第8节 其它模块"></a>第8节 其它模块</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">以上介绍的模块是开发中常见的模块,如果想使用其它模块,请查看官网</span><br></pre></td></tr></table></figure>
+
+<h2 id="第六章-Layui框架案例练习"><a href="#第六章-Layui框架案例练习" class="headerlink" title="第六章 Layui框架案例练习"></a>第六章 Layui框架案例练习</h2><h3 id="第1节-SQL语句"><a href="#第1节-SQL语句" class="headerlink" title="第1节 SQL语句"></a>第1节 SQL语句</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- 创建数据库</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE book <span class="keyword">DEFAULT</span> <span class="type">CHARACTER</span> <span class="keyword">SET</span> UTF8;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建数据库表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> category(</span><br><span class="line">    category_id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT COMMENT <span class="string">&#x27;分类ID&#x27;</span>,</span><br><span class="line">    category_name <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;分类名称&#x27;</span></span><br><span class="line">) <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> AUTO_INCREMENT<span class="operator">=</span><span class="number">10000</span> COMMENT <span class="string">&#x27;图书分类表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> category(category_name) <span class="keyword">VALUES</span>(<span class="string">&#x27;科技&#x27;</span>),(<span class="string">&#x27;文学&#x27;</span>),(<span class="string">&#x27;历史&#x27;</span>),(<span class="string">&#x27;财经&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建图书表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> book(</span><br><span class="line">    book_id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT COMMENT <span class="string">&#x27;图书ID&#x27;</span>,</span><br><span class="line">    book_name <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;图书名称&#x27;</span>,</span><br><span class="line">    author_name <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;图书作者&#x27;</span>,</span><br><span class="line">    price <span class="keyword">DOUBLE</span>(<span class="number">12</span>,<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="number">0.00</span> COMMENT <span class="string">&#x27;图书价格&#x27;</span>,</span><br><span class="line">    category_id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;分类ID,关联分类表主键&#x27;</span>,</span><br><span class="line">    create_time DATETIME <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建时间&#x27;</span>,</span><br><span class="line">    status <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">1</span> COMMENT <span class="string">&#x27;是否上架 1:上架 0:下架&#x27;</span>,</span><br><span class="line">    book_url <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;图书主图地址&#x27;</span>,</span><br><span class="line">    book_address <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;真实地址&#x27;</span></span><br><span class="line">) <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> AUTO_INCREMENT<span class="operator">=</span><span class="number">10000</span> COMMENT <span class="string">&#x27;图书表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 关联</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> book <span class="keyword">ADD</span> <span class="keyword">FOREIGN</span> KEY (category_id) <span class="keyword">REFERENCES</span> category(category_id);</span><br></pre></td></tr></table></figure>
+
+<h3 id="第2节-页面展示"><a href="#第2节-页面展示" class="headerlink" title="第2节 页面展示"></a>第2节 页面展示</h3><table>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEBcaa39e034539b0436c60175c4bc15f87?method=download&shareKey=5251378f90ebd97962429356230647af">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEBfeb4a5ed6e47f0cff0af91fa4e2223c1?method=download&shareKey=80b34117c9de27640bd38f3fc42ab33c">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEB1277a1620a1118934e164d8013075215?method=download&shareKey=7899d9be3b1c64ff16c4543a37f67577">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEBbee41cf043b4124b0f2ff952d80420df?method=download&shareKey=beb1c52915054fdd7d901edd3e22b3f9">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEBaed2d0b4ae0699e1456d033316e79bf9?method=download&shareKey=40a5537004c56713eca6ff7d5d5cc6bd">
+        </td>
+    </tr>
+</table>
+
+
+<h2 id="第七章-Layui框架模板使用-Pear-Admin-Layui"><a href="#第七章-Layui框架模板使用-Pear-Admin-Layui" class="headerlink" title="第七章 Layui框架模板使用(Pear Admin Layui)"></a>第七章 Layui框架模板使用(Pear Admin Layui)</h2><h3 id="第1节-官网地址-1"><a href="#第1节-官网地址-1" class="headerlink" title="第1节 官网地址"></a>第1节 官网地址</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://www.pearadmin.com/</span><br></pre></td></tr></table></figure>
+
+<h3 id="第2节-在线演示地址"><a href="#第2节-在线演示地址" class="headerlink" title="第2节 在线演示地址"></a>第2节 在线演示地址</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://layui.pearadmin.com/</span><br></pre></td></tr></table></figure>
+
+<table>
+    <tr>
+        <td>
+            <img src="https://note.youdao.com/yws/api/personal/file/WEB1fc5dd0f446c590b847196457a44446e?method=download&shareKey=5e20f7c11b7c1038647a4a906598c93b">
+        </td>
+    </tr>
+</table>
+
+
+<h3 id="第2节-CRUD练习"><a href="#第2节-CRUD练习" class="headerlink" title="第2节 CRUD练习"></a>第2节 CRUD练习</h3><h4 id="2-1-数据库表创建"><a href="#2-1-数据库表创建" class="headerlink" title="2.1 数据库表创建"></a>2.1 数据库表创建</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建测试库</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE auth <span class="keyword">DEFAULT</span> <span class="type">CHARACTER</span> <span class="keyword">SET</span> UTF8;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 常见角色表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> role(</span><br><span class="line">    role_id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT COMMENT <span class="string">&#x27;角色ID&#x27;</span>,</span><br><span class="line">    role_name <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;角色名称&#x27;</span>,</span><br><span class="line">    status TINYINT(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">1</span> COMMENT <span class="string">&#x27;状态(定义逻辑删除) 1:有效 0:无效&#x27;</span></span><br><span class="line">) <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> AUTO_INCREMENT<span class="operator">=</span><span class="number">10000</span> COMMENT <span class="string">&#x27;角色表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建用户表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">user</span>(</span><br><span class="line">    user_id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT COMMENT <span class="string">&#x27;用户ID&#x27;</span>,</span><br><span class="line">    user_name <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;用户名称&#x27;</span>,</span><br><span class="line">    email <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;邮箱&#x27;</span>,</span><br><span class="line">    password <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;密码&#x27;</span>,</span><br><span class="line">    status TINYINT(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">1</span> COMMENT <span class="string">&#x27;状态(定义逻辑删除) 1:有效 0:无效&#x27;</span></span><br><span class="line">) <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> AUTO_INCREMENT<span class="operator">=</span><span class="number">10000</span> COMMENT <span class="string">&#x27;用户表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建用户角色关联表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> user_role(</span><br><span class="line">    role_id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>  COMMENT <span class="string">&#x27;角色ID&#x27;</span>,</span><br><span class="line">    user_id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;用户ID&#x27;</span>,</span><br><span class="line">    status TINYINT(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">1</span> COMMENT <span class="string">&#x27;状态(定义逻辑删除) 1:有效 0:无效&#x27;</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY(role_id,user_id)</span><br><span class="line">) <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> AUTO_INCREMENT<span class="operator">=</span><span class="number">10000</span> COMMENT <span class="string">&#x27;用户角色关联表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 外键关联</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> user_role <span class="keyword">ADD</span> <span class="keyword">FOREIGN</span> KEY (role_id) <span class="keyword">REFERENCES</span> role(role_id);</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> user_role <span class="keyword">ADD</span> <span class="keyword">FOREIGN</span> KEY (user_id) <span class="keyword">REFERENCES</span> <span class="keyword">user</span>(user_id);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 菜单表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> menu(</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT COMMENT <span class="string">&#x27;菜单ID&#x27;</span>,</span><br><span class="line">    title <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;菜单标题&#x27;</span>,</span><br><span class="line">    icon  <span class="type">VARCHAR</span>(<span class="number">255</span>) COMMENT <span class="string">&#x27;菜单图标&#x27;</span>,</span><br><span class="line">    type <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> COMMENT <span class="string">&#x27;菜单类型&#x27;</span>,</span><br><span class="line">    open_type <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> &quot;&quot; COMMENT &quot;菜单类型名称&quot;,</span><br><span class="line">    href <span class="type">VARCHAR</span>(<span class="number">255</span>) COMMENT &quot;菜单指向地址&quot;,</span><br><span class="line">    parent_id <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> COMMENT &quot;菜单父ID,关联主键&quot;,</span><br><span class="line">    level <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">1</span> COMMENT &quot;菜单级别&quot;,</span><br><span class="line">    status TINYINT <span class="keyword">DEFAULT</span> <span class="number">1</span> COMMENT &quot;菜单状态 1:有效 0:禁用&quot;,</span><br><span class="line">    update_time <span class="type">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="built_in">CURRENT_TIMESTAMP</span> COMMENT <span class="string">&#x27;设置当前时间，并且自动更更新时间&#x27;</span></span><br><span class="line">) <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> AUTO_INCREMENT<span class="operator">=</span><span class="number">10000</span> COMMENT <span class="string">&#x27;用户角色关联表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 菜单角色关联表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> menu_role(</span><br><span class="line">    role_id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>  COMMENT <span class="string">&#x27;角色ID&#x27;</span>,</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;菜单ID&#x27;</span>,</span><br><span class="line">    status TINYINT(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">1</span> COMMENT <span class="string">&#x27;状态(定义逻辑删除) 1:有效 0:无效&#x27;</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY(role_id,id)</span><br><span class="line">) <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> AUTO_INCREMENT<span class="operator">=</span><span class="number">10000</span> COMMENT <span class="string">&#x27;菜单角色关联表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 外键关联</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> menu_role <span class="keyword">ADD</span> <span class="keyword">FOREIGN</span> KEY (role_id) <span class="keyword">REFERENCES</span> role(role_id);</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> menu_role <span class="keyword">ADD</span> <span class="keyword">FOREIGN</span> KEY (id) <span class="keyword">REFERENCES</span> menu(id);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-页面展示"><a href="#2-2-页面展示" class="headerlink" title="2.2 页面展示"></a>2.2 页面展示</h4>]]></content>
+      <categories>
+        <category>Layui</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+        <tag>css</tag>
+        <tag>JavaScript</tag>
+        <tag>Layui</tag>
+        <tag>pearAdmin</tag>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue-admin-template快速入门</title>
+    <url>/2024/06/16/web/vue-admin-template%E7%AE%80%E5%8D%95%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">作者: 夜泊1990</span><br><span class="line">企鹅: 1611756908</span><br><span class="line">鹅群: 948233848</span><br><span class="line">邮箱: hd1611756908@163.com</span><br><span class="line">博客: https://hd1611756908.github.io/</span><br><span class="line">B 站: https://space.bilibili.com/514155929/</span><br></pre></td></tr></table></figure>
+
+<h2 id="第一章-模板介绍"><a href="#第一章-模板介绍" class="headerlink" title="第一章 模板介绍"></a>第一章 模板介绍</h2><h3 id="第1节-vue-element-admin概述"><a href="#第1节-vue-element-admin概述" class="headerlink" title="第1节 vue-element-admin概述"></a>第1节 vue-element-admin概述</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">官网地址: https://panjiachen.github.io/vue-element-admin-site/zh/</span><br><span class="line"></span><br><span class="line">是一个前端模版,可以帮助前端开发者快速构建管理系统的前端页面</span><br><span class="line"></span><br><span class="line">模板中提供了 【登录 / 注销】【权限验证】【多环境发布】【全局功能】【编辑器/Excel】... 等常见功能</span><br><span class="line"></span><br><span class="line">样式如下: ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓</span><br></pre></td></tr></table></figure>
+
+
+
+<span id="more"></span>
+
+
+
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBd40f111969498907c275bd47dee662ec?method=download&shareKey=7d61f238d36c3e69aeb03a58cb0b48ae" alt="vue"></p>
+<h3 id="第2节-vue-admin-template概述"><a href="#第2节-vue-admin-template概述" class="headerlink" title="第2节 vue-admin-template概述"></a>第2节 vue-admin-template概述</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">vue-admin-template是vue-element-admin的简洁版</span><br><span class="line">在实际开发中,vue-element-admin里的很多功能都不是我们想要的</span><br><span class="line">所以作者基于vue-element-admin进行了删减,vue-admin-template版本适合开发</span><br><span class="line">如果想使用vue-element-admin里面的某些功能,可以去复制和粘贴.</span><br></pre></td></tr></table></figure>
+
+<h3 id="第3节-源码地址"><a href="#第3节-源码地址" class="headerlink" title="第3节 源码地址"></a>第3节 源码地址</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vue-element-admin地址:</span><br><span class="line">	GITEE: https://gitee.com/panjiachen/vue-element-admin.git</span><br><span class="line">	GITHUB: https://github.com/PanJiaChen/vue-element-admin.git</span><br><span class="line">vue-admin-template地址:</span><br><span class="line">	GITEE: https://gitee.com/panjiachen/vue-admin-template.git</span><br><span class="line">	GITHUB: https://github.com/PanJiaChen/vue-admin-template.git</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二章-下载和运行"><a href="#第二章-下载和运行" class="headerlink" title="第二章 下载和运行"></a>第二章 下载和运行</h2><h3 id="第1节-系统环境"><a href="#第1节-系统环境" class="headerlink" title="第1节 系统环境"></a>第1节 系统环境</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">我个人本地环境</span><br><span class="line"></span><br><span class="line">操作系统: Windows 11 教育版</span><br><span class="line">node:    v20.13.0   官网要求版本&#123; node: &#x27;8 || 10 || 12 || 14 || 16 || 17&#x27; &#125; 但是v20.13.0也可以</span><br><span class="line">npm:     10.5.2 </span><br><span class="line">vue-cli: @vue/cli 5.0.8</span><br><span class="line"></span><br><span class="line">npm包镜像站地址: https://npmmirror.com/</span><br><span class="line"></span><br><span class="line">因为国外镜像源地址下载容易失败,可以切换成国内的镜像源</span><br><span class="line"></span><br><span class="line">1. 查看镜像源命令:  npm config list</span><br><span class="line">2. 设置镜像源命令:  npm config set registry https://registry.npmmirror.com</span><br><span class="line"></span><br><span class="line">注意: 不允许使用cnpm进行依赖下载</span><br></pre></td></tr></table></figure>
+
+<h3 id="第2节-依赖下载和运行"><a href="#第2节-依赖下载和运行" class="headerlink" title="第2节 依赖下载和运行"></a>第2节 依赖下载和运行</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">依赖下载和:</span><br><span class="line">	第一步: 打开命令行工具</span><br><span class="line">	第二步: 切换到项目的根目录</span><br><span class="line">	第三步: 在命令行输入 npm install 命令</span><br><span class="line">	第四步: 等待依赖安装完成</span><br><span class="line">	第五步: 在命令行输入  npm run dev 启动运行</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三章-目录结构介绍"><a href="#第三章-目录结构介绍" class="headerlink" title="第三章 目录结构介绍"></a>第三章 目录结构介绍</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">略 请参考 vue-cli脚手架的官网: https://cli.vuejs.org/zh/</span><br></pre></td></tr></table></figure>
+
+<h2 id="第四章-左侧菜单名称以及图标修改"><a href="#第四章-左侧菜单名称以及图标修改" class="headerlink" title="第四章 左侧菜单名称以及图标修改"></a>第四章 左侧菜单名称以及图标修改</h2><h3 id="第1节-菜单名称修改"><a href="#第1节-菜单名称修改" class="headerlink" title="第1节 菜单名称修改"></a>第1节 菜单名称修改</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">左侧菜单名称是在路由配置中生成的  文件位置: vue-admin-template\src\router\index.js</span><br><span class="line"></span><br><span class="line">修改title属性的值就是对应着左侧菜单的名称显示</span><br></pre></td></tr></table></figure>
+
+<img src="https://note.youdao.com/yws/api/personal/file/WEB962f59d88c36b6cb76394b70545dca67?method=download&shareKey=604d1722e6f45626d4a0c7052960f1d1" alt="vue-admin-02" />
+
+<h3 id="第2节-菜单图标修改"><a href="#第2节-菜单图标修改" class="headerlink" title="第2节 菜单图标修改"></a>第2节 菜单图标修改</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">左侧菜单中的图标是在路由配置中生成的  文件位置: vue-admin-template\src\router\index.js</span><br><span class="line"></span><br><span class="line">修改icon属性的值就可以修改图标了</span><br><span class="line">icon的值可以使用element-ui官网提供的图标显示,如果想定制化图标,可以参考官网: https://panjiachen.github.io/vue-element-admin-site/</span><br></pre></td></tr></table></figure>
+
+<img src="https://note.youdao.com/yws/api/personal/file/WEBf8ff376348617ea8581d8eeda0e27a60?method=download&shareKey=9dacfa40d03d5f2a5b7b920ebb449b0f" alt="vue-admin-03" />
+
+<h2 id="第五章-面包屑导航名称不一致修改"><a href="#第五章-面包屑导航名称不一致修改" class="headerlink" title="第五章 面包屑导航名称不一致修改"></a>第五章 面包屑导航名称不一致修改</h2><img src="https://note.youdao.com/yws/api/personal/file/WEBe98538afb8c80609b3d5cfd32acafa18?method=download&shareKey=94619cd32d4775d24fb75811d88568cc" alt="vue-admin-04" />
+
+
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">修改菜单之后,面包屑导航菜单和首页名称不一致</span><br><span class="line"></span><br><span class="line">修改文件位置: vue-admin-template\src\components\Breadcrumb\index.vue</span><br><span class="line"></span><br><span class="line">修改如下: 👇👇👇👇👇</span><br></pre></td></tr></table></figure>
+
+<img src="https://note.youdao.com/yws/api/personal/file/WEB74e3dddff3dec344e5e739cf566c10cf?method=download&shareKey=1c24776b5f88b62a913e70d492b69a52" alt="vue-admin-05" style="zoom:100%;" />
+
+<h2 id="第六章-浏览器选项卡标题名称修改"><a href="#第六章-浏览器选项卡标题名称修改" class="headerlink" title="第六章 浏览器选项卡标题名称修改"></a>第六章 浏览器选项卡标题名称修改</h2><p><img src="https://note.youdao.com/yws/api/personal/file/WEBe986b0f5befbb3a2ae4802db83964e9e?method=download&shareKey=965e0019a774451ec1cb8c3d032960d0" alt="vue"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">浏览器选项卡标题修改文件位置: vue-admin-template\src\settings.js</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB5ee0c76c04b0c7e42559d025472e4985?method=download&shareKey=4bbd2df365848712edfdda7c43be0381" alt="vue"></p>
+<h2 id="第七章-标签导航实现"><a href="#第七章-标签导航实现" class="headerlink" title="第七章 标签导航实现"></a>第七章 标签导航实现</h2><p><img src="https://note.youdao.com/yws/api/personal/file/WEBb3db6adcab7bace31e1c1d4288943e71?method=download&shareKey=a85d41db232ccbab97511ccdf4f645d5" alt="vue"></p>
+<hr>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB2ad5f7e8df21d9de6b0c0e00b9bf8b61?method=download&shareKey=5560c0ef3544410569a34c1e33966720" alt="vue"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vue-admin-template默认情况下是没有标签导航的,如果想实现标签导航,需要去vue-element-admin项目中复制</span><br><span class="line"></span><br><span class="line">步骤如下:</span><br><span class="line"></span><br><span class="line">第一步: 去vue-element-admin项目中复制标签导航的功能组件</span><br><span class="line">	文件位置: vue-element-admin\src\layout\components\TagsView </span><br><span class="line">	将TagsView文件夹整个复制到vue-admin-template对应的目录中</span><br><span class="line"></span><br><span class="line">第二步: 复制配置文件</span><br><span class="line">	文件位置:</span><br><span class="line">		vue-element-admin\src\store\modules\tagsView.js</span><br><span class="line">		vue-element-admin\src\store\modules\permission.js</span><br><span class="line">	复制到vue-admin-template对应的目录下</span><br><span class="line"></span><br><span class="line">第三步: 修改配置文件,详细修改如下</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第一个文件 vue-element-admin\src\layout\index.vue</li>
+</ul>
+<img src="https://note.youdao.com/yws/api/personal/file/WEB2bcbcb16ad68501a928cf847152d8288?method=download&shareKey=d35ab066bdf54f4d99d5c6918e91a30b" alt="vue" style="zoom:80%;" />
+
+<ul>
+<li>第二个文件 vue-admin-template\src\layout\components\index.js</li>
+</ul>
+<img src="https://note.youdao.com/yws/api/personal/file/WEBf0c4d438dedb62e0faaf472f3d66fc8c?method=download&shareKey=68ee161ce86652471902dc95533bd546" style="zoom:80%;" />
+
+<ul>
+<li>第三个文件 vue-admin-template\src\store\index.js</li>
+</ul>
+<img src="https://note.youdao.com/yws/api/personal/file/WEBc656dfc0b1bc9e77a5e43e8354857c34?method=download&shareKey=033f68d21834c7becdb6d077e9e536ec" alt="vue" style="zoom:100%;" />
+
+<ul>
+<li>第四个文件 vue-admin-template\src\store\getters.js</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这个文件内容可以去vue-element-admin中去复制</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB29d834311db51cea37fff3245da1b57b?method=download&shareKey=25ccc629ad1673ebad5f76982552445f" alt="vue"></p>
+<ul>
+<li>第五个文件  vue-admin-template\src\layout&#x2F;components&#x2F;AppMain.vue</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这个文件的内容可以去vue-element-admin中去复制</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBb3e5a2b8f017222d155f1f0b3dcf1735?method=download&shareKey=2bf7c6b5cdbeec73d4af361425ac6dec" alt="vue"></p>
+<ul>
+<li>第六个文件(钉) vue-admin-template\src\router\index.js</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这个一定要配置,否则当标签实现的时候，当用户把标签全部删除没了之后会报404,所以必须得留下一个标签,所以需要钉一下</span><br><span class="line"></span><br><span class="line">这个需要看你需要将哪个标签固定下来,关闭不掉即可.配置方式见下图</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBa7ca763e0c87ebbba76a39f2cc2fc1d3?method=download&shareKey=3dd1741793fcbe71a6fff00d42e0102f" alt="vue"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">设置affix: true 参数，首页就会被固定住,此标签不会被关闭掉. 见下图</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBe5e415d4c88cbbba965c27d05d4b7f13?method=download&shareKey=7494b431a3f7ab7b333fb875f624d9a6" alt="vue"></p>
+<h2 id="第八章-标签导航经控制台警告处理"><a href="#第八章-标签导航经控制台警告处理" class="headerlink" title="第八章 标签导航经控制台警告处理"></a>第八章 标签导航经控制台警告处理</h2><p><img src="https://note.youdao.com/yws/api/personal/file/WEB1635e599ef6ddd68908e142497698219?method=download&shareKey=a0fb210714bd1b34cc2808f511791d6f" alt="vue"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">控制台出现警告的原因是因为在 vue-admin-template\src\store\modules\permission.js 文件中没有找到asyncRoutes变量</span><br><span class="line"></span><br><span class="line">这个变量需要在vue-admin-template\src\router\index.js文件中声明,所在此文件中暂时先声明一个asyncRoutes变量,是一个数组</span><br><span class="line"></span><br><span class="line">export const asyncRoutes = [] 可以解决,后面在说这个变量的意义.</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>html</tag>
+        <tag>css</tag>
+        <tag>JavaScript</tag>
+        <tag>vue</tag>
+        <tag>element</tag>
+        <tag>vue-element-admin</tag>
+        <tag>vue-admin-template</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>01-Java入门必读</title>
+    <url>/2024/06/15/javase/01-Java%E5%85%A5%E9%97%A8%E5%BF%85%E8%AF%BB/</url>
+    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">作者: 夜泊1990</span><br><span class="line">企鹅: 1611756908</span><br><span class="line">鹅群: 948233848</span><br><span class="line">邮箱: hd1611756908@163.com</span><br><span class="line">博客: https://hd1611756908.github.io/</span><br><span class="line">B 站: https://space.bilibili.com/514155929/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">学习计算机语言,首先要了解计算机,然后了解计算机软件,最后开始我们的计算机语言之旅.</span><br><span class="line"></span><br><span class="line">软件是用计算机语言编写,软件运行在计算机上. 为了更好的学习计算机语言,所以从计算机学习开始 ...</span><br></pre></td></tr></table></figure>
+<span id="more"></span>]]></content>
+      <categories>
+        <category>javase</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Javase</tag>
+        <tag>计算机语言</tag>
+        <tag>面向对象语言</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>02-计算机与计算机语言概述</title>
     <url>/2024/06/15/javase/02-%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E6%A6%82%E8%BF%B0/</url>
     <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">作者: 夜泊1990</span><br><span class="line">企鹅: 1611756908</span><br><span class="line">鹅群: 948233848</span><br><span class="line">邮箱: hd1611756908@163.com</span><br><span class="line">博客: https://hd1611756908.github.io/</span><br><span class="line">B 站: https://space.bilibili.com/514155929/</span><br></pre></td></tr></table></figure>
@@ -962,253 +1209,6 @@
       <tags>
         <tag>Java</tag>
         <tag>Javase</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Layui快速入门</title>
-    <url>/2024/05/03/web/Layui%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">作者: 夜泊1990</span><br><span class="line">企鹅: 1611756908</span><br><span class="line">鹅群: 948233848</span><br><span class="line">邮箱: hd1611756908@163.com</span><br><span class="line">博客: https://hd1611756908.github.io/</span><br><span class="line">B 站: https://space.bilibili.com/514155929/</span><br></pre></td></tr></table></figure>
-
-<h2 id="第一章-Layui是什么"><a href="#第一章-Layui是什么" class="headerlink" title="第一章 Layui是什么"></a>第一章 Layui是什么</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">Layui 是一套免费的开源 Web UI 组件库,遵循原生态的 HTML/CSS/JavaScript 开发模式,极易上手,拿来即用</span><br><span class="line"></span><br><span class="line">学习框架的意义: 写更少的代码,实现相同的功能.</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<h2 id="第二章-Layui环境搭建"><a href="#第二章-Layui环境搭建" class="headerlink" title="第二章 Layui环境搭建"></a>第二章 Layui环境搭建</h2><h3 id="第1节-官网地址"><a href="#第1节-官网地址" class="headerlink" title="第1节 官网地址"></a>第1节 官网地址</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/</span><br><span class="line"></span><br><span class="line">当前版本 2.9.x 版本,相比于2.8.x和2.7.x新增了很多实用功能,下面会介绍.</span><br></pre></td></tr></table></figure>
-
-<h3 id="第2节-环境搭建"><a href="#第2节-环境搭建" class="headerlink" title="第2节 环境搭建"></a>第2节 环境搭建</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">方式一 : 在线第三方 CDN 引入,UNPKG 和 CDNJS 均为第三方免费 CDN (详细请看官网)</span><br><span class="line"></span><br><span class="line">    &lt;!-- 引入 layui.css --&gt;</span><br><span class="line">    &lt;link href=&quot;//unpkg.com/layui@2.9.7/dist/css/layui.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">    &lt;!-- 引入 layui.js --&gt;</span><br><span class="line">    &lt;script src=&quot;//unpkg.com/layui@2.9.7/dist/layui.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">方式二 : 离线引入</span><br><span class="line"></span><br><span class="line">	离线引入方式需要去官网下载layui安装包,将css文件和js文件复制粘贴到项目中,然后在引入</span><br><span class="line">	下载地址: https://foruda.gitee.com/attach_file/1709083131303683727/layui-v2.9.7.zip?token=4d86625f99f8aa72a6131358c786aeb4&amp;ts=1709353417&amp;attname=layui-v2.9.7.zip</span><br><span class="line"></span><br><span class="line">方式三 : npm 引入(略)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 前端模板如下: --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>layui<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 引入 layui.css --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;//unpkg.com/layui@2.9.7/dist/css/layui.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">&lt;!-- 你的 HTML 代码 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 引入 layui.js --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;//unpkg.com/layui@2.9.7/dist/layui.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="第三章-Layui知识点大纲"><a href="#第三章-Layui知识点大纲" class="headerlink" title="第三章 Layui知识点大纲"></a>第三章 Layui知识点大纲</h2><table>
-    <tr>
-        <td>
-            <img src="https://note.youdao.com/yws/api/personal/file/WEBa5414dbd90479d79d9a5a9539ee12e0d?method=download&shareKey=4b8d238ab4f7e8c12ad2310701d2c067">
-        </td>
-    </tr>
-    <tr>
-        <td style="font-size:14px;">
-            大纲中只列举了常用的Layui前端知识点,其它的请查看官网.
-        </td>
-    </tr>
-</table>
-
-
-
-<h2 id="第四章-Layui页面元素"><a href="#第四章-Layui页面元素" class="headerlink" title="第四章 Layui页面元素"></a>第四章 Layui页面元素</h2><h3 id="第1节-布局元素"><a href="#第1节-布局元素" class="headerlink" title="第1节 布局元素"></a>第1节 布局元素</h3><h4 id="1-1-栅格布局"><a href="#1-1-栅格布局" class="headerlink" title="1.1 栅格布局"></a>1.1 栅格布局</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/layout/grid.html</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>案例展示</li>
-</ul>
-<table>
-    <tr>
-        <td>
-            <img src="https://note.youdao.com/yws/api/personal/file/WEBec329b24422feb6d79299856f591445d?method=download&shareKey=50201b0b98fed97eaf5b30be3509dfbc">
-        </td>
-    </tr>
-</table>
-
-
-<ul>
-<li>传统布局(略)</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用传统布局实现案例样式代码量会比较多</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Layui布局</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>Layui布局<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 引入 layui.css --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;//unpkg.com/layui@2.9.7/dist/css/layui.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 布局容器,水平居中  --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-container&quot;</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-row&quot;</span>&gt;</span></span><br><span class="line">			  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-col-md3&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: 350px;border: 1px solid #ccc;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-col-md9&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: 350px;border: 1px solid royalblue;&quot;</span>&gt;</span></span><br><span class="line">				  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-row&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: 45px;border: 1px solid red;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-row&quot;</span>&gt;</span></span><br><span class="line">				  	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-col-md9&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: 303px;border: 1px solid fuchsia;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-col-md3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">				  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 引入 layui.js --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;//unpkg.com/layui@2.9.7/dist/layui.js</span></span></span><br><span class="line"><span class="string"><span class="tag">	&lt;/body&gt;</span></span></span><br><span class="line"><span class="string"><span class="tag">&lt;/html&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<table>
-    <tr>
-        <td>
-            <img src="https://note.youdao.com/yws/api/personal/file/WEB523a50d186bcf3f3f1e30e4106e209a1?method=download&shareKey=484d05317dd2b41e30bc9ee3439eb558">
-        </td>
-    </tr>
-</table>
-
-
-<h4 id="1-2-布局容器"><a href="#1-2-布局容器" class="headerlink" title="1.2 布局容器"></a>1.2 布局容器</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/layout/grid.html#container</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/* 宽度固定水平居中 */</span><br><span class="line">&lt;div class=&quot;layui-container&quot;&gt;&lt;/div&gt;</span><br><span class="line">/* 宽度100% */</span><br><span class="line">&lt;div class=&quot;layui-fluid&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="第2节-表格"><a href="#第2节-表格" class="headerlink" title="第2节 表格"></a>第2节 表格</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/table/</span><br></pre></td></tr></table></figure>
-
-<h3 id="第3节-按钮-x2F-图标"><a href="#第3节-按钮-x2F-图标" class="headerlink" title="第3节 按钮&#x2F;图标"></a>第3节 按钮&#x2F;图标</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/button/</span><br><span class="line">https://layui.dev/docs/2/icon/</span><br></pre></td></tr></table></figure>
-
-<h3 id="第4节-表单"><a href="#第4节-表单" class="headerlink" title="第4节 表单"></a>第4节 表单</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/form/</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="第5节-其它"><a href="#第5节-其它" class="headerlink" title="第5节 其它"></a>第5节 其它</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">动画、导航、菜单等...</span><br></pre></td></tr></table></figure>
-
-<h2 id="第五章-Layui内置模块"><a href="#第五章-Layui内置模块" class="headerlink" title="第五章 Layui内置模块"></a>第五章 Layui内置模块</h2><h3 id="第1节-分页模块"><a href="#第1节-分页模块" class="headerlink" title="第1节 分页模块"></a>第1节 分页模块</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/laypage/</span><br></pre></td></tr></table></figure>
-
-<h3 id="第2节-数据表格"><a href="#第2节-数据表格" class="headerlink" title="第2节 数据表格"></a>第2节 数据表格</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/table/</span><br></pre></td></tr></table></figure>
-<h3 id="第3节-弹出层"><a href="#第3节-弹出层" class="headerlink" title="第3节 弹出层"></a>第3节 弹出层</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/layer/</span><br></pre></td></tr></table></figure>
-<h3 id="第4节-表单模块"><a href="#第4节-表单模块" class="headerlink" title="第4节 表单模块"></a>第4节 表单模块</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/form/</span><br></pre></td></tr></table></figure>
-<h3 id="第5节-时间模块"><a href="#第5节-时间模块" class="headerlink" title="第5节 时间模块"></a>第5节 时间模块</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/laydate/</span><br></pre></td></tr></table></figure>
-<h3 id="第6节-文件上传模块"><a href="#第6节-文件上传模块" class="headerlink" title="第6节 文件上传模块"></a>第6节 文件上传模块</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://layui.dev/docs/2/upload/</span><br></pre></td></tr></table></figure>
-<h3 id="第7节-树状表格模块"><a href="#第7节-树状表格模块" class="headerlink" title="第7节 树状表格模块"></a>第7节 树状表格模块</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">方式 1 : layui2.7版本不带树状表格,需要借助第三方   https://dev.layuion.com/extend/</span><br><span class="line">方式 2 : layui2.8/9版本新增树状表格,使用起来更方便   https://layui.dev/docs/2/treeTable/</span><br></pre></td></tr></table></figure>
-
-<h3 id="第8节-其它模块"><a href="#第8节-其它模块" class="headerlink" title="第8节 其它模块"></a>第8节 其它模块</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">以上介绍的模块是开发中常见的模块,如果想使用其它模块,请查看官网</span><br></pre></td></tr></table></figure>
-
-<h2 id="第六章-Layui框架案例练习"><a href="#第六章-Layui框架案例练习" class="headerlink" title="第六章 Layui框架案例练习"></a>第六章 Layui框架案例练习</h2><h3 id="第1节-SQL语句"><a href="#第1节-SQL语句" class="headerlink" title="第1节 SQL语句"></a>第1节 SQL语句</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- 创建数据库</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE book <span class="keyword">DEFAULT</span> <span class="type">CHARACTER</span> <span class="keyword">SET</span> UTF8;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建数据库表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> category(</span><br><span class="line">    category_id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT COMMENT <span class="string">&#x27;分类ID&#x27;</span>,</span><br><span class="line">    category_name <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;分类名称&#x27;</span></span><br><span class="line">) <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> AUTO_INCREMENT<span class="operator">=</span><span class="number">10000</span> COMMENT <span class="string">&#x27;图书分类表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> category(category_name) <span class="keyword">VALUES</span>(<span class="string">&#x27;科技&#x27;</span>),(<span class="string">&#x27;文学&#x27;</span>),(<span class="string">&#x27;历史&#x27;</span>),(<span class="string">&#x27;财经&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建图书表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> book(</span><br><span class="line">    book_id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT COMMENT <span class="string">&#x27;图书ID&#x27;</span>,</span><br><span class="line">    book_name <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;图书名称&#x27;</span>,</span><br><span class="line">    author_name <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;图书作者&#x27;</span>,</span><br><span class="line">    price <span class="keyword">DOUBLE</span>(<span class="number">12</span>,<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="number">0.00</span> COMMENT <span class="string">&#x27;图书价格&#x27;</span>,</span><br><span class="line">    category_id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;分类ID,关联分类表主键&#x27;</span>,</span><br><span class="line">    create_time DATETIME <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建时间&#x27;</span>,</span><br><span class="line">    status <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">1</span> COMMENT <span class="string">&#x27;是否上架 1:上架 0:下架&#x27;</span>,</span><br><span class="line">    book_url <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;图书主图地址&#x27;</span>,</span><br><span class="line">    book_address <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;真实地址&#x27;</span></span><br><span class="line">) <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> AUTO_INCREMENT<span class="operator">=</span><span class="number">10000</span> COMMENT <span class="string">&#x27;图书表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 关联</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> book <span class="keyword">ADD</span> <span class="keyword">FOREIGN</span> KEY (category_id) <span class="keyword">REFERENCES</span> category(category_id);</span><br></pre></td></tr></table></figure>
-
-<h3 id="第2节-页面展示"><a href="#第2节-页面展示" class="headerlink" title="第2节 页面展示"></a>第2节 页面展示</h3><table>
-    <tr>
-        <td>
-            <img src="https://note.youdao.com/yws/api/personal/file/WEBcaa39e034539b0436c60175c4bc15f87?method=download&shareKey=5251378f90ebd97962429356230647af">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <img src="https://note.youdao.com/yws/api/personal/file/WEBfeb4a5ed6e47f0cff0af91fa4e2223c1?method=download&shareKey=80b34117c9de27640bd38f3fc42ab33c">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <img src="https://note.youdao.com/yws/api/personal/file/WEB1277a1620a1118934e164d8013075215?method=download&shareKey=7899d9be3b1c64ff16c4543a37f67577">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <img src="https://note.youdao.com/yws/api/personal/file/WEBbee41cf043b4124b0f2ff952d80420df?method=download&shareKey=beb1c52915054fdd7d901edd3e22b3f9">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <img src="https://note.youdao.com/yws/api/personal/file/WEBaed2d0b4ae0699e1456d033316e79bf9?method=download&shareKey=40a5537004c56713eca6ff7d5d5cc6bd">
-        </td>
-    </tr>
-</table>
-
-
-<h2 id="第七章-Layui框架模板使用-Pear-Admin-Layui"><a href="#第七章-Layui框架模板使用-Pear-Admin-Layui" class="headerlink" title="第七章 Layui框架模板使用(Pear Admin Layui)"></a>第七章 Layui框架模板使用(Pear Admin Layui)</h2><h3 id="第1节-官网地址-1"><a href="#第1节-官网地址-1" class="headerlink" title="第1节 官网地址"></a>第1节 官网地址</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://www.pearadmin.com/</span><br></pre></td></tr></table></figure>
-
-<h3 id="第2节-在线演示地址"><a href="#第2节-在线演示地址" class="headerlink" title="第2节 在线演示地址"></a>第2节 在线演示地址</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://layui.pearadmin.com/</span><br></pre></td></tr></table></figure>
-
-<table>
-    <tr>
-        <td>
-            <img src="https://note.youdao.com/yws/api/personal/file/WEB1fc5dd0f446c590b847196457a44446e?method=download&shareKey=5e20f7c11b7c1038647a4a906598c93b">
-        </td>
-    </tr>
-</table>
-
-
-<h3 id="第2节-CRUD练习"><a href="#第2节-CRUD练习" class="headerlink" title="第2节 CRUD练习"></a>第2节 CRUD练习</h3><h4 id="2-1-数据库表创建"><a href="#2-1-数据库表创建" class="headerlink" title="2.1 数据库表创建"></a>2.1 数据库表创建</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建测试库</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE auth <span class="keyword">DEFAULT</span> <span class="type">CHARACTER</span> <span class="keyword">SET</span> UTF8;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 常见角色表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> role(</span><br><span class="line">    role_id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT COMMENT <span class="string">&#x27;角色ID&#x27;</span>,</span><br><span class="line">    role_name <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;角色名称&#x27;</span>,</span><br><span class="line">    status TINYINT(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">1</span> COMMENT <span class="string">&#x27;状态(定义逻辑删除) 1:有效 0:无效&#x27;</span></span><br><span class="line">) <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> AUTO_INCREMENT<span class="operator">=</span><span class="number">10000</span> COMMENT <span class="string">&#x27;角色表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建用户表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">user</span>(</span><br><span class="line">    user_id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT COMMENT <span class="string">&#x27;用户ID&#x27;</span>,</span><br><span class="line">    user_name <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;用户名称&#x27;</span>,</span><br><span class="line">    email <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;邮箱&#x27;</span>,</span><br><span class="line">    password <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;密码&#x27;</span>,</span><br><span class="line">    status TINYINT(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">1</span> COMMENT <span class="string">&#x27;状态(定义逻辑删除) 1:有效 0:无效&#x27;</span></span><br><span class="line">) <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> AUTO_INCREMENT<span class="operator">=</span><span class="number">10000</span> COMMENT <span class="string">&#x27;用户表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建用户角色关联表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> user_role(</span><br><span class="line">    role_id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>  COMMENT <span class="string">&#x27;角色ID&#x27;</span>,</span><br><span class="line">    user_id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;用户ID&#x27;</span>,</span><br><span class="line">    status TINYINT(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">1</span> COMMENT <span class="string">&#x27;状态(定义逻辑删除) 1:有效 0:无效&#x27;</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY(role_id,user_id)</span><br><span class="line">) <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> AUTO_INCREMENT<span class="operator">=</span><span class="number">10000</span> COMMENT <span class="string">&#x27;用户角色关联表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 外键关联</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> user_role <span class="keyword">ADD</span> <span class="keyword">FOREIGN</span> KEY (role_id) <span class="keyword">REFERENCES</span> role(role_id);</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> user_role <span class="keyword">ADD</span> <span class="keyword">FOREIGN</span> KEY (user_id) <span class="keyword">REFERENCES</span> <span class="keyword">user</span>(user_id);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 菜单表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> menu(</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT COMMENT <span class="string">&#x27;菜单ID&#x27;</span>,</span><br><span class="line">    title <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;菜单标题&#x27;</span>,</span><br><span class="line">    icon  <span class="type">VARCHAR</span>(<span class="number">255</span>) COMMENT <span class="string">&#x27;菜单图标&#x27;</span>,</span><br><span class="line">    type <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> COMMENT <span class="string">&#x27;菜单类型&#x27;</span>,</span><br><span class="line">    open_type <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> &quot;&quot; COMMENT &quot;菜单类型名称&quot;,</span><br><span class="line">    href <span class="type">VARCHAR</span>(<span class="number">255</span>) COMMENT &quot;菜单指向地址&quot;,</span><br><span class="line">    parent_id <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> COMMENT &quot;菜单父ID,关联主键&quot;,</span><br><span class="line">    level <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">1</span> COMMENT &quot;菜单级别&quot;,</span><br><span class="line">    status TINYINT <span class="keyword">DEFAULT</span> <span class="number">1</span> COMMENT &quot;菜单状态 1:有效 0:禁用&quot;,</span><br><span class="line">    update_time <span class="type">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="built_in">CURRENT_TIMESTAMP</span> COMMENT <span class="string">&#x27;设置当前时间，并且自动更更新时间&#x27;</span></span><br><span class="line">) <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> AUTO_INCREMENT<span class="operator">=</span><span class="number">10000</span> COMMENT <span class="string">&#x27;用户角色关联表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 菜单角色关联表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> menu_role(</span><br><span class="line">    role_id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>  COMMENT <span class="string">&#x27;角色ID&#x27;</span>,</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;菜单ID&#x27;</span>,</span><br><span class="line">    status TINYINT(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">1</span> COMMENT <span class="string">&#x27;状态(定义逻辑删除) 1:有效 0:无效&#x27;</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY(role_id,id)</span><br><span class="line">) <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span><span class="string">&#x27;UTF8&#x27;</span> AUTO_INCREMENT<span class="operator">=</span><span class="number">10000</span> COMMENT <span class="string">&#x27;菜单角色关联表&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 外键关联</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> menu_role <span class="keyword">ADD</span> <span class="keyword">FOREIGN</span> KEY (role_id) <span class="keyword">REFERENCES</span> role(role_id);</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> menu_role <span class="keyword">ADD</span> <span class="keyword">FOREIGN</span> KEY (id) <span class="keyword">REFERENCES</span> menu(id);</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-页面展示"><a href="#2-2-页面展示" class="headerlink" title="2.2 页面展示"></a>2.2 页面展示</h4>]]></content>
-      <categories>
-        <category>Layui</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-        <tag>css</tag>
-        <tag>JavaScript</tag>
-        <tag>Layui</tag>
-        <tag>pearAdmin</tag>
-        <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue-admin-template快速入门</title>
-    <url>/2024/06/16/web/vue-admin-template%E7%AE%80%E5%8D%95%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">作者: 夜泊1990</span><br><span class="line">企鹅: 1611756908</span><br><span class="line">鹅群: 948233848</span><br><span class="line">邮箱: hd1611756908@163.com</span><br><span class="line">博客: https://hd1611756908.github.io/</span><br><span class="line">B 站: https://space.bilibili.com/514155929/</span><br></pre></td></tr></table></figure>
-
-<h2 id="第一章-模板介绍"><a href="#第一章-模板介绍" class="headerlink" title="第一章 模板介绍"></a>第一章 模板介绍</h2><h3 id="第1节-vue-element-admin概述"><a href="#第1节-vue-element-admin概述" class="headerlink" title="第1节 vue-element-admin概述"></a>第1节 vue-element-admin概述</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">官网地址: https://panjiachen.github.io/vue-element-admin-site/zh/</span><br><span class="line"></span><br><span class="line">是一个前端模版,可以帮助前端开发者快速构建管理系统的前端页面</span><br><span class="line"></span><br><span class="line">模板中提供了 【登录 / 注销】【权限验证】【多环境发布】【全局功能】【编辑器/Excel】... 等常见功能</span><br><span class="line"></span><br><span class="line">样式如下: ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓</span><br></pre></td></tr></table></figure>
-
-
-
-<span id="more"></span>
-
-
-
-<p><img src="https://note.youdao.com/yws/api/personal/file/WEBd40f111969498907c275bd47dee662ec?method=download&shareKey=7d61f238d36c3e69aeb03a58cb0b48ae" alt="vue"></p>
-<h3 id="第2节-vue-admin-template概述"><a href="#第2节-vue-admin-template概述" class="headerlink" title="第2节 vue-admin-template概述"></a>第2节 vue-admin-template概述</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">vue-admin-template是vue-element-admin的简洁版</span><br><span class="line">在实际开发中,vue-element-admin里的很多功能都不是我们想要的</span><br><span class="line">所以作者基于vue-element-admin进行了删减,vue-admin-template版本适合开发</span><br><span class="line">如果想使用vue-element-admin里面的某些功能,可以去复制和粘贴.</span><br></pre></td></tr></table></figure>
-
-<h3 id="第3节-源码地址"><a href="#第3节-源码地址" class="headerlink" title="第3节 源码地址"></a>第3节 源码地址</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vue-element-admin地址:</span><br><span class="line">	GITEE: https://gitee.com/panjiachen/vue-element-admin.git</span><br><span class="line">	GITHUB: https://github.com/PanJiaChen/vue-element-admin.git</span><br><span class="line">vue-admin-template地址:</span><br><span class="line">	GITEE: https://gitee.com/panjiachen/vue-admin-template.git</span><br><span class="line">	GITHUB: https://github.com/PanJiaChen/vue-admin-template.git</span><br></pre></td></tr></table></figure>
-
-<h2 id="第二章-下载和运行"><a href="#第二章-下载和运行" class="headerlink" title="第二章 下载和运行"></a>第二章 下载和运行</h2><h3 id="第1节-系统环境"><a href="#第1节-系统环境" class="headerlink" title="第1节 系统环境"></a>第1节 系统环境</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">我个人本地环境</span><br><span class="line"></span><br><span class="line">操作系统: Windows 11 教育版</span><br><span class="line">node:    v20.13.0   官网要求版本&#123; node: &#x27;8 || 10 || 12 || 14 || 16 || 17&#x27; &#125; 但是v20.13.0也可以</span><br><span class="line">npm:     10.5.2 </span><br><span class="line">vue-cli: @vue/cli 5.0.8</span><br><span class="line"></span><br><span class="line">npm包镜像站地址: https://npmmirror.com/</span><br><span class="line"></span><br><span class="line">因为国外镜像源地址下载容易失败,可以切换成国内的镜像源</span><br><span class="line"></span><br><span class="line">1. 查看镜像源命令:  npm config list</span><br><span class="line">2. 设置镜像源命令:  npm config set registry https://registry.npmmirror.com</span><br><span class="line"></span><br><span class="line">注意: 不允许使用cnpm进行依赖下载</span><br></pre></td></tr></table></figure>
-
-<h3 id="第2节-依赖下载和运行"><a href="#第2节-依赖下载和运行" class="headerlink" title="第2节 依赖下载和运行"></a>第2节 依赖下载和运行</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">依赖下载和:</span><br><span class="line">	第一步: 打开命令行工具</span><br><span class="line">	第二步: 切换到项目的根目录</span><br><span class="line">	第三步: 在命令行输入 npm install 命令</span><br><span class="line">	第四步: 等待依赖安装完成</span><br><span class="line">	第五步: 在命令行输入  npm run dev 启动运行</span><br></pre></td></tr></table></figure>
-
-<h2 id="第三章-目录结构介绍"><a href="#第三章-目录结构介绍" class="headerlink" title="第三章 目录结构介绍"></a>第三章 目录结构介绍</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">略 请参考 vue-cli脚手架的官网: https://cli.vuejs.org/zh/</span><br></pre></td></tr></table></figure>
-
-<h2 id="第四章-左侧菜单名称以及图标修改"><a href="#第四章-左侧菜单名称以及图标修改" class="headerlink" title="第四章 左侧菜单名称以及图标修改"></a>第四章 左侧菜单名称以及图标修改</h2><h3 id="第1节-菜单名称修改"><a href="#第1节-菜单名称修改" class="headerlink" title="第1节 菜单名称修改"></a>第1节 菜单名称修改</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">左侧菜单名称是在路由配置中生成的  文件位置: vue-admin-template\src\router\index.js</span><br><span class="line"></span><br><span class="line">修改title属性的值就是对应着左侧菜单的名称显示</span><br></pre></td></tr></table></figure>
-
-<img src="https://note.youdao.com/yws/api/personal/file/WEB962f59d88c36b6cb76394b70545dca67?method=download&shareKey=604d1722e6f45626d4a0c7052960f1d1" alt="vue-admin-02" />
-
-<h3 id="第2节-菜单图标修改"><a href="#第2节-菜单图标修改" class="headerlink" title="第2节 菜单图标修改"></a>第2节 菜单图标修改</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">左侧菜单中的图标是在路由配置中生成的  文件位置: vue-admin-template\src\router\index.js</span><br><span class="line"></span><br><span class="line">修改icon属性的值就可以修改图标了</span><br><span class="line">icon的值可以使用element-ui官网提供的图标显示,如果想定制化图标,可以参考官网: https://panjiachen.github.io/vue-element-admin-site/</span><br></pre></td></tr></table></figure>
-
-<img src="https://note.youdao.com/yws/api/personal/file/WEBf8ff376348617ea8581d8eeda0e27a60?method=download&shareKey=9dacfa40d03d5f2a5b7b920ebb449b0f" alt="vue-admin-03" />
-
-<h2 id="第五章-面包屑导航名称不一致修改"><a href="#第五章-面包屑导航名称不一致修改" class="headerlink" title="第五章 面包屑导航名称不一致修改"></a>第五章 面包屑导航名称不一致修改</h2><img src="https://note.youdao.com/yws/api/personal/file/WEBe98538afb8c80609b3d5cfd32acafa18?method=download&shareKey=94619cd32d4775d24fb75811d88568cc" alt="vue-admin-04" />
-
-
-
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">修改菜单之后,面包屑导航菜单和首页名称不一致</span><br><span class="line"></span><br><span class="line">修改文件位置: vue-admin-template\src\components\Breadcrumb\index.vue</span><br><span class="line"></span><br><span class="line">修改如下: 👇👇👇👇👇</span><br></pre></td></tr></table></figure>
-
-<img src="https://note.youdao.com/yws/api/personal/file/WEB74e3dddff3dec344e5e739cf566c10cf?method=download&shareKey=1c24776b5f88b62a913e70d492b69a52" alt="vue-admin-05" style="zoom:100%;" />
-
-<h2 id="第六章-浏览器选项卡标题名称修改"><a href="#第六章-浏览器选项卡标题名称修改" class="headerlink" title="第六章 浏览器选项卡标题名称修改"></a>第六章 浏览器选项卡标题名称修改</h2><p><img src="https://note.youdao.com/yws/api/personal/file/WEBe986b0f5befbb3a2ae4802db83964e9e?method=download&shareKey=965e0019a774451ec1cb8c3d032960d0" alt="vue"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">浏览器选项卡标题修改文件位置: vue-admin-template\src\settings.js</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://note.youdao.com/yws/api/personal/file/WEB5ee0c76c04b0c7e42559d025472e4985?method=download&shareKey=4bbd2df365848712edfdda7c43be0381" alt="vue"></p>
-<h2 id="第七章-标签导航实现"><a href="#第七章-标签导航实现" class="headerlink" title="第七章 标签导航实现"></a>第七章 标签导航实现</h2><p><img src="https://note.youdao.com/yws/api/personal/file/WEBb3db6adcab7bace31e1c1d4288943e71?method=download&shareKey=a85d41db232ccbab97511ccdf4f645d5" alt="vue"></p>
-<hr>
-<p><img src="https://note.youdao.com/yws/api/personal/file/WEB2ad5f7e8df21d9de6b0c0e00b9bf8b61?method=download&shareKey=5560c0ef3544410569a34c1e33966720" alt="vue"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vue-admin-template默认情况下是没有标签导航的,如果想实现标签导航,需要去vue-element-admin项目中复制</span><br><span class="line"></span><br><span class="line">步骤如下:</span><br><span class="line"></span><br><span class="line">第一步: 去vue-element-admin项目中复制标签导航的功能组件</span><br><span class="line">	文件位置: vue-element-admin\src\layout\components\TagsView </span><br><span class="line">	将TagsView文件夹整个复制到vue-admin-template对应的目录中</span><br><span class="line"></span><br><span class="line">第二步: 复制配置文件</span><br><span class="line">	文件位置:</span><br><span class="line">		vue-element-admin\src\store\modules\tagsView.js</span><br><span class="line">		vue-element-admin\src\store\modules\permission.js</span><br><span class="line">	复制到vue-admin-template对应的目录下</span><br><span class="line"></span><br><span class="line">第三步: 修改配置文件,详细修改如下</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>第一个文件 vue-element-admin\src\layout\index.vue</li>
-</ul>
-<img src="https://note.youdao.com/yws/api/personal/file/WEB2bcbcb16ad68501a928cf847152d8288?method=download&shareKey=d35ab066bdf54f4d99d5c6918e91a30b" alt="vue" style="zoom:80%;" />
-
-<ul>
-<li>第二个文件 vue-admin-template\src\layout\components\index.js</li>
-</ul>
-<img src="https://note.youdao.com/yws/api/personal/file/WEBf0c4d438dedb62e0faaf472f3d66fc8c?method=download&shareKey=68ee161ce86652471902dc95533bd546" style="zoom:80%;" />
-
-<ul>
-<li>第三个文件 vue-admin-template\src\store\index.js</li>
-</ul>
-<img src="https://note.youdao.com/yws/api/personal/file/WEBc656dfc0b1bc9e77a5e43e8354857c34?method=download&shareKey=033f68d21834c7becdb6d077e9e536ec" alt="vue" style="zoom:100%;" />
-
-<ul>
-<li>第四个文件 vue-admin-template\src\store\getters.js</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这个文件内容可以去vue-element-admin中去复制</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://note.youdao.com/yws/api/personal/file/WEB29d834311db51cea37fff3245da1b57b?method=download&shareKey=25ccc629ad1673ebad5f76982552445f" alt="vue"></p>
-<ul>
-<li>第五个文件  vue-admin-template\src\layout&#x2F;components&#x2F;AppMain.vue</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这个文件的内容可以去vue-element-admin中去复制</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://note.youdao.com/yws/api/personal/file/WEBb3e5a2b8f017222d155f1f0b3dcf1735?method=download&shareKey=2bf7c6b5cdbeec73d4af361425ac6dec" alt="vue"></p>
-<ul>
-<li>第六个文件(钉) vue-admin-template\src\router\index.js</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这个一定要配置,否则当标签实现的时候，当用户把标签全部删除没了之后会报404,所以必须得留下一个标签,所以需要钉一下</span><br><span class="line"></span><br><span class="line">这个需要看你需要将哪个标签固定下来,关闭不掉即可.配置方式见下图</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://note.youdao.com/yws/api/personal/file/WEBa7ca763e0c87ebbba76a39f2cc2fc1d3?method=download&shareKey=3dd1741793fcbe71a6fff00d42e0102f" alt="vue"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">设置affix: true 参数，首页就会被固定住,此标签不会被关闭掉. 见下图</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://note.youdao.com/yws/api/personal/file/WEBe5e415d4c88cbbba965c27d05d4b7f13?method=download&shareKey=7494b431a3f7ab7b333fb875f624d9a6" alt="vue"></p>
-<h2 id="第八章-标签导航经控制台警告处理"><a href="#第八章-标签导航经控制台警告处理" class="headerlink" title="第八章 标签导航经控制台警告处理"></a>第八章 标签导航经控制台警告处理</h2><p><img src="/pic%5Cvue-admin-17.png" alt="vue"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">控制台出现警告的原因是因为在 vue-admin-template\src\store\modules\permission.js 文件中没有找到asyncRoutes变量</span><br><span class="line"></span><br><span class="line">这个变量需要在vue-admin-template\src\router\index.js文件中声明,所在此文件中暂时先声明一个asyncRoutes变量,是一个数组</span><br><span class="line"></span><br><span class="line">export const asyncRoutes = [] 可以解决,后面在说这个变量的意义.</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>html</tag>
-        <tag>css</tag>
-        <tag>JavaScript</tag>
-        <tag>vue</tag>
-        <tag>element</tag>
-        <tag>vue-element-admin</tag>
-        <tag>vue-admin-template</tag>
       </tags>
   </entry>
 </search>

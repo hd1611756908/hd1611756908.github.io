@@ -224,4 +224,3 @@ vue-admin-template默认情况下是没有标签导航的,如果想实现标签�
 
 export const asyncRoutes = [] 可以解决,后面在说这个变量的意义.
 ```
-

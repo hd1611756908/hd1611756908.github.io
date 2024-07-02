@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hd1611756908.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="123456作者: 夜泊1990企鹅: 1611756908鹅群: 948233848邮箱: hd1611756908@163.com博客: https:&#x2F;&#x2F;hd1611756908.github.io&#x2F;B 站: https:&#x2F;&#x2F;space.bilibili.com&#x2F;514155929&#x2F;   第一章 EasyExcel简介123EasyExcel是一个基于Java的简单、省内存的读写Excel的开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EasyExcel基本操作">
+<meta property="og:url" content="https://hd1611756908.github.io/2024/07/02/EasyExcel(%E7%94%9F%E6%88%90Excel%E6%8A%A5%E8%A1%A8)%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="枫桥夜泊">
+<meta property="og:description" content="123456作者: 夜泊1990企鹅: 1611756908鹅群: 948233848邮箱: hd1611756908@163.com博客: https:&#x2F;&#x2F;hd1611756908.github.io&#x2F;B 站: https:&#x2F;&#x2F;space.bilibili.com&#x2F;514155929&#x2F;   第一章 EasyExcel简介123EasyExcel是一个基于Java的简单、省内存的读写Excel的开">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBd0b986a78d3129445d7cb5c5d8ae148d?method=download&shareKey=d499346d2c26e9eef3c36b363302f099">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB69924e488f22f85f277b6742d945a479?method=download&shareKey=272a78e39f2565b413d5ac6744e602b8">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB92a74953f77024100d786804cc770dcc?method=download&shareKey=9a3c73044c0c269c3f944e35373e1f8e">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB52736389f77c9328af30c3cb04c91297?method=download&shareKey=88e7cf711726d1c856e29a056b9b715b">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB8f8db5fae2863c9590428ea967f822de?method=download&shareKey=296324d30db3647daf6c4b2285c89e6f">
+<meta property="article:published_time" content="2024-07-02T13:37:11.936Z">
+<meta property="article:modified_time" content="2024-07-02T13:40:15.796Z">
+<meta property="article:author" content="夜泊1990">
+<meta property="article:tag" content="excel">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/WEBd0b986a78d3129445d7cb5c5d8ae148d?method=download&shareKey=d499346d2c26e9eef3c36b363302f099">
+
+<link rel="canonical" href="https://hd1611756908.github.io/2024/07/02/EasyExcel(%E7%94%9F%E6%88%90Excel%E6%8A%A5%E8%A1%A8)%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>EasyExcel基本操作 | 枫桥夜泊</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="枫桥夜泊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">枫桥夜泊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每走一步,都是进步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://gitee.com/ukoko" class="github-corner" title="Follow me on GitEE" aria-label="Follow me on GitEE" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hd1611756908.github.io/2024/07/02/EasyExcel(%E7%94%9F%E6%88%90Excel%E6%8A%A5%E8%A1%A8)%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="夜泊1990">
+      <meta itemprop="description" content="俱往矣,要多呲花,有多呲花">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫桥夜泊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          EasyExcel基本操作
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-07-02 21:37:11 / 修改时间：21:40:15" itemprop="dateCreated datePublished" datetime="2024-07-02T21:37:11+08:00">2024-07-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/easyexcel/" itemprop="url" rel="index"><span itemprop="name">easyexcel</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>24k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>22 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">作者: 夜泊1990</span><br><span class="line">企鹅: 1611756908</span><br><span class="line">鹅群: 948233848</span><br><span class="line">邮箱: hd1611756908@163.com</span><br><span class="line">博客: https://hd1611756908.github.io/</span><br><span class="line">B 站: https://space.bilibili.com/514155929/</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="第一章-EasyExcel简介"><a href="#第一章-EasyExcel简介" class="headerlink" title="第一章 EasyExcel简介"></a>第一章 EasyExcel简介</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EasyExcel是一个基于Java的简单、省内存的读写Excel的开源项目。在尽可能节约内存的情况下支持读写百M的Excel</span><br><span class="line"></span><br><span class="line">github地址:https://github.com/alibaba/easyexcel</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>当前案例采用easyexcel版本 2.2.3</li>
+</ul>
+<hr>
+<span id="more"></span>
+
+<h2 id="第二章-EasyExcel使用"><a href="#第二章-EasyExcel使用" class="headerlink" title="第二章 EasyExcel使用"></a>第二章 EasyExcel使用</h2><h3 id="第1节-EasyExcel相关依赖"><a href="#第1节-EasyExcel相关依赖" class="headerlink" title="第1节 EasyExcel相关依赖"></a>第1节 EasyExcel相关依赖</h3><h4 id="1-1-如果添加maven依赖"><a href="#1-1-如果添加maven依赖" class="headerlink" title="1.1 如果添加maven依赖"></a>1.1 如果添加maven依赖</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;easyexcel&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;2.2.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-如果添加jar包"><a href="#1-2-如果添加jar包" class="headerlink" title="1.2 如果添加jar包"></a>1.2 如果添加jar包</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">asm-4.2.jar</span><br><span class="line">cglib-3.1.jar</span><br><span class="line">commons-codec-1.10.jar</span><br><span class="line">commons-collections4-4.1.jar</span><br><span class="line">curvesapi-1.04.jar</span><br><span class="line">easyexcel-2.2.3.jar</span><br><span class="line">ehcache-3.4.0.jar</span><br><span class="line">poi-3.17.jar</span><br><span class="line">poi-ooxml-3.17.jar</span><br><span class="line">poi-ooxml-schemas-3.17.jar</span><br><span class="line">slf4j-api-1.7.26.jar</span><br><span class="line">stax-api-1.0.1.jar</span><br><span class="line">xmlbeans-2.6.0.jar</span><br></pre></td></tr></table></figure>
+
+<h3 id="第2节-写Excel"><a href="#第2节-写Excel" class="headerlink" title="第2节 写Excel"></a>第2节 写Excel</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 创建User类,用于构建向Excel表格中写数据的类型;</span><br><span class="line"> * @ExcelProperty:这个注解是EasyExcel提供,用于生成Excel表格头</span><br><span class="line"> * @Author 夜泊 </span><br><span class="line"> * @BLOG   https://hd1611756908.github.io/</span><br><span class="line"> */</span><br><span class="line">public class User &#123;</span><br><span class="line">	@ExcelProperty(&quot;用户编号&quot;)</span><br><span class="line">	private Integer userId;</span><br><span class="line">	@ExcelProperty(&quot;姓名&quot;)</span><br><span class="line">	private String userName;</span><br><span class="line">	@ExcelProperty(&quot;性别&quot;)</span><br><span class="line">	private String gender;</span><br><span class="line">	@ExcelProperty(&quot;工资&quot;)</span><br><span class="line">	private Double salary;</span><br><span class="line">	@ExcelProperty(&quot;入职时间&quot;)</span><br><span class="line">	private Date hireDate;</span><br><span class="line">	</span><br><span class="line">	//setter/getter方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-1-最简单的写-方式一"><a href="#2-1-最简单的写-方式一" class="headerlink" title="2.1 最简单的写(方式一)"></a>2.1 最简单的写(方式一)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 向Excel文档中写数据(方式一)</span><br><span class="line"> * 最简单的写</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void writeExcel1() &#123;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	//创建文件保存的位置,以及文件名</span><br><span class="line">	String fileName=&quot;user1.xlsx&quot;;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 构建要写入的数据</span><br><span class="line">	 * User类是一个自定义的特殊类,专门用来构建向Excel中写数据的类型类</span><br><span class="line">	 * @ExcelProperty是easyexcel提供的注解,用来定义表格的头部</span><br><span class="line">	 */</span><br><span class="line">	List&lt;User&gt; data = new ArrayList&lt;&gt;();</span><br><span class="line">	User user = new User(2001,&quot;李雷&quot;,&quot;男&quot;,1000.123,new Date());</span><br><span class="line">	data.add(user);</span><br><span class="line">	//将数据写到Excel的第一个sheet标签中,并且给sheet标签起名字</span><br><span class="line">	EasyExcel.write(fileName,User.class).sheet(&quot;用户信息&quot;).doWrite(data);</span><br><span class="line">	//文件流会自动关闭</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-最简单的写-方式二"><a href="#2-2-最简单的写-方式二" class="headerlink" title="2.2 最简单的写(方式二)"></a>2.2 最简单的写(方式二)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 向Excel文档中写数据(方式二)</span><br><span class="line"> * 最简单的写</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void writeExcel2() &#123;</span><br><span class="line">	//创建文件保存的位置,以及文件名</span><br><span class="line">	String fileName=&quot;user2.xlsx&quot;;</span><br><span class="line">	/**</span><br><span class="line">	 * 构建要写入的数据</span><br><span class="line">	 * User类是一个自定义的特殊类,专门用来构建向Excel中写数据的类型类</span><br><span class="line">	 * @ExcelProperty是easyexcel提供的注解,用来定义表格的头部</span><br><span class="line">	 */</span><br><span class="line">	List&lt;User&gt; data = new ArrayList&lt;&gt;();</span><br><span class="line">	User user = new User(2001,&quot;李雷&quot;,&quot;男&quot;,1000.123,new Date());</span><br><span class="line">	data.add(user);</span><br><span class="line">	//创建Excel写对象</span><br><span class="line">	ExcelWriter excelWriter = EasyExcel.write(fileName, User.class).build();</span><br><span class="line">	//创建sheet对象</span><br><span class="line">	WriteSheet writeSheet = EasyExcel.writerSheet(&quot;用户信息&quot;).build();</span><br><span class="line">	//将数据写到sheet标签中</span><br><span class="line">	excelWriter.write(data, writeSheet);</span><br><span class="line">	//关闭流,文件流手动关闭</span><br><span class="line">	excelWriter.finish();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-将类中某几个字段排除掉-不写入Excel中"><a href="#2-3-将类中某几个字段排除掉-不写入Excel中" class="headerlink" title="2.3 将类中某几个字段排除掉,不写入Excel中"></a>2.3 将类中某几个字段排除掉,不写入Excel中</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 向Excel文档中写数据</span><br><span class="line"> * 将User类中的某几个属性字段排除</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void writeExcel3() &#123;</span><br><span class="line">	//创建文件保存的位置,以及文件名</span><br><span class="line">	String fileName=&quot;user3.xlsx&quot;;</span><br><span class="line">	/**</span><br><span class="line">	 * 构建要写入的数据</span><br><span class="line">	 * User类是一个自定义的特殊类,专门用来构建向Excel中写数据的类型类</span><br><span class="line">	 * @ExcelProperty是easyexcel提供的注解,用来定义表格的头部</span><br><span class="line">	 */</span><br><span class="line">	List&lt;User&gt; data = new ArrayList&lt;&gt;();</span><br><span class="line">	User user = new User(2001,&quot;李雷&quot;,&quot;男&quot;,1000.123,new Date());</span><br><span class="line">	data.add(user);</span><br><span class="line">	//构建要排除掉的列</span><br><span class="line">	Set&lt;String&gt; excludeColumnFiledNames = new HashSet&lt;&gt;();</span><br><span class="line">	//排除掉hireDate和userName字段</span><br><span class="line">	excludeColumnFiledNames.add(&quot;hireDate&quot;);</span><br><span class="line">	excludeColumnFiledNames.add(&quot;userName&quot;);</span><br><span class="line">	EasyExcel.write(fileName, User.class).excludeColumnFiledNames(excludeColumnFiledNames).sheet(&quot;abc&quot;).doWrite(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-只向表格中导出指定某几个字段"><a href="#2-4-只向表格中导出指定某几个字段" class="headerlink" title="2.4 只向表格中导出指定某几个字段"></a>2.4 只向表格中导出指定某几个字段</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 向Excel文档中写数据</span><br><span class="line"> * 指定将User类中的某几个字段导出</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void writeExcel4() &#123;</span><br><span class="line">	//创建文件保存的位置,以及文件名</span><br><span class="line">	String fileName=&quot;user4.xlsx&quot;;</span><br><span class="line">	/**</span><br><span class="line">	 * 构建要写入的数据</span><br><span class="line">	 * User类是一个自定义的特殊类,专门用来构建向Excel中写数据的类型类</span><br><span class="line">	 * @ExcelProperty是easyexcel提供的注解,用来定义表格的头部</span><br><span class="line">	 */</span><br><span class="line">	List&lt;User&gt; data = new ArrayList&lt;&gt;();</span><br><span class="line">	User user = new User(2001,&quot;李雷&quot;,&quot;男&quot;,1000.123,new Date());</span><br><span class="line">	data.add(user);</span><br><span class="line">	//构建要导出的列</span><br><span class="line">	Set&lt;String&gt; includeColumnFiledNames = new HashSet&lt;&gt;();</span><br><span class="line">	//要导出hireDate和userName字段</span><br><span class="line">	includeColumnFiledNames.add(&quot;hireDate&quot;);</span><br><span class="line">	includeColumnFiledNames.add(&quot;userName&quot;);</span><br><span class="line">	EasyExcel.write(fileName, User.class).includeColumnFiledNames(includeColumnFiledNames).sheet(&quot;abc&quot;).doWrite(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-插入指定的列"><a href="#2-5-插入指定的列" class="headerlink" title="2.5 插入指定的列"></a>2.5 插入指定的列</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将Java对象中指定的属性,插入到Excel表格中的指定的列(在Excel中进行列排序)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>写Excel的Java对象类型<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class IndexUser &#123;</span><br><span class="line">	/**</span><br><span class="line">	 * value: 设置Excel中列头的名字 index: 设置Excel中将数据插入指定的列(列排序) eg: value=&quot;姓名&quot; index=2 :</span><br><span class="line">	 * 将姓名的列头设置在Excel表格的第三列</span><br><span class="line">	 */</span><br><span class="line">	@ExcelProperty(value = &quot;用户编号&quot;, index = 0)</span><br><span class="line">	private Integer userId;</span><br><span class="line">	@ExcelProperty(value = &quot;姓名&quot;, index = 2)</span><br><span class="line">	private String userName;</span><br><span class="line">	@ExcelProperty(value = &quot;入职时间&quot;, index = 1)</span><br><span class="line">	private Date hireDate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>向Excel中写数据<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 插入指定列</span><br><span class="line"> * Java类中有三个属性</span><br><span class="line"> * 我现在要将这三个属性的数据保存到Excel表格中</span><br><span class="line"> * 并且自定义在Excel中的列顺序</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void writeExcel5() &#123;</span><br><span class="line">	//创建文件保存的位置,以及文件名</span><br><span class="line">	String fileName=&quot;user5.xlsx&quot;;</span><br><span class="line">	/**</span><br><span class="line">	 * 构建要写入的数据</span><br><span class="line">	 */</span><br><span class="line">	List&lt;IndexUser&gt; data = new ArrayList&lt;&gt;();</span><br><span class="line">	IndexUser user = new IndexUser(1001,&quot;枫桥夜泊&quot;,new Date());</span><br><span class="line">	data.add(user);</span><br><span class="line">	EasyExcel.write(fileName, IndexUser.class).sheet(&quot;abc&quot;).doWrite(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-6-复杂头数据写入"><a href="#2-6-复杂头数据写入" class="headerlink" title="2.6 复杂头数据写入"></a>2.6 复杂头数据写入</h4><ul>
+<li>写Excel的Java对象类型<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 构建复杂头信息数据的类</span><br><span class="line"> * @Author 夜泊 </span><br><span class="line"> * @BLOG   https://hd1611756908.github.io/</span><br><span class="line"> */</span><br><span class="line">public class ComplexHeadUser &#123;</span><br><span class="line">	/**</span><br><span class="line">	 * &#123;&quot;用户主题1&quot;,&quot;用户编号&quot;&#125;这种遇到格式设置多级主题</span><br><span class="line">	 * 第一个参数为一级主题(第一行)</span><br><span class="line">	 * 第二个参数为二级主题(第二行)</span><br><span class="line">	 * 如果一级主题名称相同,那么他们会合并单元格</span><br><span class="line">	 */</span><br><span class="line">	@ExcelProperty(&#123;&quot;用户主题1&quot;,&quot;用户编号&quot;&#125;)</span><br><span class="line">	private Integer userId;</span><br><span class="line">	@ExcelProperty(&#123;&quot;用户主题2&quot;,&quot;用户名称&quot;&#125;)</span><br><span class="line">	private String userName;</span><br><span class="line">	@ExcelProperty(&#123;&quot;用户主题3&quot;,&quot;入职时间&quot;&#125;)</span><br><span class="line">	private Date hireDate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>向Excel中写数据<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 写入复杂头信息到Excel</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void writeExcel6() &#123;</span><br><span class="line">	//创建文件保存的位置,以及文件名</span><br><span class="line">	String fileName=&quot;user6.xlsx&quot;;</span><br><span class="line">	/**</span><br><span class="line">	 * 构建要写入的数据</span><br><span class="line">	 */</span><br><span class="line">	List&lt;ComplexHeadUser&gt; data = new ArrayList&lt;&gt;();</span><br><span class="line">	ComplexHeadUser user = new ComplexHeadUser(1001,&quot;枫桥夜泊&quot;,new Date());</span><br><span class="line">	data.add(user);</span><br><span class="line">	EasyExcel.write(fileName, ComplexHeadUser.class).sheet(&quot;abc&quot;).doWrite(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-7-重复写到Excel的同一个sheet中"><a href="#2-7-重复写到Excel的同一个sheet中" class="headerlink" title="2.7 重复写到Excel的同一个sheet中"></a>2.7 重复写到Excel的同一个sheet中</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 重复写到同一个sheet中</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void writeExcel7() &#123;</span><br><span class="line">	//创建文件保存的位置,以及文件名</span><br><span class="line">	String fileName=&quot;user7.xlsx&quot;;</span><br><span class="line">	//构建数据</span><br><span class="line">	List&lt;User&gt; data = new ArrayList&lt;&gt;();</span><br><span class="line">	User user1 = new User(2001,&quot;李雷1&quot;,&quot;男&quot;,1000.123,new Date());</span><br><span class="line">	User user2 = new User(2002,&quot;李雷2&quot;,&quot;男&quot;,1000.123,new Date());</span><br><span class="line">	User user3 = new User(2003,&quot;李雷3&quot;,&quot;男&quot;,1000.123,new Date());</span><br><span class="line">	User user4 = new User(2004,&quot;李雷4&quot;,&quot;男&quot;,1000.123,new Date());</span><br><span class="line">	data.add(user1);</span><br><span class="line">	data.add(user2);</span><br><span class="line">	data.add(user3);</span><br><span class="line">	data.add(user4);</span><br><span class="line">	//创建ExcelWriter对对象并设置用哪个Class(数据类型)去写</span><br><span class="line">	ExcelWriter excelWriter = EasyExcel.write(fileName, User.class).build();</span><br><span class="line">	//创建sheet</span><br><span class="line">	WriteSheet writeSheet = EasyExcel.writerSheet(&quot;用户信息&quot;).build();</span><br><span class="line">	//模拟重复写入,模拟重复写入5次</span><br><span class="line">	for (int i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">		excelWriter.write(data, writeSheet);</span><br><span class="line">	&#125;</span><br><span class="line">	//关闭流</span><br><span class="line">	excelWriter.finish();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-8-重复的写到Excel的不同sheet中"><a href="#2-8-重复的写到Excel的不同sheet中" class="headerlink" title="2.8 重复的写到Excel的不同sheet中"></a>2.8 重复的写到Excel的不同sheet中</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 重复写到不同sheet中</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void writeExcel8() &#123;</span><br><span class="line">	//创建文件保存的位置,以及文件名</span><br><span class="line">	String fileName=&quot;user8.xlsx&quot;;</span><br><span class="line">	//构建数据</span><br><span class="line">	List&lt;User&gt; data = new ArrayList&lt;&gt;();</span><br><span class="line">	User user1 = new User(2001,&quot;李雷1&quot;,&quot;男&quot;,1000.123,new Date());</span><br><span class="line">	User user2 = new User(2002,&quot;李雷2&quot;,&quot;男&quot;,1000.123,new Date());</span><br><span class="line">	User user3 = new User(2003,&quot;李雷3&quot;,&quot;男&quot;,1000.123,new Date());</span><br><span class="line">	User user4 = new User(2004,&quot;李雷4&quot;,&quot;男&quot;,1000.123,new Date());</span><br><span class="line">	data.add(user1);</span><br><span class="line">	data.add(user2);</span><br><span class="line">	data.add(user3);</span><br><span class="line">	data.add(user4);</span><br><span class="line">	//创建ExcelWriter对对象并设置用哪个Class(数据类型)去写</span><br><span class="line">	ExcelWriter excelWriter = EasyExcel.write(fileName, User.class).build();</span><br><span class="line">	</span><br><span class="line">	//模拟重复写入,模拟重复写入5次</span><br><span class="line">	for (int i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">		//创建sheet(因为写入到不同的sheet,所以需要多次创建sheet)</span><br><span class="line">		//WriteSheet writeSheet = EasyExcel.writerSheet(i,&quot;用户信息&quot;+i).build(); //用下面的格式也可以</span><br><span class="line">		WriteSheet writeSheet = EasyExcel.writerSheet(&quot;用户信息&quot;+i).build();</span><br><span class="line">		excelWriter.write(data, writeSheet);</span><br><span class="line">	&#125;</span><br><span class="line">	//关闭流</span><br><span class="line">	excelWriter.finish();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-9-日期、数字类型格式化"><a href="#2-9-日期、数字类型格式化" class="headerlink" title="2.9 日期、数字类型格式化"></a>2.9 日期、数字类型格式化</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">对于日期和数字有时候我们需要对其展示的样式进行格式化,easyexcel提供了一下注解</span><br><span class="line">@DateTimeFormat : 日期格式化</span><br><span class="line">@NumberFormat   : 数字格式化(小数或者百分数)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>写Excel的Java对象类型<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 创建User类,用于构建向Excel表格中写数据的类型;</span><br><span class="line"> * @ExcelProperty:这个注解是EasyExcel提供,用于生成Excel表格头</span><br><span class="line"> * @Author 夜泊 </span><br><span class="line"> * @BLOG   https://hd1611756908.github.io/</span><br><span class="line"> */</span><br><span class="line">public class User &#123;</span><br><span class="line">	@ExcelProperty(&quot;用户编号&quot;)</span><br><span class="line">	private Integer userId;</span><br><span class="line">	@ExcelProperty(&quot;姓名&quot;)</span><br><span class="line">	private String userName;</span><br><span class="line">	@ExcelProperty(&quot;性别&quot;)</span><br><span class="line">	private String gender;</span><br><span class="line">	//格式化小数类型,如果是百分数那么定义为  #.##% 比如:9.12%</span><br><span class="line">	@NumberFormat(&quot;#.##&quot;)</span><br><span class="line">	@ExcelProperty(&quot;工资&quot;)</span><br><span class="line">	private Double salary;</span><br><span class="line">	//格式化时间</span><br><span class="line">	@DateTimeFormat(&quot;yyyy年MM月dd日 HH时mm分ss秒&quot;)</span><br><span class="line">	@ExcelProperty(&quot;入职时间&quot;)</span><br><span class="line">	private Date hireDate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>向Excel中写数据<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 日期、数字格式化</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void writeExcel9() &#123;</span><br><span class="line">	//创建文件保存的位置,以及文件名</span><br><span class="line">	String fileName=&quot;user9.xlsx&quot;;</span><br><span class="line">	//构建数据</span><br><span class="line">	List&lt;User&gt; data = new ArrayList&lt;&gt;();</span><br><span class="line">	User user1 = new User(2001,&quot;李雷1&quot;,&quot;男&quot;,1000.12223,new Date());</span><br><span class="line">	User user2 = new User(2002,&quot;李雷2&quot;,&quot;男&quot;,1000.12223,new Date());</span><br><span class="line">	User user3 = new User(2003,&quot;李雷3&quot;,&quot;男&quot;,1000.12223,new Date());</span><br><span class="line">	User user4 = new User(2004,&quot;李雷4&quot;,&quot;男&quot;,1000.13323,new Date());</span><br><span class="line">	data.add(user1);</span><br><span class="line">	data.add(user2);</span><br><span class="line">	data.add(user3);</span><br><span class="line">	data.add(user4);</span><br><span class="line">	</span><br><span class="line">	EasyExcel.write(fileName, User.class).sheet(&quot;用戶信息&quot;).doWrite(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-10-写入图片到Excel"><a href="#2-10-写入图片到Excel" class="headerlink" title="2.10 写入图片到Excel"></a>2.10 写入图片到Excel</h4><ul>
+<li>写Excel的Java对象类型<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 构建向Excel中写图片的类 支持5种数据类型的图片类型 </span><br><span class="line"> * 1. 图片可以是一个File格式 </span><br><span class="line"> * 2. 图片可以是一个InputStream输入流的方式 </span><br><span class="line"> * 3. 图片可以是一个byte[]数组的方式 </span><br><span class="line"> * 4. 图片可以是 一个网络的java.net.URL对象方式 </span><br><span class="line"> * 5. 图片也可以是一个String类型方式(当是String类型是，需要StringImageConverter类型转换器)</span><br><span class="line"> * </span><br><span class="line"> * @Author 夜泊</span><br><span class="line"> * @BLOG https://hd1611756908.github.io/</span><br><span class="line"> */</span><br><span class="line">@ContentRowHeight(100)  // 内容高度</span><br><span class="line">@ColumnWidth(100 / 8)   // 列宽</span><br><span class="line">public class ImageData &#123;</span><br><span class="line">	// 使用抽象文件表示一个图片</span><br><span class="line">	private File file;</span><br><span class="line">	// 使用输入流保存一个图片</span><br><span class="line">	private InputStream inputStream;</span><br><span class="line">	/**</span><br><span class="line">	 * 当使用String类型保存一个图片的时候需要使用StringImageConverter转换器</span><br><span class="line">	 */</span><br><span class="line">	@ExcelProperty(converter = StringImageConverter.class)</span><br><span class="line">	private String string;</span><br><span class="line">	// 使用二进制数据保存为一个图片</span><br><span class="line">	private byte[] byteArray;</span><br><span class="line">	// 使用网络链接保存一个图片</span><br><span class="line">	private URL url;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>向Excel中写数据<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 将图片写入到Excel表格中</span><br><span class="line"> * EasyExcel提供了5种数据格式进行图片写入</span><br><span class="line"> * @throws IOException </span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void writeExcel10() throws IOException &#123;</span><br><span class="line">	//创建文件保存的位置,以及文件名</span><br><span class="line">	String fileName=&quot;user10.xlsx&quot;;</span><br><span class="line">	</span><br><span class="line">	List&lt;ImageData&gt; list = new ArrayList&lt;ImageData&gt;();</span><br><span class="line">	ImageData imageData = new ImageData();</span><br><span class="line">	//根据File写入</span><br><span class="line">	imageData.setFile(new File(&quot;imgs/img.png&quot;));</span><br><span class="line">	//根据InputStream写入</span><br><span class="line">	imageData.setInputStream(new FileInputStream(&quot;imgs/img.png&quot;));</span><br><span class="line">	//根据String类型写入</span><br><span class="line">	imageData.setString(&quot;imgs/img.png&quot;);</span><br><span class="line">	/*</span><br><span class="line">	 * 使用二进制方式写入步骤:</span><br><span class="line">	 * 1. 获取文件大小</span><br><span class="line">	 * 2. 读成二进制流</span><br><span class="line">	 */</span><br><span class="line">	File file = new File(&quot;imgs/img.png&quot;);</span><br><span class="line">	//创建一个指定大小的二进制数组</span><br><span class="line">	byte[] byteArray = new byte[(int)file.length()];</span><br><span class="line">	FileInputStream in = new FileInputStream(file);</span><br><span class="line">	//将文件流写入到二进制数组中</span><br><span class="line">	in.read(byteArray, 0, (int)file.length());</span><br><span class="line">	imageData.setByteArray(byteArray);</span><br><span class="line">	//只用网络链接</span><br><span class="line">	imageData.setUrl(new URL(&quot;https://pics5.baidu.com/feed/e850352ac65c10384dcf6805a7540815b17e890b.jpeg?token=46fd105a95d8754d3daf93de7e8a7f6f&quot;));</span><br><span class="line">	list.add(imageData);</span><br><span class="line">	EasyExcel.write(fileName, ImageData.class).sheet().doWrite(list);</span><br><span class="line">	//关闭输入流</span><br><span class="line">	in.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-11-设置写入Excel的列宽行高设置"><a href="#2-11-设置写入Excel的列宽行高设置" class="headerlink" title="2.11 设置写入Excel的列宽行高设置"></a>2.11 设置写入Excel的列宽行高设置</h4><ul>
+<li>写Excel的Java对象类型<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@ContentRowHeight(30) //设置内容高度</span><br><span class="line">@HeadRowHeight(40)    //设置标题高度</span><br><span class="line">@ColumnWidth(25)      //设置列宽</span><br><span class="line">public class WidthAndHeightData &#123;</span><br><span class="line"></span><br><span class="line">	@ExcelProperty(&quot;字符串标题&quot;)</span><br><span class="line">	private String string;</span><br><span class="line">	@ExcelProperty(&quot;日期标题&quot;)</span><br><span class="line">	private Date date;</span><br><span class="line">	@ColumnWidth(50)   //设置列宽(可以修饰类,也可以修饰具体属性)</span><br><span class="line">	@ExcelProperty(&quot;数字标题&quot;)</span><br><span class="line">	private Double doubleData;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>向Excel中写数据<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 设置Excel的列宽行高</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void writeExcel11()&#123;</span><br><span class="line">	//创建文件保存的位置,以及文件名</span><br><span class="line">	String fileName=&quot;user11.xlsx&quot;;</span><br><span class="line">	//构建数据</span><br><span class="line">	List&lt;WidthAndHeightData&gt; list = new ArrayList&lt;WidthAndHeightData&gt;();</span><br><span class="line">	WidthAndHeightData wahd = new WidthAndHeightData();</span><br><span class="line">	wahd.setString(&quot;小明&quot;);</span><br><span class="line">	wahd.setDoubleData(200.12);</span><br><span class="line">	wahd.setDate(new Date());</span><br><span class="line">	list.add(wahd);</span><br><span class="line">	//写数据</span><br><span class="line">	EasyExcel.write(fileName, WidthAndHeightData.class).sheet(&quot;信息&quot;).doWrite(list);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-12-通过注解形式设置写入Excel的样式"><a href="#2-12-通过注解形式设置写入Excel的样式" class="headerlink" title="2.12 通过注解形式设置写入Excel的样式"></a>2.12 通过注解形式设置写入Excel的样式</h4><ul>
+<li>写Excel的Java对象类型<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//头背景设置成红色 IndexedColors.RED.getIndex()</span><br><span class="line">@HeadStyle(fillPatternType = FillPatternType.SOLID_FOREGROUND, fillForegroundColor = 10)</span><br><span class="line">//头字体设置成20</span><br><span class="line">@HeadFontStyle(fontHeightInPoints = 20)</span><br><span class="line">//内容的背景设置成绿色 IndexedColors.GREEN.getIndex()</span><br><span class="line">@ContentStyle(fillPatternType = FillPatternType.SOLID_FOREGROUND, fillForegroundColor = 17)</span><br><span class="line">//内容字体设置成20</span><br><span class="line">@ContentFontStyle(fontHeightInPoints = 20)</span><br><span class="line">public class DemoStyleData &#123;</span><br><span class="line"></span><br><span class="line">	// 字符串的头背景设置成粉红 IndexedColors.PINK.getIndex()</span><br><span class="line">	@HeadStyle(fillPatternType = FillPatternType.SOLID_FOREGROUND, fillForegroundColor = 14)</span><br><span class="line">	// 字符串的头字体设置成20</span><br><span class="line">	@HeadFontStyle(fontHeightInPoints = 30)</span><br><span class="line">	// 字符串的内容的背景设置成天蓝 IndexedColors.SKY_BLUE.getIndex()</span><br><span class="line">	@ContentStyle(fillPatternType = FillPatternType.SOLID_FOREGROUND, fillForegroundColor = 40)</span><br><span class="line">	// 字符串的内容字体设置成20</span><br><span class="line">	@ContentFontStyle(fontHeightInPoints = 30)</span><br><span class="line">	@ExcelProperty(&quot;字符串标题&quot;)</span><br><span class="line">	private String string;</span><br><span class="line">	@ExcelProperty(&quot;日期标题&quot;)</span><br><span class="line">	private Date date;</span><br><span class="line">	@ExcelProperty(&quot;数字标题&quot;)</span><br><span class="line">	private Double doubleData;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>向Excel中写数据<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 注解形式设置Excel样式</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void writeExcel12()&#123;</span><br><span class="line">	//创建文件保存的位置,以及文件名</span><br><span class="line">	String fileName=&quot;user12.xlsx&quot;;</span><br><span class="line">	//构建数据</span><br><span class="line">	List&lt;DemoStyleData&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">	DemoStyleData dsld = new DemoStyleData();</span><br><span class="line">	dsld.setDate(new Date());</span><br><span class="line">	dsld.setDoubleData(200.12);</span><br><span class="line">	dsld.setString(&quot;韓梅梅&quot;);</span><br><span class="line">	list.add(dsld);</span><br><span class="line">	EasyExcel.write(fileName, DemoStyleData.class).sheet(&quot;信息&quot;).doWrite(list);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-13-合并单元格"><a href="#2-13-合并单元格" class="headerlink" title="2.13 合并单元格"></a>2.13 合并单元格</h4><ul>
+<li>写Excel的Java对象类型<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @OnceAbsoluteMerge: 指定从哪一行开始，哪一行结束，哪一列开始，哪一列结束，进行合并单元格</span><br><span class="line"> * firstRowIndex   : 起始行索引 从0开始</span><br><span class="line"> * lastRowIndex    : 结束行索引</span><br><span class="line"> * firstColumnIndex: 起始列索引 从0开始</span><br><span class="line"> * lastColumnIndex : 结束列索引</span><br><span class="line"> * 例如: 第2-3行,2-3列进行合并</span><br><span class="line"> */</span><br><span class="line">@OnceAbsoluteMerge(firstRowIndex = 1,lastRowIndex = 2,firstColumnIndex = 1,lastColumnIndex = 2)</span><br><span class="line">public class DemoMergeData &#123;</span><br><span class="line">	//每隔两行合并一次(竖着合并单元格)</span><br><span class="line">	//@ContentLoopMerge(eachRow = 2)</span><br><span class="line">	@ExcelProperty(&quot;字符串标题&quot;)</span><br><span class="line">	private String string;</span><br><span class="line">	@ExcelProperty(&quot;日期标题&quot;)</span><br><span class="line">	private Date date;</span><br><span class="line">	@ExcelProperty(&quot;数字标题&quot;)</span><br><span class="line">	private Double doubleData;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>向Excel中写数据<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 合并单元格</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void writeExcel13()&#123;</span><br><span class="line">	//创建文件保存的位置,以及文件名</span><br><span class="line">	String fileName=&quot;user13.xlsx&quot;;</span><br><span class="line">	//构建数据</span><br><span class="line">	List&lt;DemoMergeData&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">	DemoMergeData dmd = new DemoMergeData();</span><br><span class="line">	dmd.setDate(new Date());</span><br><span class="line">	dmd.setDoubleData(200.12);</span><br><span class="line">	dmd.setString(&quot;韓梅梅&quot;);</span><br><span class="line">	DemoMergeData dmd2 = new DemoMergeData();</span><br><span class="line">	dmd2.setDate(new Date());</span><br><span class="line">	dmd2.setDoubleData(200.12);</span><br><span class="line">	dmd2.setString(&quot;韓梅梅&quot;);</span><br><span class="line">	DemoMergeData dmd3 = new DemoMergeData();</span><br><span class="line">	dmd3.setDate(new Date());</span><br><span class="line">	dmd3.setDoubleData(200.12);</span><br><span class="line">	dmd3.setString(&quot;韓梅梅&quot;);</span><br><span class="line">	DemoMergeData dmd4 = new DemoMergeData();</span><br><span class="line">	dmd4.setDate(new Date());</span><br><span class="line">	dmd4.setDoubleData(200.12);</span><br><span class="line">	dmd4.setString(&quot;韓梅梅&quot;);</span><br><span class="line">	DemoMergeData dmd5 = new DemoMergeData();</span><br><span class="line">	dmd5.setDate(new Date());</span><br><span class="line">	dmd5.setDoubleData(200.12);</span><br><span class="line">	dmd5.setString(&quot;韓梅梅&quot;);</span><br><span class="line">	list.add(dmd);</span><br><span class="line">	list.add(dmd2);</span><br><span class="line">	list.add(dmd3);</span><br><span class="line">	list.add(dmd4);</span><br><span class="line">	list.add(dmd5);</span><br><span class="line">	EasyExcel.write(fileName, DemoMergeData.class).sheet(&quot;信息&quot;).doWrite(list);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="第3节-读Excel"><a href="#第3节-读Excel" class="headerlink" title="第3节 读Excel"></a>第3节 读Excel</h3><h4 id="3-1-最简单的读取Excel"><a href="#3-1-最简单的读取Excel" class="headerlink" title="3.1 最简单的读取Excel"></a>3.1 最简单的读取Excel</h4><ul>
+<li>Excel表格数据类型</li>
+</ul>
+<center>
+
+<img src="https://note.youdao.com/yws/api/personal/file/WEBd0b986a78d3129445d7cb5c5d8ae148d?method=download&shareKey=d499346d2c26e9eef3c36b363302f099">
+
+</center>
+
+<ul>
+<li>盛装数据的Java对象<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 承装Excel表格数据的类</span><br><span class="line"> * 注意点: Java类中的属性的顺序和Excel中的列头的顺序是相同的</span><br><span class="line"> * @Author 夜泊 </span><br><span class="line"> * @BLOG   https://hd1611756908.github.io/</span><br><span class="line"> */</span><br><span class="line">public class DemoData &#123;</span><br><span class="line">    </span><br><span class="line">	private String name;</span><br><span class="line">	private Date hireDate;</span><br><span class="line">	private Double salary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>读取Excel数据<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * 最简单的读取Excel内容(方式一)</span><br><span class="line"> * 默认读取Excel文件中的第一个sheet</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void testRead1() &#123;</span><br><span class="line">	//读取的文件路径</span><br><span class="line">	String fileName=&quot;user11.xlsx&quot;;</span><br><span class="line">	Class&lt;DemoData&gt; head = DemoData.class; //创建一个数据格式来承装读取到数据</span><br><span class="line">	//读取数据</span><br><span class="line">	EasyExcel.read(fileName, head, new AnalysisEventListener&lt;DemoData&gt;() &#123;</span><br><span class="line"></span><br><span class="line">		/**</span><br><span class="line">		 * 解析每一条数据的时候被调用</span><br><span class="line">		 */</span><br><span class="line">		@Override</span><br><span class="line">		public void invoke(DemoData data, AnalysisContext context) &#123;</span><br><span class="line">			//在这里操作，将解析的每一条数据保存到数据库中,在这里可以调用数据库</span><br><span class="line">			System.out.println(&quot;解析的数据为: &quot;+data);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		/**</span><br><span class="line">		 * 解析完所有数据的时候被调用</span><br><span class="line">		 */</span><br><span class="line">		@Override</span><br><span class="line">		public void doAfterAllAnalysed(AnalysisContext context) &#123;</span><br><span class="line">			System.out.println(&quot;数据解析完成..........&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;).sheet().doRead();</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * 最简单的读取Excel内容(方式二)</span><br><span class="line"> * 默认读取Excel文件中的第一个sheet</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void testRead2() &#123;</span><br><span class="line">	//读取的文件路径</span><br><span class="line">	String fileName=&quot;user11.xlsx&quot;;</span><br><span class="line">	Class&lt;DemoData&gt; head = DemoData.class; //创建一个数据格式来承装读取到数据</span><br><span class="line">	//创建ExcelReader对象</span><br><span class="line">	ExcelReader excelReader = EasyExcel.read(fileName, head, new AnalysisEventListener&lt;DemoData&gt;() &#123;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public void invoke(DemoData data, AnalysisContext context) &#123;</span><br><span class="line">			System.out.println(&quot;读取到的数据为:&quot;+data);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public void doAfterAllAnalysed(AnalysisContext context) &#123;</span><br><span class="line">			System.out.println(&quot;数据解析已完成&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;).build();</span><br><span class="line">	//创建sheet对象,并读取Excel的第1个sheet(下标从0开始)</span><br><span class="line">	ReadSheet readSheet = EasyExcel.readSheet(0).build();</span><br><span class="line">	excelReader.read(readSheet);</span><br><span class="line">	//关闭流操作，在读取文件时会创建临时文件,如果不关闭,磁盘爆掉</span><br><span class="line">	excelReader.finish();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-2-根据Excel中指定的列名或者列的下标读取指定列的数据"><a href="#3-2-根据Excel中指定的列名或者列的下标读取指定列的数据" class="headerlink" title="3.2 根据Excel中指定的列名或者列的下标读取指定列的数据"></a>3.2 根据Excel中指定的列名或者列的下标读取指定列的数据</h4><ul>
+<li>盛装数据的Java对象<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class IndexOrNameData &#123;</span><br><span class="line">	/**</span><br><span class="line">	 * 强制读取第三个 这里不建议 index 和 name 同时用，要么一个对象只用index，要么一个对象只用name去匹配</span><br><span class="line">	 */</span><br><span class="line">	@ExcelProperty(index = 2)</span><br><span class="line">	private Double doubleData;</span><br><span class="line">	/**</span><br><span class="line">	 * 用名字去匹配，这里需要注意，如果名字重复，会导致只有一个字段读取到数据</span><br><span class="line">	 */</span><br><span class="line">	@ExcelProperty(&quot;字符串标题&quot;)</span><br><span class="line">	private String string;</span><br><span class="line">	@ExcelProperty(&quot;日期标题&quot;)</span><br><span class="line">	private Date date;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>读取Excel数据操作<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * 根据名称或者下标获取指定的Excel表格数据</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void testRead3() &#123;</span><br><span class="line">	//读取的文件路径</span><br><span class="line">	String fileName=&quot;user11.xlsx&quot;;</span><br><span class="line">	Class&lt;IndexOrNameData&gt; head = IndexOrNameData.class; //创建一个数据格式来承装读取到数据</span><br><span class="line">	//读取数据</span><br><span class="line">	EasyExcel.read(fileName, head, new AnalysisEventListener&lt;IndexOrNameData&gt;() &#123;</span><br><span class="line"></span><br><span class="line">		/**</span><br><span class="line">		 * 解析每一条数据的时候被调用</span><br><span class="line">		 */</span><br><span class="line">		@Override</span><br><span class="line">		public void invoke(IndexOrNameData data, AnalysisContext context) &#123;</span><br><span class="line">			//在这里操作，将解析的每一条数据保存到数据库中,在这里可以调用数据库</span><br><span class="line">			System.out.println(&quot;解析的数据为: &quot;+data);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		/**</span><br><span class="line">		 * 解析完所有数据的时候被调用</span><br><span class="line">		 */</span><br><span class="line">		@Override</span><br><span class="line">		public void doAfterAllAnalysed(AnalysisContext context) &#123;</span><br><span class="line">			System.out.println(&quot;数据解析完成..........&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;).sheet().doRead();</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-3-格式化Excel中的数据格式-例如时间"><a href="#3-3-格式化Excel中的数据格式-例如时间" class="headerlink" title="3.3 格式化Excel中的数据格式(例如时间)"></a>3.3 格式化Excel中的数据格式(例如时间)</h4><ul>
+<li>盛装数据的Java对象<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 定义需要被格式化的字段</span><br><span class="line"> * 如果使用@NumberFormat(&quot;#.##&quot;)注解，建议数据类型采用String,如果使用double可能不能被格式化</span><br><span class="line"> * @Author 夜泊</span><br><span class="line"> * @BLOG https://hd1611756908.github.io/</span><br><span class="line"> */</span><br><span class="line">public class ConverterData &#123;</span><br><span class="line"></span><br><span class="line">	@NumberFormat(&quot;#.#&quot;)</span><br><span class="line">	@ExcelProperty(&quot;数字标题&quot;)</span><br><span class="line">	private String salary;</span><br><span class="line">	@DateTimeFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;)</span><br><span class="line">	@ExcelProperty(&quot;日期标题&quot;)</span><br><span class="line">	private Date hireDate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>读取Excel数据操作<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * 格式化Excel中的数据格式(例如时间)</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void testRead4() &#123;</span><br><span class="line">	//读取的文件路径</span><br><span class="line">	String fileName=&quot;user11.xlsx&quot;;</span><br><span class="line">	Class&lt;ConverterData&gt; head = ConverterData.class; //创建一个数据格式来承装读取到数据</span><br><span class="line">	//读取数据</span><br><span class="line">	EasyExcel.read(fileName, head, new AnalysisEventListener&lt;ConverterData&gt;() &#123;</span><br><span class="line"></span><br><span class="line">		/**</span><br><span class="line">		 * 解析每一条数据的时候被调用</span><br><span class="line">		 */</span><br><span class="line">		@Override</span><br><span class="line">		public void invoke(ConverterData data, AnalysisContext context) &#123;</span><br><span class="line">			//在这里操作，将解析的每一条数据保存到数据库中,在这里可以调用数据库</span><br><span class="line">			System.out.println(&quot;解析的数据为: &quot;+data);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		/**</span><br><span class="line">		 * 解析完所有数据的时候被调用</span><br><span class="line">		 */</span><br><span class="line">		@Override</span><br><span class="line">		public void doAfterAllAnalysed(AnalysisContext context) &#123;</span><br><span class="line">			System.out.println(&quot;数据解析完成..........&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;).sheet().doRead();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-4-读取多个或者全部的Sheet"><a href="#3-4-读取多个或者全部的Sheet" class="headerlink" title="3.4 读取多个或者全部的Sheet"></a>3.4 读取多个或者全部的Sheet</h4><ul>
+<li>盛装数据的Java对象<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 承装Excel表格数据的类</span><br><span class="line"> * 注意点: Java类中的属性的顺序和Excel中的列头的顺序是相同的</span><br><span class="line"> * @Author 夜泊 </span><br><span class="line"> * @BLOG   https://hd1611756908.github.io/</span><br><span class="line"> */</span><br><span class="line">public class DemoData &#123;</span><br><span class="line"></span><br><span class="line">	private String name;</span><br><span class="line">	private Date hireDate;</span><br><span class="line">	private Double salary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>读取Excel数据操作<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * 读取Excel中的多个或者全部sheet</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void testRead5() &#123;</span><br><span class="line">	//读取的文件路径</span><br><span class="line">	String fileName=&quot;user11.xlsx&quot;;</span><br><span class="line">	Class&lt;DemoData&gt; head = DemoData.class; //创建一个数据格式来承装读取到数据</span><br><span class="line">	/**</span><br><span class="line">	 * 读取全部sheet</span><br><span class="line">	 */</span><br><span class="line">	EasyExcel.read(fileName, head, new AnalysisEventListener&lt;DemoData&gt;() &#123;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public void invoke(DemoData data, AnalysisContext context) &#123;</span><br><span class="line">			// 每解析一条数据被调用一次</span><br><span class="line">			System.out.println(&quot;解析的数据为: &quot;+data);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public void doAfterAllAnalysed(AnalysisContext context) &#123;</span><br><span class="line">			// 数据解析完成之后被调用</span><br><span class="line">			System.out.println(&quot;数据解析完成......&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;).doReadAll();</span><br><span class="line">	</span><br><span class="line">	System.out.println(&quot;============================================================&quot;);</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * 读取其中的某几个sheet</span><br><span class="line">	 */</span><br><span class="line">	//构建ExcelReader对象</span><br><span class="line">	ExcelReader excelReader = EasyExcel.read(fileName).build();</span><br><span class="line">	//创建想要获取的sheet对象</span><br><span class="line">	ReadSheet sheet1 = EasyExcel.readSheet(0).head(DemoData.class).registerReadListener(new AnalysisEventListener&lt;DemoData&gt;() &#123;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public void invoke(DemoData data, AnalysisContext context) &#123;</span><br><span class="line">			// 每解析一条数据被调用一次</span><br><span class="line">			System.out.println(&quot;解析的数据为: &quot;+data);				</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public void doAfterAllAnalysed(AnalysisContext context) &#123;</span><br><span class="line">			// 数据解析完成之后被调用</span><br><span class="line">			System.out.println(&quot;数据解析完成......&quot;);				</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;).build();</span><br><span class="line">	</span><br><span class="line">	ReadSheet sheet2 = EasyExcel.readSheet(2).head(DemoData.class).registerReadListener(new AnalysisEventListener&lt;DemoData&gt;() &#123;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public void invoke(DemoData data, AnalysisContext context) &#123;</span><br><span class="line">			// 每解析一条数据被调用一次</span><br><span class="line">			System.out.println(&quot;解析的数据为: &quot;+data);				</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		@Override</span><br><span class="line">		public void doAfterAllAnalysed(AnalysisContext context) &#123;</span><br><span class="line">			// 数据解析完成之后被调用</span><br><span class="line">			System.out.println(&quot;数据解析完成......&quot;);				</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;).build();</span><br><span class="line">	//读取sheet</span><br><span class="line">	excelReader.read(sheet1,sheet2);</span><br><span class="line">	//关闭</span><br><span class="line">	excelReader.finish();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="第4节-填充Excel"><a href="#第4节-填充Excel" class="headerlink" title="第4节 填充Excel"></a>第4节 填充Excel</h3><h4 id="4-1-简单填充"><a href="#4-1-简单填充" class="headerlink" title="4.1 简单填充"></a>4.1 简单填充</h4><ul>
+<li>创建Excel模板格式<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">填充单个属性使用&#123;&#125;作为占位符,在大括号里面定义属性名称,如果&#123;&#125;想不作为占位符展示出来,可以使用反斜杠进行转义.</span><br></pre></td></tr></table></figure></li>
+</ul>
+<center>
+
+<img src="https://note.youdao.com/yws/api/personal/file/WEB69924e488f22f85f277b6742d945a479?method=download&shareKey=272a78e39f2565b413d5ac6744e602b8">
+
+</center>
+
+<ul>
+<li>填充数据的Java类<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public class FillData &#123;</span><br><span class="line">	private String name;</span><br><span class="line">    private double number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>填充的代码<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 简单的单个对象填充</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void excelFull() &#123;</span><br><span class="line">	//读取模板文件</span><br><span class="line">	String templateFileName=&quot;templateFileName.xlsx&quot;;</span><br><span class="line">	//通过模板文件生成的填充之后的文件</span><br><span class="line">	String fullFile=&quot;fullFile.xlsx&quot;;</span><br><span class="line">	//构建要填充的数据</span><br><span class="line">	FillData data = new FillData();</span><br><span class="line">	data.setName(&quot;张三&quot;);</span><br><span class="line">	data.setNumber(5.2);</span><br><span class="line">	//填充操作</span><br><span class="line">	EasyExcel.write(fullFile).withTemplate(templateFileName).sheet().doFill(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>填充之后的效果</li>
+</ul>
+<center>
+
+<img src="https://note.youdao.com/yws/api/personal/file/WEB92a74953f77024100d786804cc770dcc?method=download&shareKey=9a3c73044c0c269c3f944e35373e1f8e">
+
+</center>
+
+
+<h4 id="4-2-列表填充"><a href="#4-2-列表填充" class="headerlink" title="4.2 列表填充"></a>4.2 列表填充</h4><ul>
+<li>创建Excel模板格式<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当占位符是一个列表时,&#123;&#125;里面的属性前面要加一个点代表多个</span><br></pre></td></tr></table></figure></li>
+</ul>
+<center>
+
+<img src="https://note.youdao.com/yws/api/personal/file/WEB52736389f77c9328af30c3cb04c91297?method=download&shareKey=88e7cf711726d1c856e29a056b9b715b">
+
+</center>
+
+<ul>
+<li><p>填充数据的Java类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public class FillData &#123;</span><br><span class="line">	private String name;</span><br><span class="line">    private double number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>填充的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 简单的列表对象填充</span><br><span class="line"> */</span><br><span class="line">@Test</span><br><span class="line">public void excelFull2() &#123;</span><br><span class="line">	//读取模板文件</span><br><span class="line">	String templateFileName=&quot;templateFileName2.xlsx&quot;;</span><br><span class="line">	//通过模板文件生成的填充之后的文件</span><br><span class="line">	String fullFile=&quot;fullFile2.xlsx&quot;;</span><br><span class="line">	//构建要填充的数据列表</span><br><span class="line">	List&lt;FillData&gt; list = new ArrayList&lt;FillData&gt;();</span><br><span class="line">	FillData data1 = new FillData();</span><br><span class="line">	data1.setName(&quot;张三&quot;);</span><br><span class="line">	data1.setNumber(5.2);</span><br><span class="line">	FillData data2 = new FillData();</span><br><span class="line">	data2.setName(&quot;张三&quot;);</span><br><span class="line">	data2.setNumber(5.2);</span><br><span class="line">	list.add(data1);</span><br><span class="line">	list.add(data2);</span><br><span class="line">	//填充操作</span><br><span class="line">	EasyExcel.write(fullFile).withTemplate(templateFileName).sheet().doFill(list);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>填充之后的效果</p>
+</li>
+</ul>
+<center>
+<img src="https://note.youdao.com/yws/api/personal/file/WEB8f8db5fae2863c9590428ea967f822de?method=download&shareKey=296324d30db3647daf6c4b2285c89e6f">
+</center>
+
+<h3 id="第5节-Web操作-Excel上传-x2F-下载"><a href="#第5节-Web操作-Excel上传-x2F-下载" class="headerlink" title="第5节 Web操作(Excel上传&#x2F;下载)"></a>第5节 Web操作(Excel上传&#x2F;下载)</h3><h4 id="5-1-Excel下载"><a href="#5-1-Excel下载" class="headerlink" title="5.1 Excel下载"></a>5.1 Excel下载</h4><ul>
+<li>HTML<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;$&#123;pageContext.request.contextPath &#125;/DownLoadExcel&quot;&gt;下载&lt;/a&gt;</span><br></pre></td></tr></table></figure></li>
+<li>封装数据的Java类<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class User &#123;</span><br><span class="line"></span><br><span class="line">	@ExcelProperty(&quot;用户编号&quot;)</span><br><span class="line">	private Integer userId;</span><br><span class="line">	@ExcelProperty(&quot;用户名称&quot;)</span><br><span class="line">	private String userName;</span><br><span class="line">	@ExcelProperty(&quot;用户性别&quot;)</span><br><span class="line">	private String gender;</span><br><span class="line">	@ExcelProperty(&quot;创建时间&quot;)</span><br><span class="line">	private Date createTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>下载操作<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException &#123;</span><br><span class="line">	/**</span><br><span class="line">	 * EasyExcel下载步骤</span><br><span class="line">	 */</span><br><span class="line">	//设置响应头</span><br><span class="line">	response.setContentType(&quot;application/vnd.ms-excel&quot;);</span><br><span class="line">	response.setCharacterEncoding(&quot;utf-8&quot;);</span><br><span class="line">	//设置防止文件名中文乱码</span><br><span class="line">	String fileName = URLEncoder.encode(&quot;中文文件名&quot;,&quot;utf-8&quot;);</span><br><span class="line">	response.setHeader(&quot;Content-disposition&quot;, &quot;attachment;filename=&quot;+ fileName + &quot;.xlsx&quot;);</span><br><span class="line">	//构建写入到Excel中的数据(此数据可以从数据库中获取)</span><br><span class="line">	List&lt;User&gt; users = new ArrayList&lt;&gt;();</span><br><span class="line">	User user1 = new User(1001, &quot;李雷1&quot;, &quot;男&quot;, new Date());</span><br><span class="line">	User user2 = new User(1002, &quot;李雷2&quot;, &quot;男&quot;, new Date());</span><br><span class="line">	User user3 = new User(1003, &quot;李雷3&quot;, &quot;男&quot;, new Date());</span><br><span class="line">	users.add(user1);</span><br><span class="line">	users.add(user2);</span><br><span class="line">	users.add(user3);</span><br><span class="line">	EasyExcel.write(response.getOutputStream(),User.class).sheet(&quot;用户信息&quot;).doWrite(users);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="5-2-Excel上传"><a href="#5-2-Excel上传" class="headerlink" title="5.2 Excel上传"></a>5.2 Excel上传</h4><ul>
+<li>前端页面<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;$&#123;pageContext.request.contextPath &#125;/UploadExcelServlet&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">	&lt;input type=&quot;file&quot; name=&quot;file&quot;&gt;</span><br><span class="line">	&lt;input type=&quot;submit&quot; value=&quot;上传&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></li>
+<li>接收从Excel中获取到的数据<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class User &#123;</span><br><span class="line"></span><br><span class="line">	@ExcelProperty(&quot;用户编号&quot;)</span><br><span class="line">	private Integer userId;</span><br><span class="line">	@ExcelProperty(&quot;用户名称&quot;)</span><br><span class="line">	private String userName;</span><br><span class="line">	@ExcelProperty(&quot;用户性别&quot;)</span><br><span class="line">	private String gender;</span><br><span class="line">	@ExcelProperty(&quot;创建时间&quot;)</span><br><span class="line">	private Date createTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>上传操作<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;</span><br><span class="line">	</span><br><span class="line">	DiskFileItemFactory factory = new DiskFileItemFactory();</span><br><span class="line">	ServletFileUpload fileUpload = new ServletFileUpload(factory);</span><br><span class="line">	//设置单个文件为3M</span><br><span class="line">	fileUpload.setFileSizeMax(1024*1024*3);</span><br><span class="line">	//总文件大小为30M</span><br><span class="line">	fileUpload.setSizeMax(1024*1024*3*10);</span><br><span class="line">	</span><br><span class="line">	try &#123;</span><br><span class="line">		List&lt;FileItem&gt; list = fileUpload.parseRequest(req);</span><br><span class="line">		</span><br><span class="line">		for (FileItem fileItem : list) &#123;</span><br><span class="line">			</span><br><span class="line">			//判断是否为附件</span><br><span class="line">			if(!fileItem.isFormField()) &#123;</span><br><span class="line">				//是附件</span><br><span class="line">				InputStream inputStream = fileItem.getInputStream();</span><br><span class="line">				EasyExcel.read(inputStream,User.class,new AnalysisEventListener&lt;User&gt;() &#123;</span><br><span class="line"></span><br><span class="line">					@Override</span><br><span class="line">					public void doAfterAllAnalysed(AnalysisContext arg0) &#123;</span><br><span class="line">						System.out.println(&quot;Excel全部读完被执行......&quot;);</span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">					@Override</span><br><span class="line">					public void invoke(User data, AnalysisContext arg1) &#123;</span><br><span class="line">						//读完一行就执行一次(调用数据库进行插入操作)</span><br><span class="line">						System.out.println(&quot;解析一行: &quot;+data);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;).sheet().doRead();</span><br><span class="line">			&#125;else &#123;</span><br><span class="line">				//普通表单</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; catch (FileUploadException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">	//上传完成进行转发或者重定向</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">报表相关资料</span><br><span class="line"></span><br><span class="line">链接：https://pan.baidu.com/s/1yJe7rSXy8zKHHRuv8wAi3w </span><br><span class="line">提取码：esdo</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    <div>
+	
+		<div style="text-align:center;color: #ccc;font-size:14px; padding-top: 10px;">----------------本文结束<i class="fa fa-paw"></i>感谢您的阅读---------------</div>
+	
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/excel/" rel="tag"># excel</a>
+              <a href="/tags/java/" rel="tag"># java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/07/02/dubbo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" rel="prev" title="Dubbo快速入门">
+      <i class="fa fa-chevron-left"></i> Dubbo快速入门
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/07/02/elasticsearch%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8(%E5%A4%9C%E6%B3%8A3.6%E7%89%88%E6%9C%AC)/" rel="next" title="ELK笔记">
+      ELK笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-EasyExcel%E7%AE%80%E4%BB%8B"><span class="nav-text">第一章 EasyExcel简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-EasyExcel%E4%BD%BF%E7%94%A8"><span class="nav-text">第二章 EasyExcel使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC1%E8%8A%82-EasyExcel%E7%9B%B8%E5%85%B3%E4%BE%9D%E8%B5%96"><span class="nav-text">第1节 EasyExcel相关依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%A6%82%E6%9E%9C%E6%B7%BB%E5%8A%A0maven%E4%BE%9D%E8%B5%96"><span class="nav-text">1.1 如果添加maven依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E5%A6%82%E6%9E%9C%E6%B7%BB%E5%8A%A0jar%E5%8C%85"><span class="nav-text">1.2 如果添加jar包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC2%E8%8A%82-%E5%86%99Excel"><span class="nav-text">第2节 写Excel</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%86%99-%E6%96%B9%E5%BC%8F%E4%B8%80"><span class="nav-text">2.1 最简单的写(方式一)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%86%99-%E6%96%B9%E5%BC%8F%E4%BA%8C"><span class="nav-text">2.2 最简单的写(方式二)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E5%B0%86%E7%B1%BB%E4%B8%AD%E6%9F%90%E5%87%A0%E4%B8%AA%E5%AD%97%E6%AE%B5%E6%8E%92%E9%99%A4%E6%8E%89-%E4%B8%8D%E5%86%99%E5%85%A5Excel%E4%B8%AD"><span class="nav-text">2.3 将类中某几个字段排除掉,不写入Excel中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E5%8F%AA%E5%90%91%E8%A1%A8%E6%A0%BC%E4%B8%AD%E5%AF%BC%E5%87%BA%E6%8C%87%E5%AE%9A%E6%9F%90%E5%87%A0%E4%B8%AA%E5%AD%97%E6%AE%B5"><span class="nav-text">2.4 只向表格中导出指定某几个字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-%E6%8F%92%E5%85%A5%E6%8C%87%E5%AE%9A%E7%9A%84%E5%88%97"><span class="nav-text">2.5 插入指定的列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-%E5%A4%8D%E6%9D%82%E5%A4%B4%E6%95%B0%E6%8D%AE%E5%86%99%E5%85%A5"><span class="nav-text">2.6 复杂头数据写入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-%E9%87%8D%E5%A4%8D%E5%86%99%E5%88%B0Excel%E7%9A%84%E5%90%8C%E4%B8%80%E4%B8%AAsheet%E4%B8%AD"><span class="nav-text">2.7 重复写到Excel的同一个sheet中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-%E9%87%8D%E5%A4%8D%E7%9A%84%E5%86%99%E5%88%B0Excel%E7%9A%84%E4%B8%8D%E5%90%8Csheet%E4%B8%AD"><span class="nav-text">2.8 重复的写到Excel的不同sheet中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-9-%E6%97%A5%E6%9C%9F%E3%80%81%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-text">2.9 日期、数字类型格式化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-10-%E5%86%99%E5%85%A5%E5%9B%BE%E7%89%87%E5%88%B0Excel"><span class="nav-text">2.10 写入图片到Excel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-11-%E8%AE%BE%E7%BD%AE%E5%86%99%E5%85%A5Excel%E7%9A%84%E5%88%97%E5%AE%BD%E8%A1%8C%E9%AB%98%E8%AE%BE%E7%BD%AE"><span class="nav-text">2.11 设置写入Excel的列宽行高设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-12-%E9%80%9A%E8%BF%87%E6%B3%A8%E8%A7%A3%E5%BD%A2%E5%BC%8F%E8%AE%BE%E7%BD%AE%E5%86%99%E5%85%A5Excel%E7%9A%84%E6%A0%B7%E5%BC%8F"><span class="nav-text">2.12 通过注解形式设置写入Excel的样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-13-%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC"><span class="nav-text">2.13 合并单元格</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC3%E8%8A%82-%E8%AF%BBExcel"><span class="nav-text">第3节 读Excel</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E8%AF%BB%E5%8F%96Excel"><span class="nav-text">3.1 最简单的读取Excel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E6%A0%B9%E6%8D%AEExcel%E4%B8%AD%E6%8C%87%E5%AE%9A%E7%9A%84%E5%88%97%E5%90%8D%E6%88%96%E8%80%85%E5%88%97%E7%9A%84%E4%B8%8B%E6%A0%87%E8%AF%BB%E5%8F%96%E6%8C%87%E5%AE%9A%E5%88%97%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-text">3.2 根据Excel中指定的列名或者列的下标读取指定列的数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E6%A0%BC%E5%BC%8F%E5%8C%96Excel%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F-%E4%BE%8B%E5%A6%82%E6%97%B6%E9%97%B4"><span class="nav-text">3.3 格式化Excel中的数据格式(例如时间)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-%E8%AF%BB%E5%8F%96%E5%A4%9A%E4%B8%AA%E6%88%96%E8%80%85%E5%85%A8%E9%83%A8%E7%9A%84Sheet"><span class="nav-text">3.4 读取多个或者全部的Sheet</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC4%E8%8A%82-%E5%A1%AB%E5%85%85Excel"><span class="nav-text">第4节 填充Excel</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E7%AE%80%E5%8D%95%E5%A1%AB%E5%85%85"><span class="nav-text">4.1 简单填充</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E5%88%97%E8%A1%A8%E5%A1%AB%E5%85%85"><span class="nav-text">4.2 列表填充</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC5%E8%8A%82-Web%E6%93%8D%E4%BD%9C-Excel%E4%B8%8A%E4%BC%A0-x2F-%E4%B8%8B%E8%BD%BD"><span class="nav-text">第5节 Web操作(Excel上传&#x2F;下载)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-Excel%E4%B8%8B%E8%BD%BD"><span class="nav-text">5.1 Excel下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-Excel%E4%B8%8A%E4%BC%A0"><span class="nav-text">5.2 Excel上传</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="夜泊1990"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">夜泊1990</p>
+  <div class="site-description" itemprop="description">俱往矣,要多呲花,有多呲花</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夜泊1990</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">687k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10:25</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hd1611756908.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="123456作者: 夜泊1990企鹅: 1611756908鹅群: 948233848邮箱: hd1611756908@163.com博客: https:&#x2F;&#x2F;hd1611756908.github.io&#x2F;B 站: https:&#x2F;&#x2F;space.bilibili.com&#x2F;514155929&#x2F;    如果网址登陆不上去,可以发邮件或者企鹅号联系我   第一章 MySQL单点安装1此笔记讲解的是MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL服务器安装(Linux)">
+<meta property="og:url" content="https://hd1611756908.github.io/2024/07/02/MYSQL%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85(Linux)/index.html">
+<meta property="og:site_name" content="枫桥夜泊">
+<meta property="og:description" content="123456作者: 夜泊1990企鹅: 1611756908鹅群: 948233848邮箱: hd1611756908@163.com博客: https:&#x2F;&#x2F;hd1611756908.github.io&#x2F;B 站: https:&#x2F;&#x2F;space.bilibili.com&#x2F;514155929&#x2F;    如果网址登陆不上去,可以发邮件或者企鹅号联系我   第一章 MySQL单点安装1此笔记讲解的是MySQL">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/D36615E132DB496E8C0028A8BEC4E04C?method=download&shareKey=59bae1354ce5344496bf79a77e61cb63">
+<meta property="article:published_time" content="2024-07-02T13:37:11.969Z">
+<meta property="article:modified_time" content="2024-07-02T13:43:11.787Z">
+<meta property="article:author" content="夜泊1990">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Centos7">
+<meta property="article:tag" content="HA">
+<meta property="article:tag" content="MySQL集群">
+<meta property="article:tag" content="MySQL InnoDB Cluster">
+<meta property="article:tag" content="mysql shell">
+<meta property="article:tag" content="mysql router">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/D36615E132DB496E8C0028A8BEC4E04C?method=download&shareKey=59bae1354ce5344496bf79a77e61cb63">
+
+<link rel="canonical" href="https://hd1611756908.github.io/2024/07/02/MYSQL%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85(Linux)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MySQL服务器安装(Linux) | 枫桥夜泊</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="枫桥夜泊" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">枫桥夜泊</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每走一步,都是进步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://gitee.com/ukoko" class="github-corner" title="Follow me on GitEE" aria-label="Follow me on GitEE" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hd1611756908.github.io/2024/07/02/MYSQL%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AE%89%E8%A3%85(Linux)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="夜泊1990">
+      <meta itemprop="description" content="俱往矣,要多呲花,有多呲花">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫桥夜泊">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL服务器安装(Linux)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-07-02 21:37:11 / 修改时间：21:43:11" itemprop="dateCreated datePublished" datetime="2024-07-02T21:37:11+08:00">2024-07-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MYSQL/" itemprop="url" rel="index"><span itemprop="name">MYSQL</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>31k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>28 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">作者: 夜泊1990</span><br><span class="line">企鹅: 1611756908</span><br><span class="line">鹅群: 948233848</span><br><span class="line">邮箱: hd1611756908@163.com</span><br><span class="line">博客: https://hd1611756908.github.io/</span><br><span class="line">B 站: https://space.bilibili.com/514155929/</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>如果网址登陆不上去,可以发邮件或者企鹅号联系我</p>
+</blockquote>
+<hr>
+<h2 id="第一章-MySQL单点安装"><a href="#第一章-MySQL单点安装" class="headerlink" title="第一章 MySQL单点安装"></a>第一章 MySQL单点安装</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">此笔记讲解的是MySQL在Linux服务器(Centos7.x)上面的安装教程</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h3 id="第1节-系统需求"><a href="#第1节-系统需求" class="headerlink" title="第1节 系统需求"></a>第1节 系统需求</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">在Linux服务器上安装之前首先要对Linux服务器做一些设置</span><br><span class="line">1. 保证Linux服务器的防火墙是关闭的,或者是设置3306端口号可以穿透此机器的防火墙</span><br><span class="line">   1.1 查看防火墙状态        firewall-cmd --state    </span><br><span class="line">   1.2 关闭防火墙            service firewalld stop</span><br><span class="line">   1.3 禁用防火墙开机启动    systemctl disable firewalld.service</span><br><span class="line">    </span><br><span class="line">2. 保证此Linux服务器的网络命令比如ifconfig是可以使用的</span><br><span class="line">   2.1 安装 net-tools.x86_64  yum -y install net-tools.x86_64</span><br><span class="line">   </span><br><span class="line">3. 我这里要向此服务器上传文件,所以需要此服务器支持上传</span><br><span class="line">   3.1 安装 lrzsz             yum -y install lrzsz</span><br><span class="line">  </span><br><span class="line">  由于我使用的Centos7 mini版本所以很多命令都需要手动安装,如果你的操作系统有上面这些命令,可以略过.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="第2节-MYSQL下载"><a href="#第2节-MYSQL下载" class="headerlink" title="第2节 MYSQL下载"></a>第2节 MYSQL下载</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">对于程序员来下载软件尽量去官网,我们使用的软件大多都是开源免费的,如果在网络上随便下载,可能软件里被集成了其他的东西所以慎重.</span><br><span class="line"></span><br><span class="line">我这里下载的是MYSQL 8.0.23 版本(Linux通用安装版)</span><br><span class="line">通用安装版的好处是这个安装包在任意的Linux发行版的系统上都可以安装.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载地址<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.23-linux-glibc2.12-x86_64.tar.xz</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="第3节-MYSQL安装"><a href="#第3节-MYSQL安装" class="headerlink" title="第3节 MYSQL安装"></a>第3节 MYSQL安装</h3><ul>
+<li>官网安装文档<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://dev.mysql.com/doc/refman/8.0/en/binary-installation.html</span><br></pre></td></tr></table></figure></li>
+<li>安装前的准备<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 根据官网文档,如果本机以前安装过MYSQL需要卸载</span><br><span class="line">2. 如果没有安装过MYSQL,我的当前的版本Linux在/etc文件夹下也会有一个my.cnf的mysql配置文件,需要删掉(当前etc文件夹下关于mysql的都需要删掉)</span><br><span class="line">3. MYSQL安装需要依赖libaio库,所以需要安装这个库  yum install libaio</span><br><span class="line"></span><br><span class="line">注意:如果在Oracle Linux 8和Red Hat 8这两个系统上面安装MYSQL,需要安装ncurses-compat-libs库(yum install ncurses-compat-libs)</span><br></pre></td></tr></table></figure></li>
+<li>安装<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">注意: 严格按照下面步骤来,不允许任意修改安装路径以及文件的命名方式</span><br><span class="line"></span><br><span class="line">1. 创建MYSQL服务器运行的用户名和群组(MYSQL服务器运行需要自己的用户名和群组而非root)</span><br><span class="line"></span><br><span class="line">   shell&gt; groupadd mysql</span><br><span class="line">   shell&gt; useradd -r -g mysql -s /bin/false mysql</span><br><span class="line"></span><br><span class="line">2. 将下载的mysql压缩包复制到/usr/local文件夹下(Linux的默认安装路径(官网指定),有点像我们window的Program Files)</span><br><span class="line"></span><br><span class="line">   shell&gt; cp 源文件 目标目录</span><br><span class="line">   shell&gt; cp /home/hs/mysql-8.0.23-linux-glibc2.12-x86_64.tar.xz  /usr/local/</span><br><span class="line">   </span><br><span class="line">3. 将/usr/local下的mysql压缩包解压(压缩包后缀为xz)</span><br><span class="line">   </span><br><span class="line">   shell&gt; tar -xvJf mysql-8.0.23-linux-glibc2.12-x86_64.tar.xz</span><br><span class="line"></span><br><span class="line">4. 将解压之后的文件夹重命名为mysql(如果不修改可以试试,后面会不会报错,如果报错仔细读一下错误消息)</span><br><span class="line"></span><br><span class="line">   shell&gt; mv mysql-8.0.23-linux-glibc2.12-x86_64 mysql</span><br><span class="line"></span><br><span class="line">5. 在mysql文件夹下创建mysql-files文件夹</span><br><span class="line"></span><br><span class="line">   shell&gt; mkdir mysql-files</span><br><span class="line"></span><br><span class="line">6. 使用chown命令修改mysql-files文件的拥有者</span><br><span class="line"></span><br><span class="line">   shell&gt; chown mysql:mysql mysql-files</span><br><span class="line"></span><br><span class="line">7. 使用chmod命令修改mysql-files文件的权限</span><br><span class="line"></span><br><span class="line">   shell&gt; chmod 750 mysql-files</span><br><span class="line"></span><br><span class="line">8. 初始化安装(这里会生成一个初始化密码,记住)</span><br><span class="line"></span><br><span class="line">   shell&gt; bin/mysqld --initialize --user=mysql</span><br><span class="line"></span><br><span class="line">9. 生成SSL和RSA文件(提高通信安全)</span><br><span class="line"></span><br><span class="line">   shell&gt; bin/mysql_ssl_rsa_setup</span><br><span class="line"></span><br><span class="line">10. 启动mysql服务</span><br><span class="line"></span><br><span class="line">   shell&gt; bin/mysqld_safe --user=mysql &amp;</span><br><span class="line">   </span><br><span class="line">   MYSQL启动之后使用 ps -ef | grep mysql 命令查看是否启动成功,如果启动成功,可以使用mysql命令登陆</span><br><span class="line">   </span><br><span class="line">   shell&gt; bin/mysql -uroot -p   密码在第8步的初始化安装的时候生成</span><br><span class="line">   </span><br><span class="line">   使用命令登陆成功之后,MYSQL服务会提示你重新修改密码,修改命令为</span><br><span class="line">   mysql&gt; ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;root&#x27;;</span><br><span class="line"></span><br><span class="line">11. 设置开机启动(在Linux服务器重启时,MYSQL服务器会自动开机启动)</span><br><span class="line">   </span><br><span class="line">   11.1 第1步要将support-files文件夹下的mysql.server文件复制到/etc/init.d目录下</span><br><span class="line">        shell&gt; cp support-files/mysql.server /etc/init.d/mysql.server</span><br><span class="line">   11.2 第2步查看/etc/init.d/mysql.server文件有没有执行权限,如果没有需要添加执行权限</span><br><span class="line">        shell&gt; chmod +x /etc/init.d/mysql.server</span><br><span class="line">   11.3 将mysql启动脚本加入到服务列表</span><br><span class="line">        shell&gt; chkconfig --add mysql.server</span><br><span class="line">   11.4 查看是否mysql启动脚本是否添加成功</span><br><span class="line">        shell&gt; chkconfig --list</span><br><span class="line">        </span><br><span class="line">   如果显示类似于以下的列表为成功(有可能是英文)</span><br><span class="line">   </span><br><span class="line">       注：该输出结果只显示 SysV 服务，并不包含</span><br><span class="line">    原生 systemd 服务。SysV 配置数据</span><br><span class="line">    可能被原生 systemd 配置覆盖。 </span><br><span class="line">    </span><br><span class="line">          要列出 systemd 服务，请执行 &#x27;systemctl list-unit-files&#x27;。</span><br><span class="line">          查看在具体 target 启用的服务请执行</span><br><span class="line">          &#x27;systemctl list-dependencies [target]&#x27;。</span><br><span class="line">    </span><br><span class="line">    mysql.server   	0:关	1:关	2:开	3:开	4:开	5:开	6:关</span><br><span class="line">    netconsole     	0:关	1:关	2:关	3:关	4:关	5:关	6:关</span><br><span class="line">    network        	0:关	1:关	2:开	3:开	4:开	5:开	6:关</span><br><span class="line"></span><br><span class="line">   ------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">   注意:  mysql.server这一行的3,4,5如果为开(英文为ON),说明开机启动设置成功,否则使用命令设置</span><br><span class="line">   </span><br><span class="line">   shell&gt; chkconfig --level 345 mysql on</span><br><span class="line">   </span><br><span class="line">12. 重新启动Linux服务器验证是否成功</span><br><span class="line"></span><br><span class="line">   shell&gt; reboot</span><br><span class="line"></span><br><span class="line">13. 修改root用户的host值</span><br><span class="line"></span><br><span class="line">   root用户的的host值默认为localhost也就是说除了127.0.0.1和localhost可以访问当前数据库,其他的地址都不能访问,所以修改root用户的host为%,就可以任意主机访问了</span><br><span class="line">   </span><br><span class="line">14. 如果有必要可以设置MYSQL的环境变量,这样操作起来更方便(不重要)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="第二章-MYSQL集群安装-HA"><a href="#第二章-MYSQL集群安装-HA" class="headerlink" title="第二章 MYSQL集群安装(HA)"></a>第二章 MYSQL集群安装(HA)</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MYSQL的官网提供了HA(高可用)的解决方案</span><br><span class="line"> </span><br><span class="line">1. MySQL InnoDB Cluster集群(主要)</span><br><span class="line">2. MySQL NDB Cluster集群</span><br><span class="line"></span><br><span class="line">这里只介绍MySQL InnoDB Cluster集群的生产环境的安装方式,不阐述官网说的沙箱方式</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="第1节-系统需求-1"><a href="#第1节-系统需求-1" class="headerlink" title="第1节 系统需求"></a>第1节 系统需求</h3><ul>
+<li>MYSQL InnoDB Cluster协同原理图</li>
+</ul>
+<center>
+
+<img src="https://note.youdao.com/yws/api/personal/file/D36615E132DB496E8C0028A8BEC4E04C?method=download&shareKey=59bae1354ce5344496bf79a77e61cb63">
+
+</center>
+
+
+<ul>
+<li>协同原理图介绍<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">上图为官网提供的协同工作原理图,由图可以看出里面共有6个服务节点(每一个方块都可以看成一台服务器)</span><br><span class="line"></span><br><span class="line">1. Client App(MYSQL Connector),这个节点部署的是项目(非重点,和本章课程无关,可以看成是操作数据库的Java项目)</span><br><span class="line"></span><br><span class="line">2. MySQL Shell(Cluster Admin) MYSQL客户端,用于管理和配置集群(重要)</span><br><span class="line"></span><br><span class="line">3. MySQL Router节点,主要进行请求路由,将客户端发送过来的请求路由到不同的MYSQL服务器节点(重要)</span><br><span class="line"></span><br><span class="line">4. MySQL Servers里面有三个服务节点(官网指定服务的节点数最少3个最多9个),如果过多或造成性能下降</span><br><span class="line">   4.1 其中有一个主节点,两个从节点</span><br><span class="line">   4.2 主节点可以进行读写操作,从节点只能进行读取操作</span><br><span class="line">   4.3 集群设置默认为单主模式,当然还可以设置成多主模式</span><br></pre></td></tr></table></figure></li>
+<li>MySQL InnoDB Cluster安装前需求<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. 根据原理图我们需要准备5台Linux服务器</span><br><span class="line">   1.1 3个MySQL实例服务(3台)</span><br><span class="line">   1.2 MySQL Shell 服务(1台)</span><br><span class="line">   1.3 MySQL Router服务(1台)   //节约硬件资源,我这里将MySQL Shell和MySQL Router安装在一台服务器上面.</span><br><span class="line">2. 首先就是准备3台服务器,在每一台服务器上面都需要安装MySQL服务,安装方式看第一章MySQL单点安装</span><br><span class="line">   2.1 安装好MySQL服务器之后需要做一些设置</span><br><span class="line">      -&gt; 设置MySQL的root账户的初始化密码(保证三个机器的密码设置成相同的)</span><br><span class="line">      -&gt; 设置root账户的host为%,这样就可以任意其他机器都可以访问</span><br><span class="line">      -&gt; 设置Linux服务器的防火墙(关闭并且禁用)</span><br><span class="line">3. 禁用SELinux </span><br><span class="line">   3.1 查看当前SELinux的状态   命令为: sestatus</span><br><span class="line">   3.2 禁用方式,修改/etc/selinux/config里面的SELINUX=disabled即可</span><br><span class="line">   </span><br><span class="line">以上就是配置前的基础准备工作(重启一下服务器)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="第2节-MySQL-Shell介绍"><a href="#第2节-MySQL-Shell介绍" class="headerlink" title="第2节 MySQL Shell介绍"></a>第2节 MySQL Shell介绍</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MySQL集群的管理客户端,用户对MySQL集群的配置和管理</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载地址<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://dev.mysql.com/get/Downloads/MySQL-Shell/mysql-shell-8.0.23-linux-glibc2.12-x86-64bit.tar.gz</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="第3节-MySQL-Shell安装"><a href="#第3节-MySQL-Shell安装" class="headerlink" title="第3节 MySQL Shell安装"></a>第3节 MySQL Shell安装</h3><ul>
+<li>安装需求</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. MySQL Shell支持 JavaScript,Python,SQL脚本,在8.0.18版本之前必须保证当前的Linux操作系统安装了Python 2.7,如果没有需要自行安装</span><br><span class="line"></span><br><span class="line">2. 但是在MySQL Shell 8.0.18 版本之后开始使用Python3而不是Python2.7了,不过也不再需要操作系统集成了,因为他的安装包自身已经捆绑了Python3.7.7</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装&#x2F;启动步骤<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">1. 将下载的压缩包复制到/usr/local目录下(个人习惯将文件安装到这个目录)</span><br><span class="line"></span><br><span class="line">   shell&gt; cp /home/hs/mysql-shell-8.0.23-linux-glibc2.12-x86-64bit.tar.gz /usr/local/</span><br><span class="line">   </span><br><span class="line">2. 解压mysql-shell-8.0.23-linux-glibc2.12-x86-64bit.tar.gz</span><br><span class="line">   </span><br><span class="line">   shell&gt; tar -zxvf mysql-shell-8.0.23-linux-glibc2.12-x86-64bit.tar.gz</span><br><span class="line">   </span><br><span class="line">3. 将解压之后的mysql-shell-8.0.23-linux-glibc2.12-x86-64bit重命名为mysql-shell</span><br><span class="line"></span><br><span class="line">   shell&gt; mv mysql-shell-8.0.23-linux-glibc2.12-x86-64bit mysql-shell</span><br><span class="line">   </span><br><span class="line">4. 启动命令在mysql-shell/bin目录下</span><br><span class="line">   </span><br><span class="line">   4.1 启动:</span><br><span class="line">   </span><br><span class="line">    shell&gt; /usr/local/mysql-shell/bin/mysqlsh</span><br><span class="line">    </span><br><span class="line">   4.2 设置环境变量方便操作(将下面的这句话设置到/etc/profile文件最下面即可)</span><br><span class="line">    export PATH=/usr/local/mysql-shell/bin:$PATH</span><br><span class="line">    </span><br><span class="line">    设置完成环境变量需要使用命令让配置生效 source /etc/profile</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">以上 MySQL Shell安装完成</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h3 id="第4节-MySQL-Shell的常用命令-x2F-函数"><a href="#第4节-MySQL-Shell的常用命令-x2F-函数" class="headerlink" title="第4节 MySQL Shell的常用命令&#x2F;函数"></a>第4节 MySQL Shell的常用命令&#x2F;函数</h3><h4 id="4-1-连接MySQL服务器"><a href="#4-1-连接MySQL服务器" class="headerlink" title="4.1 连接MySQL服务器"></a>4.1 连接MySQL服务器</h4><ul>
+<li>方式一<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">1. 直接在命令行打mysqlsh命令进入mysql-shell交互模式(默认是JavaScript交互模式,可以切换模式)</span><br><span class="line">   shell&gt; mysqlsh</span><br><span class="line"></span><br><span class="line">2. 在交互模式中使用 shell.connect(&#x27;root@192.168.1.131:3306&#x27;) 连接MySQL服务器</span><br><span class="line">    </span><br><span class="line">    2.1 shell   : JS的核心对象</span><br><span class="line">    2.2 connect : 连接方法,参数是MySQL服务器的地址</span><br><span class="line">    </span><br><span class="line">    注意事项:</span><br><span class="line">        1. 如果MySQL服务器的主机防火墙没有关闭,连接失败</span><br><span class="line">        2. 如果MySQL的root用户的host没有设置成%,连接失败</span><br><span class="line">   </span><br><span class="line">    连接时会出现类似于下面的样式,因为连接MySQL需要输入MySQL服务器的密码</span><br><span class="line">   </span><br><span class="line">    MySQL  JS &gt; shell.connect(&#x27;root@192.168.1.131:3306&#x27;)</span><br><span class="line">    Creating a session to &#x27;root@192.168.1.131:3306&#x27;</span><br><span class="line">    Please provide the password for &#x27;root@192.168.1.131:3306&#x27;: ****</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   连接成功之后会出现类似于下面的交互模式,可以看出默认也是JS交互模式</span><br><span class="line">   </span><br><span class="line">    MySQL  192.168.1.131:3306 ssl  JS &gt;</span><br><span class="line"></span><br><span class="line">3. 切换交互模式</span><br><span class="line">    3.1 MySQL Shell提供了三种脚本语言的交互模式 JS、Pyhton、SQL</span><br><span class="line">    3.2 切换方式使用斜线加上语言所写</span><br><span class="line">    </span><br><span class="line">    eg: 切换到python模式</span><br><span class="line">    MySQL  192.168.1.131:3306 ssl  JS &gt; \py</span><br><span class="line">    </span><br><span class="line">    切换后</span><br><span class="line">    </span><br><span class="line">    Switching to Python mode...</span><br><span class="line">    MySQL  192.168.1.131:3306 ssl  Py &gt;</span><br><span class="line">    </span><br><span class="line">    -----------------------------------------------------------------------------</span><br><span class="line">    eg: 切换到SQL</span><br><span class="line">    MySQL  192.168.1.131:3306 ssl  Py &gt; \sql</span><br><span class="line">    </span><br><span class="line">    切换后</span><br><span class="line">    </span><br><span class="line">    Switching to SQL mode... Commands end with ;</span><br><span class="line">    MySQL  192.168.1.131:3306 ssl  SQL &gt;</span><br><span class="line">    </span><br><span class="line">    -----------------------------------------------------------------------------</span><br><span class="line">    eg: 切换到JS</span><br><span class="line">    MySQL  192.168.1.131:3306 ssl  SQL &gt; \js</span><br><span class="line">    </span><br><span class="line">    切换后</span><br><span class="line">    </span><br><span class="line">    Switching to JavaScript mode...</span><br><span class="line">    MySQL  192.168.1.131:3306 ssl  JS &gt;</span><br></pre></td></tr></table></figure></li>
+<li>方式二<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">采用直接连接的方式,如果想要连接那个MySQL实例直接使用命令而不是需要shell.connect()函数</span><br><span class="line"></span><br><span class="line">shell&gt; mysqlsh -h192.168.1.131 -P3306 -uroot -p</span><br><span class="line">Please provide the password for &#x27;root@192.168.1.131:3306&#x27;: ****(输入密码)</span><br><span class="line"></span><br><span class="line">就会直接连接上MySQL服务器</span><br><span class="line">MySQL  192.168.1.131:3306 ssl  JS &gt;</span><br></pre></td></tr></table></figure></li>
+<li>方式三</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MySQL  JS &gt; \c &quot;root@192.168.1.131:3306&quot; </span><br><span class="line"></span><br><span class="line">\c: c是连接的英文单词首字母,这样的方式也是可以的,会一种即可</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>退出交互模式<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">方式一</span><br><span class="line">MySQL  192.168.1.131:3306 ssl  JS &gt; \q</span><br><span class="line"></span><br><span class="line">方式二</span><br><span class="line">MySQL  192.168.1.131:3306 ssl  JS &gt; \quit</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h4 id="4-2-操作数据库-库、表、数据"><a href="#4-2-操作数据库-库、表、数据" class="headerlink" title="4.2 操作数据库(库、表、数据)"></a>4.2 操作数据库(库、表、数据)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">操作MySQL数据库需要进去SQL交互模式,进入之后正常使用SQL语言即可,这里不做介绍</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="4-3-检查MySQL服务器是否符合设置集群的标准"><a href="#4-3-检查MySQL服务器是否符合设置集群的标准" class="headerlink" title="4.3 检查MySQL服务器是否符合设置集群的标准"></a>4.3 检查MySQL服务器是否符合设置集群的标准</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我这里的校验在JS的交互模式下进行</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">MySQL  192.168.1.131:3306 ssl  JS &gt; dba.checkInstanceConfiguration()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">注意: 我这里是用root用户作为测试,在执行完上面的检查函数之后,会报我当前登陆的用户权限不够,需要添加权限.报错信息如下:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MySQL  192.168.1.100:3306 ssl  JS &gt; dba.checkInstanceConfiguration()</span><br><span class="line">Validating MySQL instance at localhost.localdomain:3306 for use in an InnoDB cluster...</span><br><span class="line">ERROR: The account &#x27;root&#x27;@&#x27;%&#x27; is missing privileges required to manage an InnoDB cluster:</span><br><span class="line">GRANT BACKUP_ADMIN, CLONE_ADMIN, PERSIST_RO_VARIABLES_ADMIN, REPLICATION_APPLIER, SYSTEM_VARIABLES_ADMIN ON *.* TO &#x27;root&#x27;@&#x27;%&#x27; WITH GRANT OPTION;</span><br><span class="line">For more information, see the online documentation.</span><br><span class="line">Dba.checkInstanceConfiguration: The account &#x27;root&#x27;@&#x27;%&#x27; is missing privileges required to manage an InnoDB cluster. (RuntimeError)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">上面就是报错信息,我这里为了测试方便直接就给当前用户所有操作权限</span><br><span class="line"></span><br><span class="line">命令为: 在mysql的交互模式下输入(不是在MySQL Shell模式)</span><br><span class="line">GRANT ALL ON *.* TO &#x27;root&#x27;@&#x27;%&#x27; WITH GRANT OPTION;</span><br><span class="line"></span><br><span class="line">执行完上面的命令之后,需要刷新MySQL服务的权限,可以重启MySQL服务器,或者是使用MySQL命令刷新</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">权限设置完成之后,重新执行MySQL服务器检查命令</span><br><span class="line"></span><br><span class="line">MySQL  192.168.1.100:3306 ssl  JS &gt; dba.checkInstanceConfiguration()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果MySQL服务器满足要求会打印出类似于下面这样的文字</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Validating MySQL instance at node1:3306 for use in an InnoDB cluster...</span><br><span class="line"></span><br><span class="line">This instance reports its own address as node1:3306</span><br><span class="line">Clients and other cluster members will communicate with it through this address by default. If this is not correct, the report_host MySQL system variable should be changed.</span><br><span class="line"></span><br><span class="line">Checking whether existing tables comply with Group Replication requirements...</span><br><span class="line">No incompatible tables detected</span><br><span class="line"></span><br><span class="line">Checking instance configuration...</span><br><span class="line">Instance configuration is compatible with InnoDB cluster</span><br><span class="line"></span><br><span class="line">The instance &#x27;node1:3306&#x27; is valid to be used in an InnoDB cluster.</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;status&quot;: &quot;ok&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果MySQL服务器不满足要求会打印出类似于下面这样的文字</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">MySQL  192.168.1.100:3306 ssl  JS &gt; dba.checkInstanceConfiguration()</span><br><span class="line">Validating MySQL instance at localhost.localdomain:3306 for use in an InnoDB cluster...</span><br><span class="line"></span><br><span class="line">This instance reports its own address as localhost.localdomain:3306</span><br><span class="line">Clients and other cluster members will communicate with it through this address by default. If this is not correct, the report_host MySQL system variable should be changed.</span><br><span class="line"></span><br><span class="line">Checking whether existing tables comply with Group Replication requirements...</span><br><span class="line">No incompatible tables detected</span><br><span class="line"></span><br><span class="line">Checking instance configuration...</span><br><span class="line"></span><br><span class="line">NOTE: Some configuration options need to be fixed:</span><br><span class="line">+----------------------------------------+---------------+----------------+--------------------------------------------------+</span><br><span class="line">| Variable                               | Current Value | Required Value | Note                                             |</span><br><span class="line">+----------------------------------------+---------------+----------------+--------------------------------------------------+</span><br><span class="line">| binlog_transaction_dependency_tracking | COMMIT_ORDER  | WRITESET       | Update the server variable                       |</span><br><span class="line">| enforce_gtid_consistency               | OFF           | ON             | Update read-only variable and restart the server |</span><br><span class="line">| gtid_mode                              | OFF           | ON             | Update read-only variable and restart the server |</span><br><span class="line">| server_id                              | 1             | &lt;unique ID&gt;    | Update read-only variable and restart the server |</span><br><span class="line">| slave_parallel_type                    | DATABASE      | LOGICAL_CLOCK  | Update the server variable                       |</span><br><span class="line">| slave_preserve_commit_order            | OFF           | ON             | Update the server variable                       |</span><br><span class="line">+----------------------------------------+---------------+----------------+--------------------------------------------------+</span><br><span class="line"></span><br><span class="line">Some variables need to be changed, but cannot be done dynamically on the server.</span><br><span class="line">NOTE: Please use the dba.configureInstance() command to repair these issues.</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;config_errors&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;action&quot;: &quot;server_update&quot;, </span><br><span class="line">            &quot;current&quot;: &quot;COMMIT_ORDER&quot;, </span><br><span class="line">            &quot;option&quot;: &quot;binlog_transaction_dependency_tracking&quot;, </span><br><span class="line">            &quot;required&quot;: &quot;WRITESET&quot;</span><br><span class="line">        &#125;, </span><br><span class="line">        &#123;</span><br><span class="line">            &quot;action&quot;: &quot;server_update+restart&quot;, </span><br><span class="line">            &quot;current&quot;: &quot;OFF&quot;, </span><br><span class="line">            &quot;option&quot;: &quot;enforce_gtid_consistency&quot;, </span><br><span class="line">            &quot;required&quot;: &quot;ON&quot;</span><br><span class="line">        &#125;, </span><br><span class="line">        &#123;</span><br><span class="line">            &quot;action&quot;: &quot;server_update+restart&quot;, </span><br><span class="line">            &quot;current&quot;: &quot;OFF&quot;, </span><br><span class="line">            &quot;option&quot;: &quot;gtid_mode&quot;, </span><br><span class="line">            &quot;required&quot;: &quot;ON&quot;</span><br><span class="line">        &#125;, </span><br><span class="line">        &#123;</span><br><span class="line">            &quot;action&quot;: &quot;server_update+restart&quot;, </span><br><span class="line">            &quot;current&quot;: &quot;1&quot;, </span><br><span class="line">            &quot;option&quot;: &quot;server_id&quot;, </span><br><span class="line">            &quot;required&quot;: &quot;&lt;unique ID&gt;&quot;</span><br><span class="line">        &#125;, </span><br><span class="line">        &#123;</span><br><span class="line">            &quot;action&quot;: &quot;server_update&quot;, </span><br><span class="line">            &quot;current&quot;: &quot;DATABASE&quot;, </span><br><span class="line">            &quot;option&quot;: &quot;slave_parallel_type&quot;, </span><br><span class="line">            &quot;required&quot;: &quot;LOGICAL_CLOCK&quot;</span><br><span class="line">        &#125;, </span><br><span class="line">        &#123;</span><br><span class="line">            &quot;action&quot;: &quot;server_update&quot;, </span><br><span class="line">            &quot;current&quot;: &quot;OFF&quot;, </span><br><span class="line">            &quot;option&quot;: &quot;slave_preserve_commit_order&quot;, </span><br><span class="line">            &quot;required&quot;: &quot;ON&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ], </span><br><span class="line">    &quot;status&quot;: &quot;error&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">表格里面的配置提示告诉用户不满足的配置项,需要我们配置这些信息在my.cnf配置文件中</span><br><span class="line">表格里显示的配置项根据不同版本的MySQL服务器也不尽相同.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">my.cnf内容(我这里将my.cnf放到了Linux服务器的/etc文件夹下,然后重启MySQL服务)</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"># MySQL集群的唯一标志,每一个MySQL实例都不相同(每个MySQL实例的server_id都不相同,数字自定义)</span><br><span class="line">server_id=300</span><br><span class="line"># 主从复制并行化开启,相比于MySQL5.7来说性能显著提升</span><br><span class="line">binlog_transaction_dependency_tracking=WRITESET</span><br><span class="line"># 开启全局事务ID,保证主从数据库数据一致性</span><br><span class="line">enforce_gtid_consistency=ON</span><br><span class="line"># 开启全局事务ID</span><br><span class="line">gtid_mode=ON</span><br><span class="line"># 从库并行复制(基于锁的并发控制)</span><br><span class="line">slave_parallel_type=LOGICAL_CLOCK</span><br><span class="line"># 保证在从库事务的执行顺序与主库相同</span><br><span class="line">slave_preserve_commit_order=ON</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">--------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">修改完以上的配置,重启MySQL服务器,然后再MySQL Shell上面执行检查方法</span><br><span class="line"></span><br><span class="line">MySQL  192.168.1.100:3306 ssl  JS &gt; dba.checkInstanceConfiguration()</span><br><span class="line"></span><br><span class="line">这时候应该就会出现当前MySQL服务节点已经满足了配置集群的要求,这是其中一种解决MySQL实例不满足集群的方式.另一种方式看下面↓↓↓↓↓↓↓↓↓↓↓</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="4-4-将不满足配置集群的MySQL实例配置成满足的"><a href="#4-4-将不满足配置集群的MySQL实例配置成满足的" class="headerlink" title="4.4 将不满足配置集群的MySQL实例配置成满足的"></a>4.4 将不满足配置集群的MySQL实例配置成满足的</h4><ul>
+<li>方式一<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">方式一就是上面介绍的那种方式,手动的在my.cnf中修改配置,让其MySQL实例满足集群要求.</span><br></pre></td></tr></table></figure></li>
+<li>方式二<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">MySQL官网提供了一个函数,可以直接调用函数修改MySQL实例的默认配置,让其满足集群配置要求.</span><br><span class="line"></span><br><span class="line">函数为:dba.configureInstance();</span><br><span class="line"></span><br><span class="line">//在MySQL Shell交互模式输入此函数,在执行过程中会让我们输入2次y进行确认,然后就是等待MySQL服务器重启.</span><br><span class="line"></span><br><span class="line">MySQL  192.168.1.100:3306 ssl  JS &gt; dba.configureInstance()</span><br><span class="line">Configuring MySQL instance at localhost.localdomain:3306 for use in an InnoDB cluster...</span><br><span class="line"></span><br><span class="line">This instance reports its own address as localhost.localdomain:3306</span><br><span class="line">Clients and other cluster members will communicate with it through this address by default. If this is not correct, the report_host MySQL system variable should be changed.</span><br><span class="line"></span><br><span class="line">applierWorkerThreads will be set to the default value of 4.</span><br><span class="line"></span><br><span class="line">NOTE: Some configuration options need to be fixed:</span><br><span class="line">+----------------------------------------+---------------+----------------+--------------------------------------------------+</span><br><span class="line">| Variable                               | Current Value | Required Value | Note                                             |</span><br><span class="line">+----------------------------------------+---------------+----------------+--------------------------------------------------+</span><br><span class="line">| binlog_transaction_dependency_tracking | COMMIT_ORDER  | WRITESET       | Update the server variable                       |</span><br><span class="line">| enforce_gtid_consistency               | OFF           | ON             | Update read-only variable and restart the server |</span><br><span class="line">| gtid_mode                              | OFF           | ON             | Update read-only variable and restart the server |</span><br><span class="line">| server_id                              | 1             | &lt;unique ID&gt;    | Update read-only variable and restart the server |</span><br><span class="line">| slave_parallel_type                    | DATABASE      | LOGICAL_CLOCK  | Update the server variable                       |</span><br><span class="line">| slave_preserve_commit_order            | OFF           | ON             | Update the server variable                       |</span><br><span class="line">+----------------------------------------+---------------+----------------+--------------------------------------------------+</span><br><span class="line"></span><br><span class="line">Some variables need to be changed, but cannot be done dynamically on the server.</span><br><span class="line">Do you want to perform the required configuration changes? [y/n]: y</span><br><span class="line">Do you want to restart the instance after configuring it? [y/n]: y</span><br><span class="line">Configuring instance...</span><br><span class="line">The instance &#x27;localhost.localdomain:3306&#x27; was configured to be used in an InnoDB cluster.</span><br><span class="line">Restarting MySQL...</span><br><span class="line">NOTE: MySQL server at localhost.localdomain:3306 was restarted.</span><br><span class="line"></span><br><span class="line">待MySQL服务器重启完成之后,在MySQL Shell中检查当前的MySQL服务器是否符合MySQL集群的要求就会发现可以满足了,这种方式比较简单,方便.</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h4 id="4-5-创建集群"><a href="#4-5-创建集群" class="headerlink" title="4.5 创建集群"></a>4.5 创建集群</h4><h5 id="4-5-1-创建集群前准备"><a href="#4-5-1-创建集群前准备" class="headerlink" title="4.5.1 创建集群前准备"></a>4.5.1 创建集群前准备</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 现在保证有三台安装了MySQL服务器节点</span><br><span class="line">2. 有一台安装了MySQL Shell管理客户端的节点</span><br><span class="line">3. 服务器都关闭了防火墙,禁用了SELinux</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>为了方便主机进行连接,我们将这4台主机的IP地址映射成主机名字</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>主机名称</th>
+<th>主机地址</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>node1</td>
+<td>192.168.1.100(IP地址为自己的主机地址)</td>
+<td>MySQL</td>
+</tr>
+<tr>
+<td>node2</td>
+<td>192.168.1.101(IP地址为自己的主机地址)</td>
+<td>MySQL</td>
+</tr>
+<tr>
+<td>node3</td>
+<td>192.168.1.102(IP地址为自己的主机地址)</td>
+<td>MySQL</td>
+</tr>
+<tr>
+<td>node4</td>
+<td>192.168.1.103(IP地址为自己的主机地址)</td>
+<td>MySQL Shell、MySQL Router</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>设置hosts(&#x2F;etc&#x2F;hosts)</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.103 node1</span><br><span class="line">192.168.1.119 node2</span><br><span class="line">192.168.1.106 node3</span><br><span class="line">192.168.1.117 node4</span><br><span class="line"></span><br><span class="line">主机IP地址一定要做名称映射否则可能出现创建集群失败,主机实例添加不到集群中.</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>设置好hosts之后使用MySQL Shell进行登陆就不需要在使用IP地址</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">直接使用node1代替IP地址,方便记忆,也是官网推荐方式</span><br><span class="line"></span><br><span class="line">MySQL  JS &gt; shell.connect(&quot;root@node1:3306&quot;)</span><br><span class="line">Creating a session to &#x27;root@node1:3306&#x27;</span><br><span class="line">Please provide the password for &#x27;root@node1:3306&#x27;: ****</span><br><span class="line">Fetching schema names for autocompletion... Press ^C to stop.</span><br><span class="line">Your MySQL connection id is 10</span><br><span class="line">Server version: 8.0.23 MySQL Community Server - GPL</span><br><span class="line">No default schema selected; type \use &lt;schema&gt; to set one.</span><br><span class="line">&lt;ClassicSession:root@node1:3306&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">连接成功之后,IP地址也会变成主机名称</span><br><span class="line">MySQL  node1:3306 ssl  JS &gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-5-2-集群创建操作"><a href="#4-5-2-集群创建操作" class="headerlink" title="4.5.2 集群创建操作"></a>4.5.2 集群创建操作</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">1. 使用MySQL Shell管理客户端连接任意一台MySQL服务器,作为集群的主节点,在这个节点上执行创建命令</span><br><span class="line">    </span><br><span class="line">    # 使用dba.createCluster(&#x27;myCluter&#x27;)创建一个名字为myCluster的集群,并且声明一个变量,将这个函数的返回值赋给cluster变量</span><br><span class="line">    </span><br><span class="line">    MySQL  node1:3306 ssl  JS &gt; var cluster = dba.createCluster(&#x27;myCluter&#x27;)</span><br><span class="line">    A new InnoDB cluster will be created on instance &#x27;node1:3306&#x27;.</span><br><span class="line">    </span><br><span class="line">    Validating instance configuration at node1:3306...</span><br><span class="line">    </span><br><span class="line">    This instance reports its own address as node1:3306</span><br><span class="line">    </span><br><span class="line">    Instance configuration is suitable.</span><br><span class="line">    NOTE: Group Replication will communicate with other members using &#x27;node1:33061&#x27;. Use the localAddress option to override.</span><br><span class="line">    </span><br><span class="line">    Creating InnoDB cluster &#x27;myCluter&#x27; on &#x27;node1:3306&#x27;...</span><br><span class="line">    </span><br><span class="line">    Adding Seed Instance...</span><br><span class="line">    Cluster successfully created. Use Cluster.addInstance() to add MySQL instances.</span><br><span class="line">    At least 3 instances are needed for the cluster to be able to withstand up to</span><br><span class="line">    one server failure.</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    显示上面的信息说明创建集群成功,并将此节点创建为主节点(此节点可读写)</span><br><span class="line">    </span><br><span class="line">2. 通过 MySQL Shell查看当前集群的状态(当前集群只有一个MySQL节点)</span><br><span class="line">   </span><br><span class="line">   # cluster这个是上面执行创建集群函数声明的那个变量</span><br><span class="line">   # status() 查看当前集群状态的函数,是MySQL集群提供的简单的监控函数之一</span><br><span class="line">   </span><br><span class="line">    MySQL  node1:3306 ssl  JS &gt; cluster.status()</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;clusterName&quot;: &quot;myCluter&quot;,    # 集群名称</span><br><span class="line">        &quot;defaultReplicaSet&quot;: &#123;</span><br><span class="line">            &quot;name&quot;: &quot;default&quot;, </span><br><span class="line">            &quot;primary&quot;: &quot;node1:3306&quot;,  # 主实例地址</span><br><span class="line">            &quot;ssl&quot;: &quot;REQUIRED&quot;,       </span><br><span class="line">            &quot;status&quot;: &quot;OK_NO_TOLERANCE&quot;,    # 当前一个MySQL实例,所以当前集群高可用差,但是运行正常</span><br><span class="line">            &quot;statusText&quot;: &quot;Cluster is NOT tolerant to any failures.&quot;,  # 当前集群只有一个实例,所以这句话的意思是当前集群不能容忍任何失败</span><br><span class="line">            &quot;topology&quot;: &#123;</span><br><span class="line">                &quot;node1:3306&quot;: &#123;</span><br><span class="line">                    &quot;address&quot;: &quot;node1:3306&quot;,  # 当前MySQL实例地址</span><br><span class="line">                    &quot;mode&quot;: &quot;R/W&quot;,            # 可读写</span><br><span class="line">                    &quot;readReplicas&quot;: &#123;&#125;, </span><br><span class="line">                    &quot;replicationLag&quot;: null, </span><br><span class="line">                    &quot;role&quot;: &quot;HA&quot;,             # HA(Highly Available)代表这是高可用的设计</span><br><span class="line">                    &quot;status&quot;: &quot;ONLINE&quot;,       # 运行正常</span><br><span class="line">                    &quot;version&quot;: &quot;8.0.23&quot;       # 当前MySQL实例版本</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, </span><br><span class="line">            &quot;topologyMode&quot;: &quot;Single-Primary&quot;  # 单主模式(后期可通过命令转换成多主)</span><br><span class="line">        &#125;, </span><br><span class="line">        &quot;groupInformationSourceMember&quot;: &quot;node1:3306&quot;  # 当前组的成员(MySQL的数据同步,采用的是组复制)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="4-6-获取集群"><a href="#4-6-获取集群" class="headerlink" title="4.6 获取集群"></a>4.6 获取集群</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">如果在执行创建集群的命令(var cluster = dba.createCluster(&#x27;myCluter&#x27;))没有声明变量</span><br><span class="line"></span><br><span class="line">可以执行此函数(var m = dba.getCluster())重新获取当前集群的JS对象</span><br><span class="line"></span><br><span class="line">在使用监控函数(m.status())查看当前集群的状态</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="4-7-向集群中添加子节点"><a href="#4-7-向集群中添加子节点" class="headerlink" title="4.7 向集群中添加子节点"></a>4.7 向集群中添加子节点</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># cluster: 创建集群声明的JS变量名称</span><br><span class="line"># addInstance(): 向集群中添加MySQL实例的地址</span><br><span class="line"></span><br><span class="line">MySQL  node1:3306 ssl  JS &gt; cluster.addInstance(&quot;root@node2:3306&quot;)</span><br><span class="line"></span><br><span class="line">NOTE: The target instance &#x27;node2:3306&#x27; has not been pre-provisioned (GTID set is empty). The Shell is unable to decide whether incremental state recovery can correctly provision it.</span><br><span class="line">The safest and most convenient way to provision a new instance is through automatic clone provisioning, which will completely overwrite the state of &#x27;node2:3306&#x27; with a physical snapshot from an existing cluster member. To use this method by default, set the &#x27;recoveryMethod&#x27; option to &#x27;clone&#x27;.</span><br><span class="line"></span><br><span class="line">The incremental state recovery may be safely used if you are sure all updates ever executed in the cluster were done with GTIDs enabled, there are no purged transactions and the new instance contains the same GTID set as the cluster or a subset of it. To use this method by default, set the &#x27;recoveryMethod&#x27; option to &#x27;incremental&#x27;.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Please select a recovery method [C]lone/[I]ncremental recovery/[A]bort (default Clone): C</span><br><span class="line">Validating instance configuration at node2:3306...</span><br><span class="line"></span><br><span class="line">This instance reports its own address as node2:3306</span><br><span class="line"></span><br><span class="line">Instance configuration is suitable.</span><br><span class="line">NOTE: Group Replication will communicate with other members using &#x27;node2:33061&#x27;. Use the localAddress option to override.</span><br><span class="line"></span><br><span class="line">A new instance will be added to the InnoDB cluster. Depending on the amount of</span><br><span class="line">data on the cluster this might take from a few seconds to several hours.</span><br><span class="line"></span><br><span class="line">Adding instance to the cluster...</span><br><span class="line"></span><br><span class="line">NOTE: User &#x27;mysql_innodb_cluster_200&#x27;@&#x27;%&#x27; already existed at instance &#x27;node1:3306&#x27;. It will be deleted and created again with a new password.</span><br><span class="line">Monitoring recovery process of the new cluster member. Press ^C to stop monitoring and let it continue in background.</span><br><span class="line">Clone based state recovery is now in progress.</span><br><span class="line"></span><br><span class="line">NOTE: A server restart is expected to happen as part of the clone process. If the</span><br><span class="line">server does not support the RESTART command or does not come back after a</span><br><span class="line">while, you may need to manually start it back.</span><br><span class="line"></span><br><span class="line">* Waiting for clone to finish...</span><br><span class="line">NOTE: node2:3306 is being cloned from node1:3306</span><br><span class="line">** Stage DROP DATA: Completed</span><br><span class="line">** Clone Transfer  </span><br><span class="line">    FILE COPY  ============================================================    0%  In Progress</span><br><span class="line">    PAGE COPY  ============================================================    0%  Not Started</span><br><span class="line">    REDO COPY  ============================================================    0%  Not Started</span><br><span class="line"></span><br><span class="line">NOTE: node2:3306 is shutting down...</span><br><span class="line"></span><br><span class="line">* Waiting for server restart... ready</span><br><span class="line">* node2:3306 has restarted, waiting for clone to finish...</span><br><span class="line">** Stage RESTART: Completed</span><br><span class="line">* Clone process has finished: 72.20 MB transferred in about 1 second (~72.20 MB/s)</span><br><span class="line"></span><br><span class="line">State recovery already finished for &#x27;node2:3306&#x27;</span><br><span class="line"></span><br><span class="line">The instance &#x27;node2:3306&#x27; was successfully added to the cluster.</span><br><span class="line"></span><br><span class="line">出现上面的信息,说明添加成功  这时候使用监控查看状态</span><br><span class="line"></span><br><span class="line">MySQL  node1:3306 ssl  JS &gt; cluster.status()</span><br><span class="line">&#123;</span><br><span class="line">    &quot;clusterName&quot;: &quot;myCluter&quot;, </span><br><span class="line">    &quot;defaultReplicaSet&quot;: &#123;</span><br><span class="line">        &quot;name&quot;: &quot;default&quot;, </span><br><span class="line">        &quot;primary&quot;: &quot;node1:3306&quot;, </span><br><span class="line">        &quot;ssl&quot;: &quot;REQUIRED&quot;, </span><br><span class="line">        &quot;status&quot;: &quot;OK_NO_TOLERANCE&quot;, </span><br><span class="line">        &quot;statusText&quot;: &quot;Cluster is NOT tolerant to any failures.&quot;, </span><br><span class="line">        &quot;topology&quot;: &#123;</span><br><span class="line">            &quot;node1:3306&quot;: &#123;</span><br><span class="line">                &quot;address&quot;: &quot;node1:3306&quot;, </span><br><span class="line">                &quot;mode&quot;: &quot;R/W&quot;,           # 读写</span><br><span class="line">                &quot;readReplicas&quot;: &#123;&#125;, </span><br><span class="line">                &quot;replicationLag&quot;: null, </span><br><span class="line">                &quot;role&quot;: &quot;HA&quot;, </span><br><span class="line">                &quot;status&quot;: &quot;ONLINE&quot;, </span><br><span class="line">                &quot;version&quot;: &quot;8.0.23&quot;</span><br><span class="line">            &#125;, </span><br><span class="line">            &quot;node2:3306&quot;: &#123;</span><br><span class="line">                &quot;address&quot;: &quot;node2:3306&quot;, </span><br><span class="line">                &quot;mode&quot;: &quot;R/O&quot;,             # 只读</span><br><span class="line">                &quot;readReplicas&quot;: &#123;&#125;, </span><br><span class="line">                &quot;replicationLag&quot;: null, </span><br><span class="line">                &quot;role&quot;: &quot;HA&quot;, </span><br><span class="line">                &quot;status&quot;: &quot;ONLINE&quot;, </span><br><span class="line">                &quot;version&quot;: &quot;8.0.23&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, </span><br><span class="line">        &quot;topologyMode&quot;: &quot;Single-Primary&quot;</span><br><span class="line">    &#125;, </span><br><span class="line">    &quot;groupInformationSourceMember&quot;: &quot;node1:3306&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">下面可以将第三台也按照第二台的方式添加进集群中,构成了一个高可用的MySQL集群,然后再查看状态</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MySQL  node1:3306 ssl  JS &gt; cluster.status()</span><br><span class="line">&#123;</span><br><span class="line">    &quot;clusterName&quot;: &quot;myCluter&quot;, </span><br><span class="line">    &quot;defaultReplicaSet&quot;: &#123;</span><br><span class="line">        &quot;name&quot;: &quot;default&quot;, </span><br><span class="line">        &quot;primary&quot;: &quot;node2:3306&quot;, </span><br><span class="line">        &quot;ssl&quot;: &quot;REQUIRED&quot;, </span><br><span class="line">        &quot;status&quot;: &quot;OK&quot;, </span><br><span class="line">        &quot;statusText&quot;: &quot;Cluster is ONLINE and can tolerate up to ONE failure.&quot;, </span><br><span class="line">        &quot;topology&quot;: &#123;</span><br><span class="line">            &quot;node1:3306&quot;: &#123;</span><br><span class="line">                &quot;address&quot;: &quot;node1:3306&quot;, </span><br><span class="line">                &quot;mode&quot;: &quot;R/O&quot;, </span><br><span class="line">                &quot;readReplicas&quot;: &#123;&#125;, </span><br><span class="line">                &quot;replicationLag&quot;: null, </span><br><span class="line">                &quot;role&quot;: &quot;HA&quot;, </span><br><span class="line">                &quot;status&quot;: &quot;ONLINE&quot;, </span><br><span class="line">                &quot;version&quot;: &quot;8.0.23&quot;</span><br><span class="line">            &#125;, </span><br><span class="line">            &quot;node2:3306&quot;: &#123;</span><br><span class="line">                &quot;address&quot;: &quot;node2:3306&quot;, </span><br><span class="line">                &quot;mode&quot;: &quot;R/W&quot;, </span><br><span class="line">                &quot;readReplicas&quot;: &#123;&#125;, </span><br><span class="line">                &quot;replicationLag&quot;: null, </span><br><span class="line">                &quot;role&quot;: &quot;HA&quot;, </span><br><span class="line">                &quot;status&quot;: &quot;ONLINE&quot;, </span><br><span class="line">                &quot;version&quot;: &quot;8.0.23&quot;</span><br><span class="line">            &#125;, </span><br><span class="line">            &quot;node3:3306&quot;: &#123;</span><br><span class="line">                &quot;address&quot;: &quot;node3:3306&quot;, </span><br><span class="line">                &quot;mode&quot;: &quot;R/O&quot;, </span><br><span class="line">                &quot;readReplicas&quot;: &#123;&#125;, </span><br><span class="line">                &quot;replicationLag&quot;: null, </span><br><span class="line">                &quot;role&quot;: &quot;HA&quot;, </span><br><span class="line">                &quot;status&quot;: &quot;ONLINE&quot;, </span><br><span class="line">                &quot;version&quot;: &quot;8.0.23&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, </span><br><span class="line">        &quot;topologyMode&quot;: &quot;Single-Primary&quot;</span><br><span class="line">    &#125;, </span><br><span class="line">    &quot;groupInformationSourceMember&quot;: &quot;node2:3306&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-8-如果MySQL集群节点出现故障"><a href="#4-8-如果MySQL集群节点出现故障" class="headerlink" title="4.8 如果MySQL集群节点出现故障"></a>4.8 如果MySQL集群节点出现故障</h4><h5 id="4-8-1-全部出现故障"><a href="#4-8-1-全部出现故障" class="headerlink" title="4.8.1 全部出现故障"></a>4.8.1 全部出现故障</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">如果MySQL服务节点全部挂掉,那么在重新启动MySQL服务器之后,集群不会自动恢复,恢复步骤</span><br><span class="line"></span><br><span class="line">1. 将挂掉的MySQL实例全部启动</span><br><span class="line">2. 使用MySQL Shell连接任意一个MySQL实例</span><br><span class="line">3. 使用dba.rebootClusterFromCompleteOutage()函数恢复集群</span><br><span class="line"></span><br><span class="line">    MySQL  node2:3306 ssl  JS &gt; dba.rebootClusterFromCompleteOutage()</span><br><span class="line">    Restoring the default cluster from complete outage...</span><br><span class="line">    </span><br><span class="line">    The instance &#x27;node1:3306&#x27; was part of the cluster configuration.</span><br><span class="line">    Would you like to rejoin it to the cluster? [y/N]: y    # 想重新加入集群吗(y)</span><br><span class="line">    </span><br><span class="line">    node2:3306 was restored.</span><br><span class="line">    Rejoining &#x27;node1:3306&#x27; to the cluster.</span><br><span class="line">    Rejoining instance &#x27;node1:3306&#x27; to cluster &#x27;myCluter&#x27;...</span><br><span class="line">    The instance &#x27;node1:3306&#x27; was successfully rejoined to the cluster.</span><br><span class="line">    </span><br><span class="line">    The cluster was successfully rebooted.</span><br><span class="line">    </span><br><span class="line">    &lt;Cluster:myCluter&gt;</span><br><span class="line"></span><br><span class="line">    显示上面的信息就说明恢复成功了这是在交互模式下重新获取集群对象</span><br><span class="line">    </span><br><span class="line">    # 获取集群对象</span><br><span class="line">    MySQL  node2:3306 ssl  JS &gt; var cluster = dba.getCluster();</span><br><span class="line">    # 查看集群状态</span><br><span class="line">    MySQL  node2:3306 ssl  JS &gt; cluster.status();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="4-8-2-某一台出现故障"><a href="#4-8-2-某一台出现故障" class="headerlink" title="4.8.2 某一台出现故障"></a>4.8.2 某一台出现故障</h5><ul>
+<li>主节点出现故障<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果主节点出现故障,那么从节点会升级成主节点,待挂掉的主节点重新启动之后会自动连接进集群中,在单主中,他就会变成从节点</span><br></pre></td></tr></table></figure></li>
+<li>从节点出现故障<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">如果从节点出现故障,他就会从集群中退出,但是在重启之后,会自动重新加入到集群中</span><br><span class="line"></span><br><span class="line">注意如果节点不自动加入到集群中,官网提供了rejoinInstance(&quot;实例地址&quot;)函数</span><br><span class="line"></span><br><span class="line">MySQL  node2:3306 ssl  JS &gt; cluster.rejoinInstance(&quot;实例地址&quot;) </span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="4-8-3-解散集群"><a href="#4-8-3-解散集群" class="headerlink" title="4.8.3 解散集群"></a>4.8.3 解散集群</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MySQL  node2:3306 ssl  JS &gt; cluster.dissolve()</span><br><span class="line"></span><br><span class="line">1. 删除集群中的所有节点</span><br><span class="line">2. 关闭组复制</span><br><span class="line">3. 不会删除数据</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-8-5-集群模式切换"><a href="#4-8-5-集群模式切换" class="headerlink" title="4.8.5 集群模式切换"></a>4.8.5 集群模式切换</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">上面所创建的集群默认为单主模式集群,MySQL官网提供了另外一种设计集群的方式(多主模式),设置多主模式非常简单,官网提供了两种模式切换的API,可以轻松在两种模式中进行切换</span><br><span class="line"></span><br><span class="line"># 调用函数进行单主到多主的切换cluster.switchToMultiPrimaryMode()</span><br><span class="line"></span><br><span class="line">MySQL  node1:3306 ssl  JS &gt; cluster.switchToMultiPrimaryMode()</span><br><span class="line">Switching cluster &#x27;myCluter&#x27; to Multi-Primary mode...</span><br><span class="line"></span><br><span class="line">Instance &#x27;node1:3306&#x27; remains PRIMARY.</span><br><span class="line">Instance &#x27;node2:3306&#x27; was switched from SECONDARY to PRIMARY.</span><br><span class="line">Instance &#x27;node3:3306&#x27; was switched from SECONDARY to PRIMARY.</span><br><span class="line"></span><br><span class="line">The cluster successfully switched to Multi-Primary mode.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 切换完成之后查看当前集群的状态</span><br><span class="line"></span><br><span class="line">MySQL  node1:3306 ssl  JS &gt; cluster.status()</span><br><span class="line">&#123;</span><br><span class="line">    &quot;clusterName&quot;: &quot;myCluter&quot;, </span><br><span class="line">    &quot;defaultReplicaSet&quot;: &#123;</span><br><span class="line">        &quot;name&quot;: &quot;default&quot;, </span><br><span class="line">        &quot;ssl&quot;: &quot;REQUIRED&quot;, </span><br><span class="line">        &quot;status&quot;: &quot;OK&quot;, </span><br><span class="line">        &quot;statusText&quot;: &quot;Cluster is ONLINE and can tolerate up to ONE failure.&quot;, </span><br><span class="line">        &quot;topology&quot;: &#123;</span><br><span class="line">            &quot;node1:3306&quot;: &#123;</span><br><span class="line">                &quot;address&quot;: &quot;node1:3306&quot;, </span><br><span class="line">                &quot;mode&quot;: &quot;R/W&quot;, </span><br><span class="line">                &quot;readReplicas&quot;: &#123;&#125;, </span><br><span class="line">                &quot;replicationLag&quot;: null, </span><br><span class="line">                &quot;role&quot;: &quot;HA&quot;, </span><br><span class="line">                &quot;status&quot;: &quot;ONLINE&quot;, </span><br><span class="line">                &quot;version&quot;: &quot;8.0.23&quot;</span><br><span class="line">            &#125;, </span><br><span class="line">            &quot;node2:3306&quot;: &#123;</span><br><span class="line">                &quot;address&quot;: &quot;node2:3306&quot;, </span><br><span class="line">                &quot;mode&quot;: &quot;R/W&quot;, </span><br><span class="line">                &quot;readReplicas&quot;: &#123;&#125;, </span><br><span class="line">                &quot;replicationLag&quot;: null, </span><br><span class="line">                &quot;role&quot;: &quot;HA&quot;, </span><br><span class="line">                &quot;status&quot;: &quot;ONLINE&quot;, </span><br><span class="line">                &quot;version&quot;: &quot;8.0.23&quot;</span><br><span class="line">            &#125;, </span><br><span class="line">            &quot;node3:3306&quot;: &#123;</span><br><span class="line">                &quot;address&quot;: &quot;node3:3306&quot;, </span><br><span class="line">                &quot;mode&quot;: &quot;R/W&quot;, </span><br><span class="line">                &quot;readReplicas&quot;: &#123;&#125;, </span><br><span class="line">                &quot;replicationLag&quot;: null, </span><br><span class="line">                &quot;role&quot;: &quot;HA&quot;, </span><br><span class="line">                &quot;status&quot;: &quot;ONLINE&quot;, </span><br><span class="line">                &quot;version&quot;: &quot;8.0.23&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, </span><br><span class="line">        &quot;topologyMode&quot;: &quot;Multi-Primary&quot;   # 多主模式,已经切换完成</span><br><span class="line">    &#125;, </span><br><span class="line">    &quot;groupInformationSourceMember&quot;: &quot;node1:3306&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 当前也可以切换回单主模式cluster.switchToSinglePrimaryMode(&quot;root@node1:3306&quot;)</span><br><span class="line"># 切换回单主的时候要指定主实例</span><br><span class="line"></span><br><span class="line">MySQL  node1:3306 ssl  JS &gt; cluster.switchToSinglePrimaryMode(&quot;root@node1:3306&quot;)</span><br><span class="line">Switching cluster &#x27;myCluter&#x27; to Single-Primary mode...</span><br><span class="line"></span><br><span class="line">Instance &#x27;node1:3306&#x27; remains PRIMARY.</span><br><span class="line">Instance &#x27;node2:3306&#x27; was switched from PRIMARY to SECONDARY.</span><br><span class="line">Instance &#x27;node3:3306&#x27; was switched from PRIMARY to SECONDARY.</span><br><span class="line"></span><br><span class="line">WARNING: Existing connections that expected a R/W connection must be disconnected, i.e. instances that became SECONDARY.</span><br><span class="line"></span><br><span class="line">The cluster successfully switched to Single-Primary mode</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 切换完成在查看当前集群状态</span><br><span class="line"></span><br><span class="line">MySQL  node1:3306 ssl  JS &gt; cluster.status()</span><br><span class="line">&#123;</span><br><span class="line">    &quot;clusterName&quot;: &quot;myCluter&quot;, </span><br><span class="line">    &quot;defaultReplicaSet&quot;: &#123;</span><br><span class="line">        &quot;name&quot;: &quot;default&quot;, </span><br><span class="line">        &quot;primary&quot;: &quot;node1:3306&quot;, </span><br><span class="line">        &quot;ssl&quot;: &quot;REQUIRED&quot;, </span><br><span class="line">        &quot;status&quot;: &quot;OK&quot;, </span><br><span class="line">        &quot;statusText&quot;: &quot;Cluster is ONLINE and can tolerate up to ONE failure.&quot;, </span><br><span class="line">        &quot;topology&quot;: &#123;</span><br><span class="line">            &quot;node1:3306&quot;: &#123;</span><br><span class="line">                &quot;address&quot;: &quot;node1:3306&quot;, </span><br><span class="line">                &quot;mode&quot;: &quot;R/W&quot;, </span><br><span class="line">                &quot;readReplicas&quot;: &#123;&#125;, </span><br><span class="line">                &quot;replicationLag&quot;: null, </span><br><span class="line">                &quot;role&quot;: &quot;HA&quot;, </span><br><span class="line">                &quot;status&quot;: &quot;ONLINE&quot;, </span><br><span class="line">                &quot;version&quot;: &quot;8.0.23&quot;</span><br><span class="line">            &#125;, </span><br><span class="line">            &quot;node2:3306&quot;: &#123;</span><br><span class="line">                &quot;address&quot;: &quot;node2:3306&quot;, </span><br><span class="line">                &quot;mode&quot;: &quot;R/O&quot;, </span><br><span class="line">                &quot;readReplicas&quot;: &#123;&#125;, </span><br><span class="line">                &quot;replicationLag&quot;: null, </span><br><span class="line">                &quot;role&quot;: &quot;HA&quot;, </span><br><span class="line">                &quot;status&quot;: &quot;ONLINE&quot;, </span><br><span class="line">                &quot;version&quot;: &quot;8.0.23&quot;</span><br><span class="line">            &#125;, </span><br><span class="line">            &quot;node3:3306&quot;: &#123;</span><br><span class="line">                &quot;address&quot;: &quot;node3:3306&quot;, </span><br><span class="line">                &quot;mode&quot;: &quot;R/O&quot;, </span><br><span class="line">                &quot;readReplicas&quot;: &#123;&#125;, </span><br><span class="line">                &quot;replicationLag&quot;: null, </span><br><span class="line">                &quot;role&quot;: &quot;HA&quot;, </span><br><span class="line">                &quot;status&quot;: &quot;ONLINE&quot;, </span><br><span class="line">                &quot;version&quot;: &quot;8.0.23&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, </span><br><span class="line">        &quot;topologyMode&quot;: &quot;Single-Primary&quot;   # 切换回单主</span><br><span class="line">    &#125;, </span><br><span class="line">    &quot;groupInformationSourceMember&quot;: &quot;node1:3306&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="第5节-MySQL-Router路由"><a href="#第5节-MySQL-Router路由" class="headerlink" title="第5节 MySQL Router路由"></a>第5节 MySQL Router路由</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MySQL集群已经配置完成,接下来配置MySQL的路由(轻量级的MySQL的中间件)</span><br><span class="line"></span><br><span class="line">MySQL Router路由的主要作用是代理MySQL集群服务,在应用访问时访问MySQL Router而不是直接访问MySQL服务.</span><br></pre></td></tr></table></figure>
+<h4 id="5-1-下载地址"><a href="#5-1-下载地址" class="headerlink" title="5.1 下载地址"></a>5.1 下载地址</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://dev.mysql.com/get/Downloads/MySQL-Router/mysql-router-8.0.23-linux-glibc2.12-x86_64.tar.xz</span><br></pre></td></tr></table></figure>
+<h4 id="5-2-安装和环境变量配置"><a href="#5-2-安装和环境变量配置" class="headerlink" title="5.2 安装和环境变量配置"></a>5.2 安装和环境变量配置</h4><ul>
+<li>安装步骤<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">二进制安装非常简单:</span><br><span class="line"></span><br><span class="line">1. 将下载的压缩包复制到/usr/local</span><br><span class="line"></span><br><span class="line">2. 解压</span><br><span class="line">   tar -Jxvf mysql-router-8.0.23-linux-glibc2.12-x86_64.tar.xz</span><br><span class="line"></span><br><span class="line">3. 重命名  mv mysql-router-8.0.23-linux-glibc2.12-x86_64 mysql-router</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">安装完成</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>环境变量配置<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">环境变量配置</span><br><span class="line"></span><br><span class="line">export export PATH=/usr/local/mysql-router/bin:$PATH</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">环境变量配置完成之后可以执行 mysqlrouter --version 查看一下版本信息</span><br><span class="line"></span><br><span class="line">执行 mysqlrouter --help 查看一下帮助文件,里面介绍了MySQL Router的使用方式</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="5-3-配置文件自动生成"><a href="#5-3-配置文件自动生成" class="headerlink" title="5.3 配置文件自动生成"></a>5.3 配置文件自动生成</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">上面配置完成之后,可以使用命令查看当前MySQL集群被哪一个路由连接.查看命令为 </span><br><span class="line"> MySQL  node1:3306 ssl  JS &gt; cluster.listRouters()</span><br><span class="line">&#123;</span><br><span class="line">    &quot;clusterName&quot;: &quot;myCluter&quot;, </span><br><span class="line">    &quot;routers&quot;: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">当然我们还没有使用MySQL Router连接集群,所以routers为空</span><br><span class="line"></span><br><span class="line">下面就是开始使用Router连接上面创建好的MySQL集群</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#  mysqlrouter: 启动router路由命令</span><br><span class="line">#  --bootstrap: 指定连接哪台机器</span><br><span class="line">#  --user: 使用哪个用于运行路由</span><br><span class="line"></span><br><span class="line">[root@node4 mysql-router]# mysqlrouter --bootstrap root@node1:3306 --user=root</span><br><span class="line">Please enter MySQL password for root: </span><br><span class="line"># Bootstrapping system MySQL Router instance...</span><br><span class="line"></span><br><span class="line">- Creating account(s) (only those that are needed, if any)</span><br><span class="line">- Verifying account (using it to run SQL queries that would be run by Router)</span><br><span class="line">- Storing account in keyring</span><br><span class="line">- Adjusting permissions of generated files</span><br><span class="line">- Creating configuration /usr/local/mysql-router/mysqlrouter.conf</span><br><span class="line"></span><br><span class="line"># MySQL Router configured for the InnoDB Cluster &#x27;myCluter&#x27;</span><br><span class="line"></span><br><span class="line">After this MySQL Router has been started with the generated configuration</span><br><span class="line"></span><br><span class="line">    $ /etc/init.d/mysqlrouter restart</span><br><span class="line">or</span><br><span class="line">    $ systemctl start mysqlrouter</span><br><span class="line">or</span><br><span class="line">    $ mysqlrouter -c /usr/local/mysql-router/mysqlrouter.conf</span><br><span class="line"></span><br><span class="line">the cluster &#x27;myCluter&#x27; can be reached by connecting to:</span><br><span class="line"></span><br><span class="line">## MySQL Classic protocol (MySQL协议可读写端口号和只读端口号)</span><br><span class="line"></span><br><span class="line">- Read/Write Connections: localhost:6446</span><br><span class="line">- Read/Only Connections:  localhost:6447</span><br><span class="line"></span><br><span class="line">## MySQL X protocol (MySQL X 协议可读写端口号和只读端口号)</span><br><span class="line"></span><br><span class="line">- Read/Write Connections: localhost:64460</span><br><span class="line">- Read/Only Connections:  localhost:64470</span><br><span class="line"></span><br><span class="line">出现上面的东西说明MySQL Router配置生成成功.</span><br><span class="line">可以根据上面生成的信息查找配置文件去阅读.</span><br></pre></td></tr></table></figure>
+<h5 id="5-4-启动MySQL-Router"><a href="#5-4-启动MySQL-Router" class="headerlink" title="5.4 启动MySQL Router"></a>5.4 启动MySQL Router</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">命令:</span><br><span class="line">mysqlrouter &amp;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">启动理由成功之后可以使用MySQL Shell查看当前集群连接的路由</span><br><span class="line"></span><br><span class="line"> MySQL  node2:3306 ssl  JS &gt; cluster.listRouters()</span><br><span class="line">&#123;</span><br><span class="line">    &quot;clusterName&quot;: &quot;myCluter&quot;, </span><br><span class="line">    &quot;routers&quot;: &#123;</span><br><span class="line">        &quot;node4::system&quot;: &#123;</span><br><span class="line">            &quot;hostname&quot;: &quot;node4&quot;, </span><br><span class="line">            &quot;lastCheckIn&quot;: &quot;2021-03-13 18:53:38&quot;, </span><br><span class="line">            &quot;roPort&quot;: 6447, </span><br><span class="line">            &quot;roXPort&quot;: 64470, </span><br><span class="line">            &quot;rwPort&quot;: 6446, </span><br><span class="line">            &quot;rwXPort&quot;: 64460, </span><br><span class="line">            &quot;version&quot;: &quot;8.0.23&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">目前为止集群出现完成,路由启动成功,以上就是高可用集群实现的方案(可用于生产环境的一种解决方案)</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    <div>
+	
+		<div style="text-align:center;color: #ccc;font-size:14px; padding-top: 10px;">----------------本文结束<i class="fa fa-paw"></i>感谢您的阅读---------------</div>
+	
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Centos7/" rel="tag"># Centos7</a>
+              <a href="/tags/HA/" rel="tag"># HA</a>
+              <a href="/tags/MySQL%E9%9B%86%E7%BE%A4/" rel="tag"># MySQL集群</a>
+              <a href="/tags/MySQL-InnoDB-Cluster/" rel="tag"># MySQL InnoDB Cluster</a>
+              <a href="/tags/mysql-shell/" rel="tag"># mysql shell</a>
+              <a href="/tags/mysql-router/" rel="tag"># mysql router</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/07/02/MyBatis-Plus%E5%85%A5%E9%97%A8(%E5%A4%9C%E6%B3%8A1.0%E7%89%88%E6%9C%AC)/" rel="prev" title="MyBatis-Plus笔记">
+      <i class="fa fa-chevron-left"></i> MyBatis-Plus笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/07/02/MySQL%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88(%E5%9F%BA%E4%BA%8E360%E7%9A%84Atlas%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1)/" rel="next" title="Atlas中间件快速入门(实现数据库读写分离)">
+      Atlas中间件快速入门(实现数据库读写分离) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-MySQL%E5%8D%95%E7%82%B9%E5%AE%89%E8%A3%85"><span class="nav-text">第一章 MySQL单点安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC1%E8%8A%82-%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82"><span class="nav-text">第1节 系统需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC2%E8%8A%82-MYSQL%E4%B8%8B%E8%BD%BD"><span class="nav-text">第2节 MYSQL下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC3%E8%8A%82-MYSQL%E5%AE%89%E8%A3%85"><span class="nav-text">第3节 MYSQL安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-MYSQL%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85-HA"><span class="nav-text">第二章 MYSQL集群安装(HA)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC1%E8%8A%82-%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82-1"><span class="nav-text">第1节 系统需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC2%E8%8A%82-MySQL-Shell%E4%BB%8B%E7%BB%8D"><span class="nav-text">第2节 MySQL Shell介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC3%E8%8A%82-MySQL-Shell%E5%AE%89%E8%A3%85"><span class="nav-text">第3节 MySQL Shell安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC4%E8%8A%82-MySQL-Shell%E7%9A%84%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-x2F-%E5%87%BD%E6%95%B0"><span class="nav-text">第4节 MySQL Shell的常用命令&#x2F;函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E8%BF%9E%E6%8E%A5MySQL%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">4.1 连接MySQL服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%BA%93%E3%80%81%E8%A1%A8%E3%80%81%E6%95%B0%E6%8D%AE"><span class="nav-text">4.2 操作数据库(库、表、数据)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-%E6%A3%80%E6%9F%A5MySQL%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%98%AF%E5%90%A6%E7%AC%A6%E5%90%88%E8%AE%BE%E7%BD%AE%E9%9B%86%E7%BE%A4%E7%9A%84%E6%A0%87%E5%87%86"><span class="nav-text">4.3 检查MySQL服务器是否符合设置集群的标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-%E5%B0%86%E4%B8%8D%E6%BB%A1%E8%B6%B3%E9%85%8D%E7%BD%AE%E9%9B%86%E7%BE%A4%E7%9A%84MySQL%E5%AE%9E%E4%BE%8B%E9%85%8D%E7%BD%AE%E6%88%90%E6%BB%A1%E8%B6%B3%E7%9A%84"><span class="nav-text">4.4 将不满足配置集群的MySQL实例配置成满足的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-%E5%88%9B%E5%BB%BA%E9%9B%86%E7%BE%A4"><span class="nav-text">4.5 创建集群</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-5-1-%E5%88%9B%E5%BB%BA%E9%9B%86%E7%BE%A4%E5%89%8D%E5%87%86%E5%A4%87"><span class="nav-text">4.5.1 创建集群前准备</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-5-2-%E9%9B%86%E7%BE%A4%E5%88%9B%E5%BB%BA%E6%93%8D%E4%BD%9C"><span class="nav-text">4.5.2 集群创建操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-%E8%8E%B7%E5%8F%96%E9%9B%86%E7%BE%A4"><span class="nav-text">4.6 获取集群</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-%E5%90%91%E9%9B%86%E7%BE%A4%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%AD%90%E8%8A%82%E7%82%B9"><span class="nav-text">4.7 向集群中添加子节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-8-%E5%A6%82%E6%9E%9CMySQL%E9%9B%86%E7%BE%A4%E8%8A%82%E7%82%B9%E5%87%BA%E7%8E%B0%E6%95%85%E9%9A%9C"><span class="nav-text">4.8 如果MySQL集群节点出现故障</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-8-1-%E5%85%A8%E9%83%A8%E5%87%BA%E7%8E%B0%E6%95%85%E9%9A%9C"><span class="nav-text">4.8.1 全部出现故障</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-8-2-%E6%9F%90%E4%B8%80%E5%8F%B0%E5%87%BA%E7%8E%B0%E6%95%85%E9%9A%9C"><span class="nav-text">4.8.2 某一台出现故障</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-8-3-%E8%A7%A3%E6%95%A3%E9%9B%86%E7%BE%A4"><span class="nav-text">4.8.3 解散集群</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-8-5-%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2"><span class="nav-text">4.8.5 集群模式切换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC5%E8%8A%82-MySQL-Router%E8%B7%AF%E7%94%B1"><span class="nav-text">第5节 MySQL Router路由</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="nav-text">5.1 下载地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-%E5%AE%89%E8%A3%85%E5%92%8C%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE"><span class="nav-text">5.2 安装和环境变量配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-3-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90"><span class="nav-text">5.3 配置文件自动生成</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-4-%E5%90%AF%E5%8A%A8MySQL-Router"><span class="nav-text">5.4 启动MySQL Router</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="夜泊1990"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">夜泊1990</p>
+  <div class="site-description" itemprop="description">俱往矣,要多呲花,有多呲花</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夜泊1990</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">687k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10:25</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
